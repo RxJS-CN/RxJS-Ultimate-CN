@@ -1,3 +1,2 @@
-# My Awesome Book
-
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+#Rxjs 5 ultimate
+This book is meant to be starter as well as intermediate book for anyone starting out with Rxjs.
