@@ -1,8 +1,8 @@
 # Observable Anatomy
-An observable has the following signature
+An observable's subscribe method has the following signature
 
 ```
-stream(fnValue, fnError, fnComplete)
+stream.subscribe(fnValue, fnError, fnComplete)
 ```
 
 The first one is being demonstrated below **fnValue**
