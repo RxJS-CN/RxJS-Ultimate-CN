@@ -11,8 +11,9 @@
 * [Operators first look](operators.md)
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
+* [Error handling](error-handling.md)
 * [Schedulers](schedulers.md)
 * [Subject](subject.md)
 * [Testing](testing.md)
-* Recipes
+* [Recipes](recipes.md)
 
