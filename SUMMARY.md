@@ -12,6 +12,7 @@
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
 * [Schedulers](schedulers.md)
-* [Testing](testing.md)
 * [Subject](subject.md)
+* [Testing](testing.md)
+* Recipes
 
