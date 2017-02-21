@@ -9,4 +9,6 @@
 * Producer
 * [Operators](operators.md)
 * [Brief history - callbacks, promises and now Observables](brief-history-callbacks-promises-and-now-observables.md)
+* Schedulers
+* Testing
 
