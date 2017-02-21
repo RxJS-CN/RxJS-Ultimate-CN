@@ -7,8 +7,10 @@
 * [Observable Anatomy](observable-anatomy.md)
 * [Observer](observer.md)
 * [Producer](producer.md)
-* [Operators](operators.md)
+* [Operators first look](operators.md)
 * [Schedulers](schedulers.md)
 * [Testing](testing.md)
 * Subject
+* Migrating from Rxj4 to Rxjs5
+* Error handling
 
