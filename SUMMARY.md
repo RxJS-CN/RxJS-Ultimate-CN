@@ -14,5 +14,4 @@
 * [Schedulers](schedulers.md)
 * [Testing](testing.md)
 * [Subject](subject.md)
-* Installation and Setup
 
