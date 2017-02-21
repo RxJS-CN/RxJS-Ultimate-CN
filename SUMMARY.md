@@ -8,4 +8,6 @@
 * [Observer](observer.md)
 * [Producer](producer.md)
 * [Operators](operators.md)
+* [Schedulers](schedulers.md)
+* [Testing](testing.md)
 
