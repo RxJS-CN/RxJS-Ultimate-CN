@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * [Async code](chapter1.md)
 * [Why Rxjs](why-rxjs.md)
+* [Installation and Setup](installation-and-setup.md)
 * [Observable vs Promise](observable.md)
 * [Observable Anatomy](observable-anatomy.md)
 * [Observer](observer.md)
@@ -13,5 +14,5 @@
 * [Schedulers](schedulers.md)
 * [Testing](testing.md)
 * [Subject](subject.md)
-* [Migrating from Rxj4 to Rxjs5](migrating-from-rxj4-to-rxjs5.md)
+* Installation and Setup
 
