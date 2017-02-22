@@ -12,8 +12,9 @@
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
 * [Error handling](error-handling.md)
-* [Schedulers](schedulers.md)
 * [Subject](subject.md)
+* [Schedulers](schedulers.md)
 * [Testing](testing.md)
-* [Recipes](recipes.md)
+* [Recipes autocomplete](recipes.md)
+* Recipes infinite scroll
 
