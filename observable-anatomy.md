@@ -41,3 +41,34 @@ let stream$ = Rx.Observable.create((observer) => {
 })
 ```
 
+## Unsubscribe
+
+ So far we have been creating an irresponsible Observable. Irresponsible in the sense that it doesn't clean up after itself. So let's look at how to that:
+ 
+```
+let stream$ = new Rx.Observable.create((observer) => {
+  let i = 0;
+  let id = setInterval(() => {
+    observer.next(i++);
+  },1000)
+  
+  return function(){
+    clearInterval( id );
+  }
+})
+
+stream$.subscribe((value) => {
+  console.log('Value', value)
+});
+
+setTimeout(() => {
+  stream$.unsubscribe() // here we invoke the cleanup function
+
+})
+
+```   
+
+So ensure that you
+- Define a function that cleans up
+- Implicitely call that function by calling `stream$.unsubscribe()`  
+
