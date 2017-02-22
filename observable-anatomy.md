@@ -69,6 +69,6 @@ setTimeout(() => {
 ```   
 
 So ensure that you 
-- Define a function that cleans up
+- Define a function that cleans up 
 - Implicitely call that function by calling `stream$.unsubscribe()`  
 
