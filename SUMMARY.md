@@ -16,5 +16,5 @@
 * [Schedulers](schedulers.md)
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
-* Recipes infinite scroll
+* [Recipes infinite scroll](recipes-infinite-scroll.md)
 
