@@ -46,6 +46,6 @@ is that it would not give the result we want instead the result would be:
 ```
 // Observable, Observable, Observable
 ```
-because we have created a list of observables, so three different streams. The `flatMap()` operator however is able to flatten these three streams into one stream called a `metastream`.
+because we have created a list of observables, so three different streams. The `flatMap()` operator however is able to flatten these three streams into one stream called a `metastream`. There is however another interesting operator that we should be using when dealing with ajax generally and it's called `switchMap()`. Read more about it here  [Cascading calls](/cascading-calls.md)
 
 
