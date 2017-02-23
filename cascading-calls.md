@@ -46,5 +46,40 @@ it does the proper `ajax()` call like in [Operators and Ajax](/operators-and-aja
 - Then we can fetch Orders and Messages in parallell.
 
 ### Promise approach
+
+```
+getUser()
+   .then((user) => {
+      return Promise.all(
+        getOrders(),
+        getMessages()
+      )
+   })
+```
+
 ### Rxjs approach
+
+```
+let stream$ = Rx.Observable.of({ id : 1, name : 'User' })
+stream.switchMap((user) => {
+  return Rx.Observable.forkJoin(
+     Rx.Observable.from([{ id : 114, user: 1}, { id : 115, user: 1}],
+     Rx.Observable.from([{ id : 200, user: 1}, { id : 201, user: 1}])
+  )
+})
+
+stream$.subscribe((result) => {
+  console.log('Orders', result[0]);
+  console.log('Messages', result[1]);
+
+})
+
+```
+
+## GOTCHAS
+
+We are doing `switchMap` so we can abandon an ajax call if necessary, this will make more sense in [Auto complete recipe](/recipes.md)
+
+
+
 
