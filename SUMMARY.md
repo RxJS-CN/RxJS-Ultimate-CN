@@ -11,11 +11,11 @@
 * [Operators first look](operators.md)
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
+* [Cascading calls](cascading-calls.md)
 * [Error handling](error-handling.md)
 * [Subject](subject.md)
 * [Schedulers](schedulers.md)
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
-* [Cascading calls](cascading-calls.md)
 
