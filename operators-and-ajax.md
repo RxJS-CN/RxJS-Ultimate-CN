@@ -54,6 +54,6 @@ const fetchSubscription = Rx.Observable
 ``` 
 So a couple of things here happens worth mentioning
 - fetch api is promised base, however using `.from()` Rxjs allows us to insert promise as a parameter and converts it to an Observable.
-- BUT the result coming back is a response object that we need to convert to Json, calling `json()` will do that for you but that operation returns a Promise. So we need to use another `from()` operator. But creating an Observable inside an observable creates a list of observables and we can't have that, we want Json. So we use an operator called `flatMap()` to fix that. Read more on `flatMap()` [here](/operators-observable-in-an-observable.md)   
+- BUT the result coming back is a response object that we need to convert to Json. Calling `json()` will do that for you but that operation returns a Promise. So we need to use another `from()` operator. But creating an Observable inside an observable creates a list of observables and we can't have that, we want Json. So we use an operator called `flatMap()` to fix that. Read more on `flatMap()` [here](/operators-observable-in-an-observable.md)   
 
 And finally we get the Json we expect, no issues with CORS but a little more to write.
