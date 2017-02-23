@@ -12,11 +12,11 @@
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
 * [Cascading calls](cascading-calls.md)
-* [Error handling](error-handling.md)
 * [Subject](subject.md)
+* [Hot n Cold Observables](hot-n-cold-observables.md)
+* [Error handling](error-handling.md)
 * [Schedulers](schedulers.md)
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
-* [Hot n Cold Observables](hot-n-cold-observables.md)
 
