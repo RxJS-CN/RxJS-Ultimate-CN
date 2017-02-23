@@ -10,8 +10,37 @@ Imagine you have the following scenario:
 - Then we can fetch their orders
 
 ### Promise approach
+```
+login()
+     .then(getUserDetails)
+     .then(getOrdersByUser)
+```
 ### Rxjs approach
 
+```
+let stream$ = Rx.Observable.of({ message : 'Logged in' })
+      .switchMap( result => {
+         return Rx.Observable.of({ id: 1, name : 'user' })
+      })
+      .switchMap((user) => {
+        return Rx.Observable.from(
+           [ { id: 114, userId : 1 },
+             { id: 117, userId : 1 }  ])
+      })
+
+stream$.subscribe((orders) => {
+  console.log('Orders', orders);
+})
+
+// Array of orders
+```      
+
+I've simplied this one a bit in the Rxjs example but imagine instead of 
+
+```
+Rx.Observable.of()
+```
+it does the proper `ajax()` call like in [Operators and Ajax](/operators-and-ajax.md)
 ## Semi dependant
 - We can fetch a users details
 - Then we can fetch Orders and Messages in parallell.
