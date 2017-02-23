@@ -78,7 +78,7 @@ stream$.subscribe((result) => {
 
 ## GOTCHAS
 
-We are doing `switchMap` so we can abandon an ajax call if necessary, this will make more sense in [Auto complete recipe](/recipes.md)
+We are doing `switchMap()` instead of `flatMap()` so we can abandon an ajax call if necessary, this will make more sense in [Auto complete recipe](/recipes.md)
 
 
 
