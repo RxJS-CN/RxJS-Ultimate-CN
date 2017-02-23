@@ -18,4 +18,5 @@
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
+* [Hot n Cold Observables](hot-n-cold-observables.md)
 
