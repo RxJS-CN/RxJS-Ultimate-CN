@@ -16,7 +16,7 @@ The corresponding way of doing this if dealing with promises would be to write
 ```
 let promise = new Promise((resolve, reject) => {
    setTimeout(()=> {
-      reject( [1,2,3] )
+      resolve( [1,2,3] )
    })
 
 })
