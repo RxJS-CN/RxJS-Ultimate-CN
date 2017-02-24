@@ -19,4 +19,5 @@
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
+* Best Practices
 
