@@ -9,6 +9,7 @@
 * [Observer](observer.md)
 * [Producer](producer.md)
 * [Operators first look](operators.md)
+* [Marble Diagrams](marble-diagrams.md)
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
 * [Cascading calls](cascading-calls.md)
@@ -19,5 +20,5 @@
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
-* Best Practices
+* [Best Practices](best-practices.md)
 
