@@ -7,4 +7,6 @@ The different article can be read in any order but it is recommended when you ar
 
 This is a work in progress so chapters are likely to be added and changed, less and less so as time passes, but the work was started on this on the 21 feb 2017..
 
+If you like using Rxjs /Rxjs 5 be sure to tweet @BenLesh or @mattpodwysocki etc and say thank you, or good job. It means a lot..
+
 Chris Noring
