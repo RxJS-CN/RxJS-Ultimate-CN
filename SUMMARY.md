@@ -12,6 +12,8 @@
 * [Marble Diagrams](marble-diagrams.md)
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
+* [Operators - construction](operators-construction.md)
+* [Operators time](operators-time.md)
 * [Subject](subject.md)
 * [Hot n Cold Observables](hot-n-cold-observables.md)
 * [Cascading calls](cascading-calls.md)
