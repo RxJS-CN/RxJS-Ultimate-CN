@@ -6,6 +6,7 @@
 * [Installation and Setup](installation-and-setup.md)
 * [Observable vs Promise](observable.md)
 * [Observable Anatomy](observable-anatomy.md)
+* [Observable wrapping](observable-wrapping.md)
 * [Observer](observer.md)
 * [Producer](producer.md)
 * [Operators first look](operators.md)
@@ -22,5 +23,5 @@
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
-* [Best Practices](best-practices.md)
+* Observable wrapping
 
