@@ -2,10 +2,19 @@
 There are plenty of operators dealing with time in some way such as `delay` `debounce` `throttle` `interval` etc.
 
 This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
+## delay
+Delay is an operator that delays every value being emitted
+Quite simply it works like this :
+```
+let stream$ = Rx.Observable.interval(100).take(500);
+stream$.
+```
 
+
+### Business case
 ## debounce
 TODO
-## throttle
+## throttleTime
 TODO
 
 ## buffer
