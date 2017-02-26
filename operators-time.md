@@ -3,15 +3,52 @@ There are plenty of operators dealing with time in some way such as `delay` `deb
 
 This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
 ## delay
-Delay is an operator that delays every value being emitted
+`delay()` is an operator that delays every value being emitted
 Quite simply it works like this :
 ```
-let stream$ = Rx.Observable.interval(100).take(500);
-stream$.
+var start = new Date();
+let stream$ = Rx.Observable.interval(500).take(3);
+
+stream$
+.delay(300)
+.subscribe((x) => {
+    console.log('val',x);
+    console.log( new Date() - start );
+})
+
+//0 800ms, 1 1300ms,2 1800ms
 ```
 
 
 ### Business case
+Delay can be used in a multitude of places but one such good case is when handling errors especially if we are dealing with `shaky connections` and want it to retry the whole stream after x miliseconds:
+
+```
+let values$ = Rx.Observable.interval(1000).take(5);
+let errorFixed = false;
+
+values$
+.map((val) => {
+    if(errorFixed) { return val; }
+    else if( val > 0 && val % 2 === 0) {
+        errorFixed = true;
+        throw { error : 'error' };
+
+    } else {
+        return val;
+    }
+})
+.retryWhen((err) => {
+    console.log('retrying the entire sequence');
+    return err.delay(200);
+})
+.subscribe((val) => { console.log('value',val) })
+
+// 0 1 'wait 200ms' retrying the whole sequence 0 1 2 3 4
+```
+The `delay()` operator is used within the `retyWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
+
+
 ## debounce
 TODO
 ## throttleTime
