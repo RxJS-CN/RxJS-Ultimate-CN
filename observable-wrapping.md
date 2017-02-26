@@ -198,7 +198,7 @@ Logic should be read as follows
 `heyClick$` is activated on a click on a button.
 `speechRecognition` is listening for what we say and sends that result into `heyClick$` where the switching logic determines an appropriate response that is uttered by `say` Observable.
 
-all credit due to @ladyleet
+all credit due to @ladyleet and @benlesh
 
 ## Summary
 One easier Ajax wrapping and one a little more advanced Speech API has been wrapped into an Observable. The mechanics are still the same though:
