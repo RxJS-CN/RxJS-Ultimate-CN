@@ -1,12 +1,12 @@
-#Observable wrapping
-We have just learned in [Observable Anatomy](/observable-anatomy.md) that the key operators `next()` , `error()` and `complete` is what makes our Observable tick, if we define it ourselves, and that these methods triggers a corresponding callback on our subscription. 
+#Observable wrapping 
+We have just learned in [Observable Anatomy](/observable-anatomy.md) that the key operators `next()` , `error()` and `complete` is what makes our Observable tick, if we define it ourselves. We have also learned that these methods triggers a corresponding callback on our subscription. 
 
-Wrapping something in an observable means we take something not an Observable and turn it into one so it can play nice with other Observables as well as it can now use [Operators](/operators.md).
+Wrapping something in an observable means we take something that is NOT an Observable and turn it into one, so it can play nice with other Observables. It also means that it can now use [Operators](/operators.md).
 
-## Wrapping an ajax call
+## Wrapping an ajax call 
 ```
-var stream = Rx.Observable.create((observer) => {
-   var request = new XMLHttpRequest();
+let stream = Rx.Observable.create((observer) => {
+   let request = new XMLHttpRequest();
 
    request.open( ‘GET’, ‘url’ );
    request.onload =() =>{
@@ -142,7 +142,7 @@ const speechRecognition$ = new Observable(observer => {
 
 ```
 
-This essentially sets up the speech recognition API and we want for one response and then complete the stream, much like the first example with AJAX.
+This essentially sets up the speech recognition API. We wait for one response and after that we complete the stream, much like the first example with AJAX.
 
 Note also that a function is defined for cleanup
 ```
@@ -150,7 +150,7 @@ return () => {
    speech.stop();
  }
 ```
-So that we can call `speechRecognition.unsubscribe()` to clean up resources
+so that we can call `speechRecognition.unsubscribe()` to clean up resources
 
 ### Speech synthesis utterance, say
 This is responsible for uttering what you want it to utter ( say ). 
@@ -202,7 +202,7 @@ all credit due to @ladyleet and @benlesh
 
 ## Summary
 One easier Ajax wrapping and one a little more advanced Speech API has been wrapped into an Observable. The mechanics are still the same though:
-1) where data is emitted, add a call to `next()
-2) if there is more data to emit call `complete`
+1) where data is emitted, add a call to `next()`
+2) if there is NO more data to emit call `complete`
 3) if there is a need for it, define a function that can be called upon `unsubscribe()` 
 4) Handle errors through calling `.error()` in the appropriate place. (only done in the first example)
