@@ -74,9 +74,26 @@ The code above does just that.
 
 
 ## debounceTime
-TODO
+So `debounceTime()` is an operator that tells you: I will not emit the data all the time but at certain intervals.
+
 ### Business case
-TODO
+Debounce is a known concept especially when you type keys on a keyboard. It's a way of saying we don't care about every keyup but once you stop typing for a while we should care. That, is how you would normally start an auto complete. Say your user hasn't typed for x miliseconds that probably means we should be doing an ajax call and retrieve a result.
+
+```
+const input = document.getElementById('input');
+
+const example = Rx.Observable
+  .fromEvent(input, 'keyup')
+  .map(i => i.currentTarget.value);
+
+//wait 0.5s, between keyups, throw away all other values
+const debouncedInput = example.debounceTime(500);
+
+const subscribe = debouncedInput.subscribe(val => {
+  console.log(`Debounced Input: ${val}`);
+});
+```
+The following only outputs a value, from our input field, after you stopped typing for 500ms, then it's worth reporting about it, i.e emit a value. 
 
 ## throttleTime
 TODO
