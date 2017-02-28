@@ -49,8 +49,35 @@ values$
 The `delay()` operator is used within the `retyWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
 
 
-## debounce
+
+## sample
+I usually think of this scenario as *talk to the hand*.
+What I mean by that is that events are only fired at specific points 
+
+### Business case
+So the ability to ignore events for x miliseconds is pretty useful. Imagine a save button being repeatedly pushed. Wouldn't it be nice to only act after x miliseconds and ignore the other pushes ?
+
+```
+const btn = document.getElementById('btnIgnore');
+var start = new Date();
+
+const input$ = Rx.Observable
+  .fromEvent(btn, 'click')
+
+  .sampleTime(2000);
+
+input$.subscribe(val => {
+  console.log(val, new Date() - start);
+});
+```
+The code above does just that.
+
+
+## debounceTime
 TODO
+### Business case
+TODO
+
 ## throttleTime
 TODO
 
