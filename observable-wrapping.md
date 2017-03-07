@@ -11,8 +11,8 @@ let stream = Rx.Observable.create((observer) => {
    request.open( ‘GET’, ‘url’ );
    request.onload =() =>{
       if(request.status === 200) {
-         observer.next( request.response )
-         observer.complete
+         observer.next( request.response );
+         observer.complete();
      } else {
           observer.error('error happened');
      }
