@@ -86,7 +86,7 @@ let replaySubscription = replaySubject.subscribe((value) => {
 
 ```
 
-Wow, what happenend here, what happened to the first number?
+Wow, what happened here, what happened to the first number?
 So a `.next()` that happens before the subscription is created, is normally lost. But in the case of a `ReplaySubject` we have a chance to save emitted values in the cache. Upon creation the cache has been decided to save two values.
 
 Let's illustrate how this works:
@@ -138,6 +138,8 @@ asyncSubject.complete()
 ```
 
 ### Business case
+When you care about preserving the last state just before the stream ends, be it a value or an error. So NOT last emitted state generally but last *before closing time*. With state I mean value or error.
+
 ## BehaviourSubject
 This Subject emits, the initial value, the values emitted generally and you can check what it emitted last.
 
