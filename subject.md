@@ -44,10 +44,25 @@ But it can also add its own contribution
 proxySubject.next( 3 )  // emits 3 and then 0 1 2 ( async )
 
 ```
-So what's interesting about this?  It can listen to some source when that data arrives as well as it has the ability to emit its own data and all arrives to the same subscriber
+
+**GOTCHA**
+Any `next()` that happens before a subscription is created is lost. There are other Subject types that can cater to this below.
+
 
 ### Business case
-TODO
+So what's interesting about this?  It can listen to some source when that data arrives as well as it has the ability to emit its own data and all arrives to the same subscriber. Ability to communicate between components in a bus like manner is the most obvious use case I can think of. Component 1 can place its value through `next()` and Component 2 can subscribe and conversely Component 2 can emit values in turn that Component 1 can subscribe to. 
+
+```
+sharedService.getDispatcher = function(){
+   return subject;
+}
+
+sharedService.dispatch = function(value){
+  subject.next(value)
+}
+```
+
+
 
 ## ReplaySubject
 
