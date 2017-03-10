@@ -23,4 +23,13 @@ subscribe()
 unsubscribe()
 ```
 
+## Acting as a proxy
+A `Subject` can act as a proxy, i.e receive values from another stream that the subscriber of the `Subject` can listen to.
+
+```
+let source$ = Rx.Observable.interval( 500 ).take(3);
+const proxySubject = new Subject();
+let subscriber = source.subscribe( proxySubject );
+```
+
 
