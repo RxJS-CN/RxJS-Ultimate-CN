@@ -7,3 +7,11 @@ Emitting values
 subject.next( 1 )
 subject.next( 2 ) 
 ```
+
+Subscribing to values
+
+```
+const subscription = subject.subscribe( (value) => console.log(value) )
+```
+
+
