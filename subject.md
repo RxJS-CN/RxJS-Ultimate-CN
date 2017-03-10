@@ -125,7 +125,7 @@ console.log('Behaviour current value',behaviorSubject.getValue());
 // current value 3
 ```
 ### Business case
-This is quite similar to `ReplaySubject`
+This is quite similar to `ReplaySubject`. There is a difference though, we can utilize a default / start value that we can show initially if it takes some time before the first values starts to arrive. We can inspect the latest emitted value and of course listen to everything that has been emitted. So think of `ReplaySubject` as more *long term memory* and `BehaviourSubject` as short term memory with default behaviour.
 
 
 
