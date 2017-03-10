@@ -29,7 +29,7 @@ A `Subject` can act as a proxy, i.e receive values from another stream that the 
 ```
 let source$ = Rx.Observable.interval( 500 ).take(3);
 const proxySubject = new Subject();
-let subscriber = source.subscribe( proxySubject );
+let subscriber = source$.subscribe( proxySubject );
 ```
 
 
