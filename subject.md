@@ -30,6 +30,16 @@ A `Subject` can act as a proxy, i.e receive values from another stream that the 
 let source$ = Rx.Observable.interval( 500 ).take(3);
 const proxySubject = new Subject();
 let subscriber = source$.subscribe( proxySubject );
+
+subscriber.subscribe( (value) => console.log( value )  ) // 0 1 2
+```
+
+So essentially subject `listens` to `source$`
+
+But it can also add its own contribution
+
+```
+proxySubject.next( 3 )  // emits 3 after 0 1 2
 ```
 
 
