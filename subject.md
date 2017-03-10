@@ -45,6 +45,23 @@ proxySubject.next( 3 )  // emits 3 after 0 1 2
 ## Subject sub types
 There are different kind of Subject, all with their own use cases.
 ### ReplaySubject
+
+prototype:
+```
+new Rx.ReplaySubject(<cache size>)
+```
+
+example:
+```
+let replaySubject = new Rx.ReplaySubject(<cache size>);
+let subscriber = replaySubject.subscribe((value) => console.log(value)) //
+
+replaySubject.next( 1 )
+replaySubject.next( 2 )
+replaySubject.next( 3 )
+
+```
+
 #### Business case
 ### AsyncSubject
 #### Business case
