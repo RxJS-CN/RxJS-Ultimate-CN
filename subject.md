@@ -58,18 +58,21 @@ new Rx.ReplaySubject(<cache size>)
 
 example:
 ```
-let replaySubject = new Rx.ReplaySubject(2);
+let replaySubject = new Rx.ReplaySubject( 2 );
 
-replaySubject.next( 1 )
-replaySubject.next( 2 )
-replaySubject.next( 3 )
+replaySubject.next( 0 );
+replaySubject.next( 1 );
+replaySubject.next( 2 );
 
-let subscriber = replaySubject.subscribe((value) => console.log(value)) // 2 3
+//  1, 2
+let replaySubscription = replaySubject.subscribe((value) => {
+    console.log('replay subscription', value);
+});
 
 ```
 
 Wow, what happenend here, what happened to the first number?
-So a `.next()` that happens before the subscription is created is normally lost. But in the case of a `ReplaySubject` we have a chance to save emitted values in the cache. Upon creation the cache has been decided to save two values.
+So a `.next()` that happens before the subscription is created, is normally lost. But in the case of a `ReplaySubject` we have a chance to save emitted values in the cache. Upon creation the cache has been decided to save two values.
 
 Let's illustrate how this works:
 ```
@@ -82,6 +85,7 @@ It matters both when the `.next()` operation happens, the size of the cache as w
 
 
 #### Business case
+
 ### AsyncSubject
 #### Business case
 ### BehaviourSubject
