@@ -53,7 +53,7 @@ TODO
 
 prototype:
 ```
-new Rx.ReplaySubject(<cache size>)
+new Rx.ReplaySubject([bufferSize], [windowSize], [scheduler])
 ```
 
 example:
@@ -83,8 +83,11 @@ let secondSubscriber( (value) => console.log(value) ) // 2,3
 **GOTCHA**
 It matters both when the `.next()` operation happens, the size of the cache as well as when your subscription is created.
 
+In the example above it was demonstrated how to use the constructor using `bufferSize` argument in the constructor. However there also exist a `windowSize` argument where you can specify how long the values should remain in the cache. Set it to `null` and it remains in the cache indefinite.
 
 ### Business case
+
+It's quite easy to imagine the business case here. You fetch some data and want the app to remember what was fetched latest, and what you fetched might only be relevant for a certain time and when enough time has passed you clear the cache.
 
 ## AsyncSubject
 
