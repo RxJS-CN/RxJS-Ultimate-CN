@@ -44,6 +44,7 @@ But it can also add its own contribution
 proxySubject.next( 3 )  // emits 3 and then 0 1 2 ( async )
 
 ```
+
 ## Subject sub types
 There are different kind of Subject, all with their own use cases.
 ### ReplaySubject
