@@ -44,7 +44,7 @@ But it can also add its own contribution
 proxySubject.next( 3 )  // emits 3 and then 0 1 2 ( async )
 
 ```
-
+So what's interesting about this?  It can listen to some source when that data arrives as well as it has the ability to emit its own data and all arrives to the same subscriber
 ## Subject sub types
 There are different kind of Subject, all with their own use cases.
 ### ReplaySubject
