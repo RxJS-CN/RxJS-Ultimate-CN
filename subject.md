@@ -112,6 +112,15 @@ asyncSubject.complete()
 
 // emit 3
 ```
+`complete()` needs to happen regardless of the finishing operation before it succeeds or fails so 
+
+```
+asyncSubject( 3 )
+asyncSubject.error('err')
+asyncSubject.complete()
+
+// will emit 'err' as the last action 
+```
 
 ### Business case
 ## BehaviourSubject
