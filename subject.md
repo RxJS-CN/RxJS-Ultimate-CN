@@ -16,8 +16,8 @@ const subscription = subject.subscribe( (value) => console.log(value) )
 The sum it up the following operations exist on it:
 
 ```
-next(<value>)
-error(<error message>)
+next([value])
+error([error message])
 complete()
 subscribe()
 unsubscribe()
