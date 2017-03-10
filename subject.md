@@ -43,6 +43,7 @@ proxySubject.next( 3 )  // emits 3 after 0 1 2
 
 ```
 ## Subject sub types
+There are different kind of Subject, all with their own use cases.
 ### ReplaySubject
 #### Business case
 ### AsyncSubject
