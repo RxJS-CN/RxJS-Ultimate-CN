@@ -84,12 +84,12 @@ let secondSubscriber( (value) => console.log(value) ) // 2,3
 It matters both when the `.next()` operation happens, the size of the cache as well as when your subscription is created.
 
 
-#### Business case
+### Business case
 
-### AsyncSubject
-#### Business case
-### BehaviourSubject
-#### Business case
+## AsyncSubject
+### Business case
+## BehaviourSubject
+### Business case
 
 
 
