@@ -27,11 +27,13 @@ unsubscribe()
 A `Subject` can act as a proxy, i.e receive values from another stream that the subscriber of the `Subject` can listen to.
 
 ```
-let source$ = Rx.Observable.interval( 500 ).take(3);
-const proxySubject = new Subject();
+let source$ = Rx.Observable.interval(500).take(3);
+const proxySubject = new Rx.Subject();
 let subscriber = source$.subscribe( proxySubject );
 
-subscriber.subscribe( (value) => console.log( value )  ) // 0 1 2
+proxySubject.subscribe( (value) => console.log('proxy subscriber', value ) );
+
+proxySubject.next( 3 );
 ```
 
 So essentially subject `listens` to `source$`
