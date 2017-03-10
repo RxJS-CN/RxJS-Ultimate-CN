@@ -40,6 +40,16 @@ But it can also add its own contribution
 
 ```
 proxySubject.next( 3 )  // emits 3 after 0 1 2
+
 ```
+## Subject sub types
+### ReplaySubject
+#### Business case
+### AsyncSubject
+#### Business case
+### BehaviourSubject
+#### Business case
+
+
 
 
