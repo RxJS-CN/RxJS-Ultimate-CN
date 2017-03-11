@@ -13,7 +13,7 @@ Subscribing to values
 ```
 const subscription = subject.subscribe( (value) => console.log(value) )
 ```
-The sum it up the following operations exist on it:
+To sum it up the following operations exist on it:
 
 ```
 next([value])
