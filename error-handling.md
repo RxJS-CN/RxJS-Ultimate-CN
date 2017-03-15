@@ -25,3 +25,10 @@ We can patch this by introducing the `catch()` operator. It is used like this:
 let errorPatched$ = error$.catch(err => { return Rx.Observable.of('Patched' + err) });
 errorPatched$.subscribe((data) => console.log(data) );
 ```
+As you can see `patching it` with `.catch()` and returning a new Observable *fixes* the stream. Question is if that is what you want. Sure the stream survives and reaches completion and can emit any values that happened after the point of crash. 
+
+If this is not what you want then maybe the Retry approach above suits you better, you be the judge.
+
+### What about multiple streams?
+You didn't think it would be that easy did you? Usually when coding Rxjs code you deal with more than one stream and using `catch()` operator approach is great if you know where to place your operator.
+
