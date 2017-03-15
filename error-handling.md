@@ -22,5 +22,7 @@ This code will only execute the error callback and NOT reach the complete callba
 ### Patching it
 We can patch this by introducing the `catch()` operator. It is used like this:
 ```
+error$.catch((err) => return Rx.Observable.of(err))
 
+error$.subscribe((data) => console.log(data)) // 'crash'
 ```
