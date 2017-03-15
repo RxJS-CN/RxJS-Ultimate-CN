@@ -20,3 +20,7 @@ error$.subscribe(
 ```
 This code will only execute the error callback and NOT reach the complete callback. 
 ### Patching it
+We can patch this by introducing the `catch()` operator. It is used like this:
+```
+
+```
