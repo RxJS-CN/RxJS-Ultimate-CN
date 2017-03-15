@@ -18,4 +18,5 @@ error$.subscribe(
   () => console.log('complete')
 )
 ```
-This code will only execute the error callback and NOT reach the complete callback.
+This code will only execute the error callback and NOT reach the complete callback. 
+### Patching it
