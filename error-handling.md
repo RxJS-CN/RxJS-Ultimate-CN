@@ -32,3 +32,47 @@ If this is not what you want then maybe the Retry approach above suits you bette
 ### What about multiple streams?
 You didn't think it would be that easy did you? Usually when coding Rxjs code you deal with more than one stream and using `catch()` operator approach is great if you know where to place your operator.
 
+```
+let badStream$ = Rx.Observable.throw('crash');
+let goodStream$ = Rx.Observable.of(1,2,3,);
+
+let merged$ = Rx.Observable.merge(
+  badStream$,
+  goodStream$
+);
+
+merged$.subscribe(
+   data => console.log(data),
+   err => console.error(err),
+   () => console.log('merge completed') 
+)
+```
+Care to guess what happened?
+1) crash + values is emitted + complete
+2) crash + values is emitted
+3) crash only is emitted
+
+Sadly 3) is what happens. Which means we have virtually no handling of the error.
+
+**Lets patch it**
+S we need to patch the error. We do patching with `catch()` operator. Question is where?
+
+Let's try this?
+
+```
+let patchedPreMerge$= merged$.catch(err => { return Rx.Observable.of(err)  })
+let mergedPatched$ = Rx.Observable.merge(
+  badStream$,
+  goodStream$
+);
+
+mergedPatched$.subscribe(
+  data => console.log(data),
+  err => console.error(err),
+  () => console.log('merge completed') 
+)
+
+```
+
+
+
