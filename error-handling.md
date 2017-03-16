@@ -104,6 +104,6 @@ emitSurviving.subscribe(
     () => console.log('Survival of the fittest, completed')
 ) 
 ```
-The only thing emitted here is 'I will survive' and 'Survival of the fittest, completed'
+The only thing emitted here is 'I will survive' and 'Survival of the fittest, completed'.
 
 
