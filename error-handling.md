@@ -88,4 +88,22 @@ There is another scenario that might be of interest. The above scenario assumes 
 
 What if that is not the case, what if you only care about values from streams that behave? Let's say thats your case, there is an operator for that `onErrorResumeNext()`
 
+```
+let secondBadStream$ = Rx.Observable.throw('bam');
+let gloriaGaynorStream$ = Rx.Observable.of('I will survive');
+
+let emitSurviving = Rx.Observable.onErrorResumeNext(
+    badStream$,
+    secondBadStream$,
+    gloriaGaynorStream$
+);
+
+emitSurviving.subscribe(
+    data => console.log(data),
+    err => console.error(err),
+    () => console.log('Survival of the fittest, completed')
+) 
+```
+The only thing emitted here is 'I will survive' and 'Survival of the fittest, completed'
+
 
