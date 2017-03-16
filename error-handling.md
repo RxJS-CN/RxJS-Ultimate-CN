@@ -75,5 +75,17 @@ mergedPatched$.subscribe(
 In this case we get 'crash' and 'patchedMerged completed'. Ok so we reach complete but it still doesn't give us the values from `goodStream$`.
 So better approach but still not good enough.
 
+**Patch it better**
+So adding the `catch()` operator after the `merge()` ensured the stream completed but it wasn't good enough. Let's try to change the placement of `catch()`, pre merge.
+
+And voila, we get values, our error emits its error message as a new nice Observable and we get completion.
+
+**Gotcha**
+It matters where the `catch()` is placed.
+
+#### Survival of the fittest
+There is another scenario that might be of interest. The above scenario assumes you want everything emitted, error messages, values, everything.
+
+What if that is not the case, what if you only care about values from streams that behave? Let's say thats your case, there is an operator for that `onErrorResumeNext()`
 
 
