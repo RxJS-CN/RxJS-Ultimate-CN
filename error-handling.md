@@ -60,19 +60,20 @@ S we need to patch the error. We do patching with `catch()` operator. Question i
 Let's try this?
 
 ```
-let patchedPreMerge$= merged$.catch(err => { return Rx.Observable.of(err)  })
 let mergedPatched$ = Rx.Observable.merge(
-  badStream$,
-  goodStream$
-);
+    badStream$,
+    goodStream$
+).catch(err => Rx.Observable.of(err));
 
 mergedPatched$.subscribe(
-  data => console.log(data),
-  err => console.error(err),
-  () => console.log('merge completed') 
+    data => console.log(data),
+    err => console.error(err),
+    () => console.log('patchedMerged completed')
 )
 
 ```
+In this case we get 'crash' and 'patchedMerged completed'. Ok so we reach complete but it still doesn't give us the values from `goodStream$`.
+So better approach but still not good enough.
 
 
 
