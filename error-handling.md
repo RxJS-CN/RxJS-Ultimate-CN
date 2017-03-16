@@ -78,6 +78,19 @@ So better approach but still not good enough.
 **Patch it better**
 So adding the `catch()` operator after the `merge()` ensured the stream completed but it wasn't good enough. Let's try to change the placement of `catch()`, pre merge.
 
+```
+let preMergedPatched$ = Rx.Observable.merge(
+    badStream$.catch(err => Rx.Observable.of(err)),
+    goodStream$
+).catch(err => Rx.Observable.of(err));
+
+preMergedPatched$.subscribe(
+    data => console.log(data),
+    err => console.error(err),
+    () => console.log('pre patched merge completed')
+)
+```
+
 And voila, we get values, our error emits its error message as a new nice Observable and we get completion.
 
 **Gotcha**
