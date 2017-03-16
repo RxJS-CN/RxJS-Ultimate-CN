@@ -93,7 +93,7 @@ preMergedPatched$.subscribe(
 
 And voila, we get values, our error emits its error message as a new nice Observable and we get completion.
 
-**Gotcha**
+**GOTCHA**
 It matters where the `catch()` is placed.
 
 #### Survival of the fittest
