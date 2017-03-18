@@ -67,7 +67,7 @@ values$.subscribe(
     err => console.error('Retry when - Err',err)
 )
 ```
-The way its written it will return `1` until we run out of memory cause the algorithm will always crash on the value `2` and will keep retrying the stream forever, due to our lack of end condition. What we need to do is to somehow say that the error is fixed. If the stream were trying to hit urls instead of emitting numbers a responding endpoint would be the fix but in this case we have to write something like this:
+The way it's written it will return `1` until we run out of memory cause the algorithm will always crash on the value `2` and will keep retrying the stream forever, due to our lack of end condition. What we need to do is to somehow say that the error is fixed. If the stream were trying to hit urls instead of emitting numbers a responding endpoint would be the fix but in this case we have to write something like this:
 
 ```
 let values$ = Rx.Observable.interval(1000).take(5);
@@ -86,11 +86,23 @@ values$
 })
 .retryWhen((err) => {
     console.log('retrying the entire sequence');
+    return err;
 })
 .subscribe((val) => { console.log('value',val) })
 
 // 0 1 'wait 200ms' retrying the whole sequence 0 1 2 3 4
 ```
+
+This however resembles a lot of what we did with the `retry()` operator, the code above will just retry once. The real benefit is being to change the stream we return inside the `retryWhen()` namely to involve a delay like this: 
+
+```
+.retryWhen((err) => {
+    console.log('retrying the entire sequence');
+    return err.delay(200)
+})
+
+```
+This ensures there is a 200ms delay before sequence is retried, which in an ajax scenario could be enough for our endpoint to *get it's shit together* and start responding.
 
 **GOTCHA**
 
