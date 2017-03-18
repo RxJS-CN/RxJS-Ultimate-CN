@@ -110,7 +110,7 @@ The `delay()` operator is used within the `retryWhen()` to ensure that the retry
 
 #### retryWhen with delay and no of times
 So far `retry()` operator has been used when we wanted to retry the sequence x times and `retryWhen()` has been used when we wanted to delay the time between attempts, but what if we want both. Can we do that? We can.
-We need to think about us somehow remembering the number of attemps we have made so far. It's very tempting to introduce an external variable and keep that count, but that' not how we do things the functional way, remember side effects are forbidden. So how do we solve it?  There is an operator called `scan()` that will allow us to accumulate values for every iteration. So if you use scan inside of the `retryWhen()` we can track our attempts that way:
+We need to think about us somehow remembering the number of attempts we have made so far. It's very tempting to introduce an external variable and keep that count, but that's not how we do things the functional way, remember side effects are forbidden. So how do we solve it?  There is an operator called `scan()` that will allow us to accumulate values for every iteration. So if you use scan inside of the `retryWhen()` we can track our attempts that way:
 
 ```
 let ATTEMPT_COUNT = 3;
