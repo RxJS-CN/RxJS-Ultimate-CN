@@ -23,32 +23,7 @@ stream$
 ### Business case
 Delay can be used in a multitude of places but one such good case is when handling errors especially if we are dealing with `shaky connections` and want it to retry the whole stream after x miliseconds:
 
-```
-let values$ = Rx.Observable.interval(1000).take(5);
-let errorFixed = false;
-
-values$
-.map((val) => {
-    if(errorFixed) { return val; }
-    else if( val > 0 && val % 2 === 0) {
-        errorFixed = true;
-        throw { error : 'error' };
-
-    } else {
-        return val;
-    }
-})
-.retryWhen((err) => {
-    console.log('retrying the entire sequence');
-    return err.delay(200);
-})
-.subscribe((val) => { console.log('value',val) })
-
-// 0 1 'wait 200ms' retrying the whole sequence 0 1 2 3 4
-```
-The `delay()` operator is used within the `retyWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
-
-
+Read more in chapter [Error handling](/error-handling.md)
 
 ## sample
 I usually think of this scenario as *talk to the hand*.
