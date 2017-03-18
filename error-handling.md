@@ -23,13 +23,51 @@ stream$.subscribe(
    err => console.log(err)
 )
 ```
+The stream effectively dies when the error callback is being hit and this is where the `rety()` operator comes in. By appending it like so:
 
-The `delay()` operator is used within the `retryWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
+```
+let stream$ = Rx.Observable.of(1,2,3)
+.map(value => {
+   if(value > 2) { throw 'error' }
+})
+retry(5)
+```
+This will run the sequence of values 5 more times before finally giving up and hitting the error callback. However in this case, the way the code is written, it will just generate `1,2` five times. So our code isn't really utilizing the operator to its fullest potential. What you probably want is to be able to change something between attempts. Imagine your observable looked like this instead:
 
+```
+let urlsToHit$ = Rx.Observable.of(url, url2,url3);
+```
+In this its clearly so that an endpoint might have answered badly or not at all on your first attempt and it makes sense to retry them x number of times.
 
-
+However in the case of ajax calls, and imagining our business case is *shaky connections* it makes no sense to do the retry immediately so we have to look elsewhere for a better operator, we need to look to `retryWhen()`
 
 ### retryWhen
+A `retryWhen()` operator gives us the chance to operate on our stream and handle it appropriately
+
+```
+retryWhen( stream => {
+   // return it in a better condition, hopefully
+})
+```
+
+Lets' write a piece of naive code for a second
+```
+let values$ = Rx.Observable
+.of( 1,2,3,4 )
+.map(val => {
+    if(val === 2) { throw 'err'; }
+    else return val;
+})
+.retryWhen( stream => {
+    return stream;
+} );
+
+values$.subscribe(
+    data => console.log('Retry when - data',data),
+    err => console.error('Retry when - Err',err)
+)
+```
+The way its written it will return `1` until we run out of memory cause the algorithm will always crash on the value `2` and will keep retrying the stream forever, due to our lack of end condition. What we need to do is to somehow say that the error is fixed. If the stream were trying to hit urls instead of emitting numbers a responding endpoint would be the fix but in this case we have to write something like this:
 
 ```
 let values$ = Rx.Observable.interval(1000).take(5);
@@ -37,18 +75,17 @@ let errorFixed = false;
 
 values$
 .map((val) => {
-if(errorFixed) { return val; }
-else if( val > 0 && val % 2 === 0) {
-errorFixed = true;
-throw { error : 'error' };
+   if(errorFixed) { return val; }
+   else if( val > 0 && val % 2 === 0) {
+      errorFixed = true;
+      throw { error : 'error' };
 
-} else {
-return val;
-}
+   } else {
+      return val;
+   }
 })
 .retryWhen((err) => {
-console.log('retrying the entire sequence');
-return err.delay(200);
+    console.log('retrying the entire sequence');
 })
 .subscribe((val) => { console.log('value',val) })
 
