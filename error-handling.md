@@ -109,9 +109,29 @@ This ensures there is a 200ms delay before sequence is retried, which in an ajax
 The `delay()` operator is used within the `retryWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
 
 #### retryWhen with delay and no of times
-So far `retry()` operator has been used when we wanted to retry the sequence x times and `retryWhen()` has been used when we wanted to delay the time between attempts, but what if we want both. Can we do that? We can, but to be honest it will hurt your head a bit looking at the solution, or maybe it's just my head. The `retryWhen()` operator is the one involved and the code looks like this:
+So far `retry()` operator has been used when we wanted to retry the sequence x times and `retryWhen()` has been used when we wanted to delay the time between attempts, but what if we want both. Can we do that? We can.
+We need to think about us somehow remembering the number of attemps we have made so far. It's very tempting to introduce an external variable and keep that count, but that' not how we do things the functional way, remember side effects are forbidden. So how do we solve it?  There is an operator called `scan()` that will allow us to accumulate values for every iteration. So if you use scan inside of the `retryWhen()` we can track our attempts that way:
 
+```
+let ATTEMPT_COUNT = 3;
+let DELAY = 1000;
+let delayWithTimes$ = Rx.Observable.of(1,2,3)
+.map( val => {
+  if(val === 2) throw 'err'
+  else return val;
+})
+.retryWhen(e => e.scan((errorCount, err) => {
+    if (errorCount >= ATTEMPT_COUNT) {
+        throw err;
+    }
+    return errorCount + 1;
+}, 0).delay(DELAY));
 
+delayWithTimes$.subscribe(
+    val => console.log('delay and times - val',val),
+    err => console.error('delay and times - err',err)
+)
+```
 
 
 
