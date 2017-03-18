@@ -9,8 +9,55 @@ The `retry()` operator lets us retry the whole stream, value for value x number 
 ```
 retry([times])
 ```
+
+The important thing to note with the `retry()` operator is that it delays when the error callback is being called. Given the following code the error callback is being hit straight away:
+
+```
+let stream$ = Rx.Observable.of(1,2,3)
+.map(value => {
+   if(value > 2) { throw 'error' }
+});
+
+stream$.subscribe(
+   data => console.log(data),
+   err => console.log(err)
+)
+```
+
+The `delay()` operator is used within the `retryWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
+
+
+
+
 ### retryWhen
-TODO
+
+```
+let values$ = Rx.Observable.interval(1000).take(5);
+let errorFixed = false;
+
+values$
+.map((val) => {
+if(errorFixed) { return val; }
+else if( val > 0 && val % 2 === 0) {
+errorFixed = true;
+throw { error : 'error' };
+
+} else {
+return val;
+}
+})
+.retryWhen((err) => {
+console.log('retrying the entire sequence');
+return err.delay(200);
+})
+.subscribe((val) => { console.log('value',val) })
+
+// 0 1 'wait 200ms' retrying the whole sequence 0 1 2 3 4
+```
+
+**GOTCHA**
+
+The `delay()` operator is used within the `retryWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
 
 ## Transform - nothing to see here folks
 This approach is when you get an error and you choose to remake it into a valid Observable.
