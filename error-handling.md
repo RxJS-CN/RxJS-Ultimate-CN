@@ -108,6 +108,13 @@ This ensures there is a 200ms delay before sequence is retried, which in an ajax
 
 The `delay()` operator is used within the `retryWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
 
+#### retryWhen with delay and no of times
+So far `retry()` operator has been used when we wanted to retry the sequence x times and `retryWhen()` has been used when we wanted to delay the time between attempts, but what if we want both. Can we do that? We can, but to be honest it will hurt your head a bit looking at the solution, or maybe it's just my head. The `retryWhen()` operator is the one involved and the code looks like this:
+
+
+
+
+
 ## Transform - nothing to see here folks
 This approach is when you get an error and you choose to remake it into a valid Observable.
 
