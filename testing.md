@@ -260,3 +260,49 @@ because `x` doesn't happen.
 
 There are of course other symbols that are of interest that lets us define things like an error. An error is denoted as a `#` and below follows an example of such a test:
 
+```
+const lhsMarble = '-#';
+const expected = '#';
+const expectedMap = {
+};
+
+//const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+
+const myAlgorithm = ( lhs ) => 
+    Rx.Observable
+    .from( lhs );
+
+const actual$ = myAlgorithm( Rx.Observable.throw('error') );
+
+//assert
+testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
+testScheduler.flush();
+```
+
+And here is another symbol `|` representing a stream that completes: 
+
+```
+const lhsMarble = '-a-b-c-|';
+const expected = '-a-b-c-|';
+const expectedMap = {
+    a : 1,
+    b : 2,
+    c : 3
+};
+
+const myAlgorithm = ( lhs ) => 
+    Rx.Observable
+    .from( lhs );
+
+const lhs$ = testScheduler.createHotObservable(lhsMarble, { a: 1, b: 2, c :3 });    
+const actual$ = lhs$;
+
+testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
+testScheduler.flush();
+```
+
+and there are more symbols than that like `(ab)` essentially saying that these two values are emitted on the same time frame and so on. Now that you hopefully understand the basics of how symbols work I urge you to write your own tests to fully grasp it and learn the other symbols presented at the official docs page that I mentioned in the beginning of this chapter. 
+
+Happy testing
+
+
