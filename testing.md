@@ -258,6 +258,29 @@ becomes
 ```
 because `x` doesn't happen.
 
+There are of course other symbols that are of interest that lets us define things like an error. An error is denoted as a `#` and below follows an example of such a test:
+
+```
+const lhsMarble = '-#';
+const expected = '#';
+const expectedMap = {
+};
+
+//const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+
+const myAlgorithm = ( lhs ) => 
+    Rx.Observable
+    .from( lhs );
+
+const actual$ = myAlgorithm( Rx.Observable.throw('error') );
+
+//assert
+testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
+testScheduler.flush();
+```
+
+
+
 
 
 
