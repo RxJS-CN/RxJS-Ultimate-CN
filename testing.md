@@ -95,25 +95,25 @@ So I will explain it by showing you code:
 
 ```
 // setup
-    const lhsMarble = '-x-y-z';
-    const expected = '-x-y-z';
-    const expectedMap = {
-        x: 1,
-        y: 2,
-        z : 3
-    };
+const lhsMarble = '-x-y-z';
+const expected = '-x-y-z';
+const expectedMap = {
+    x: 1,
+    y: 2,
+    z : 3
+};
 
-    const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
 
-    const myAlgorithm = ( lhs ) => 
-        Rx.Observable
-        .from( lhs );
+const myAlgorithm = ( lhs ) => 
+    Rx.Observable
+    .from( lhs );
 
-    const actual$ = myAlgorithm( lhs$ );
-    
-    //assert
-    testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
-    testScheduler.flush();
+const actual$ = myAlgorithm( lhs$ );
+
+//assert
+testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
+testScheduler.flush();
 ```  
 Let's break it down part by part
 
@@ -154,9 +154,9 @@ Thats what we need for the setup, but to make the test run we need to `flush` it
 ```
 // excerpt from createHotObservable
  var messages = TestScheduler.parseMarbles(marbles, values, error);
-    var subject = new HotObservable_1.HotObservable(messages, this);
-    this.hotObservables.push(subject);
-    return subject;
+var subject = new HotObservable_1.HotObservable(messages, this);
+this.hotObservables.push(subject);
+return subject;
 ```
 
 Next step is assertion which happens in two steps 
@@ -168,19 +168,19 @@ The expect call pretty much sets up a subscription to out HotObservable
 ```
 // excerpt from expectObservable()
 this.schedule(function () {
-            subscription = observable.subscribe(function (x) {
-                var value = x;
-                // Support Observable-of-Observables
-                if (x instanceof Observable_1.Observable) {
-                    value = _this.materializeInnerObservable(value, _this.frame);
-                }
-                actual.push({ frame: _this.frame, notification: Notification_1.Notification.createNext(value) });
-            }, function (err) {
-                actual.push({ frame: _this.frame, notification: Notification_1.Notification.createError(err) });
-            }, function () {
-                actual.push({ frame: _this.frame, notification: Notification_1.Notification.createComplete() });
-            });
-        }, 0);
+    subscription = observable.subscribe(function (x) {
+        var value = x;
+        // Support Observable-of-Observables
+        if (x instanceof Observable_1.Observable) {
+            value = _this.materializeInnerObservable(value, _this.frame);
+        }
+        actual.push({ frame: _this.frame, notification: Notification_1.Notification.createNext(value) });
+    }, function (err) {
+        actual.push({ frame: _this.frame, notification: Notification_1.Notification.createError(err) });
+    }, function () {
+        actual.push({ frame: _this.frame, notification: Notification_1.Notification.createComplete() });
+    });
+}, 0);
 ```
 by defining an internal `schedule()` method and invoking it.
 The second part of the assert is the assertion itself:
