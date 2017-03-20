@@ -279,7 +279,7 @@ testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
 testScheduler.flush();
 ```
 
-And here is another symbol `|` representing a stream that completes:
+And here is another symbol `|` representing a stream that completes: 
 
 ```
 const lhsMarble = '-a-b-c-|';
