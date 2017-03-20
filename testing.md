@@ -215,7 +215,48 @@ I havn't really explained what we looked at with:
 
 But it actually means something. `-` means a time frame passed. `a` is just a symbol. So it matters how many `-` you write in actual and expected cause they need to match. Let's look at another test so you get the hang of it and to introduce more symbols:
 
+```
+const lhsMarble = '-x-y-z';
+const expected = '---y-';
+const expectedMap = {
+    x: 1,
+    y: 2,
+    z : 3
+};
 
+const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+
+const myAlgorithm = ( lhs ) => 
+    Rx.Observable
+    .from( lhs )
+    .filter(x => x % 2 === 0 );
+
+const actual$ = myAlgorithm( lhs$ );
+
+//assert
+testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
+testScheduler.flush();
+```
+
+In this case our algorithm consists of a `filter()` operation. Which means 1,2,3 will not be emitted only 2. Looking at the ingoing pattern we have:
+
+```
+'-x-y-z'
+```
+And expected pattern 
+```
+`---y-`
+```
+And this is where you clearly see that no of `-` matters. Every symbol you write be it `-` or `x` etc happens at a certain time, so in this case when `x` and `z` wont occur due to the `filter()` method it means we just replace them with `-` in the resulting output so
+
+```
+-x-y
+```
+becomes
+```
+---y
+```
+because `x` doesn't happen.
 
 
 
