@@ -89,6 +89,136 @@ This is all Rxjs 4 and it has changed a bit in Rxjs 5. I should say that what I 
 
 In Rxjs 5 something called `Marble Testing` is used. Yes that is related to [Marble Diagram](/marble-diagrams.md) i.e you express your expected input and actual output with graphical symbols.
 
-First time I had a look at the  [offical docs page](https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md) I was like *What now with a what now?*. But after writing a few tests myself I came to the conclusion this is a pretty elegant approach.  
-   
+First time I had a look at the  [offical docs page](https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md) I was like *What now with a what now?*. But after writing a few tests myself I came to the conclusion this is a pretty elegant approach. 
+
+So I will explain it by showing you code:
+
+```
+// setup
+    const lhsMarble = '-x-y-z';
+    const expected = '-x-y-z';
+    const expectedMap = {
+        x: 1,
+        y: 2,
+        z : 3
+    };
+
+    const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+
+    const myAlgorithm = ( lhs ) => 
+        Rx.Observable
+        .from( lhs );
+
+    const actual$ = myAlgorithm( lhs$ );
+    
+    //assert
+    testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
+    testScheduler.flush();
+```  
+Let's break it down part by part
+
+**Setup**
+```
+const lhsMarble = '-x-y-z';
+const expected = '-x-y-z';
+const expectedMap = {
+    x: 1,
+    y: 2,
+    z : 3
+};
+
+const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+```
+We essentially create a pattern instruction `-x-y-z` to the method `createHotObservable()` that exist on our `TestScheduler`. This is a factory method that does some heave lifting for us. Compare this to writing this by yourself, in which case it corresponds to something like:
+
+```
+let stream$ = Rx.Observable.create(observer => {
+   observer.next(1);
+   observer.next(2);
+   observer.next(3);
+})
+```
+The reason we don't do it ourselves is that we want the `TestScheduler` to do it so time passes according to its internal clock. Note also that we define an expected pattern and an expected map:
+
+```
+const expected = '-x-y-z';
+
+const expectedMap = {
+    x: 1,
+    y: 2,
+    z : 3
+}
+```
+Thats what we need for the setup, but to make the test run we need to `flush` it so that `TestScheduler` internally can trigger the HotObservable and run an assert. Peeking at `createHotObservable()` method we find that it parses the marble patterns we give it and pushes it to list:
+
+```
+// excerpt from createHotObservable
+ var messages = TestScheduler.parseMarbles(marbles, values, error);
+    var subject = new HotObservable_1.HotObservable(messages, this);
+    this.hotObservables.push(subject);
+    return subject;
+```
+
+Next step is assertion which happens in two steps 
+1) expectObservable()
+2) flush()
+
+The expect call pretty much sets up a subscription to out HotObservable
+
+```
+// excerpt from expectObservable()
+this.schedule(function () {
+            subscription = observable.subscribe(function (x) {
+                var value = x;
+                // Support Observable-of-Observables
+                if (x instanceof Observable_1.Observable) {
+                    value = _this.materializeInnerObservable(value, _this.frame);
+                }
+                actual.push({ frame: _this.frame, notification: Notification_1.Notification.createNext(value) });
+            }, function (err) {
+                actual.push({ frame: _this.frame, notification: Notification_1.Notification.createError(err) });
+            }, function () {
+                actual.push({ frame: _this.frame, notification: Notification_1.Notification.createComplete() });
+            });
+        }, 0);
+```
+by defining an internal `schedule()` method and invoking it.
+The second part of the assert is the assertion itself:
+
+```
+// excerpt from flush()
+ while (readyFlushTests.length > 0) {
+    var test = readyFlushTests.shift();
+    this.assertDeepEqual(test.actual, test.expected);
+}
+```
+It ends up comparing two lists to each other, the `actual` and `expect` list.
+It does a deep compare and verifies two things, that the data happened on the correct time `frame` and that the value on that frame is correct. So both lists consist of objects that looks like this:
+
+```
+{ 
+  frame : [some number],
+  notification : { value : [your value] }
+}
+```
+Both these properties must be equal for the assert to be true.
+
+Doesn't seem that bloody right?  
+
+## Symbols
+
+I havn't really explained what we looked at with:
+
+```
+-a-b-c
+```
+
+But it actually means something. `-` means a time frame passed. `a` is just a symbol. So it matters how many `-` you write in actual and expected cause they need to match. Let's look at another test so you get the hang of it and to introduce more symbols:
+
+
+
+
+
+
+
 
