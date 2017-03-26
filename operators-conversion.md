@@ -26,5 +26,13 @@ Rx.Observable.of(1,2);
 Rx.Observable.of(1,2,3,4);
 ```
 
+##to
+There also exist a bunch of operators that allows you go the other way, i.e leave the wonderful world of observables and go back to a more primitive state like :
+
+```
+let promise = Rx.Observable.of(1,2).toPromise();
+promise.then(data => console.log('Promise', data));
+```
+
 
 
