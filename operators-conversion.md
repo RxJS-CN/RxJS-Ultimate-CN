@@ -8,3 +8,11 @@ In Rxjs4 there existed a bunch of operators with resembling names such as `fromA
 Rx.Observable.from([2,3,4,5])
 ```
 
+**old fromPromise **
+```
+Rx.Observable.from(new Promise(resolve, reject) => {
+  // do async work
+  resolve( data )
+})
+```
+
