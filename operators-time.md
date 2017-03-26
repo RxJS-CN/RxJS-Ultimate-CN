@@ -29,9 +29,34 @@ Rx.Observable.interval(1000).take(3)
 // generates 1,2,3
 ```  
 
-
 ## timer
+Timer is an interesting one as it can act in several ways depending on how you call it. It's signature is
 
+```
+Rx.Observable.timer([initial delay],[thereafter])
+```
+However only the initial args is mandatory so depending on the number of args used these are the different types that exist because of it.
+
+**one-off**
+```
+let stream$ = Rx.Observable.timer(1000);
+
+stream$.subscribe(data => console.log(data));
+
+// generates 0 after 1 sec
+```
+
+This becomes a one-ff as we don't define when the next value should happen.
+
+**with 2nd arg specified**
+```
+let moreThanOne$ = Rx.Observable.timer(2000, 500).take(3);
+
+moreThanOne$.subscribe(data => console.log('timer with args', data));
+
+// generate 0 after 2 sec and thereafter 1 after 500ms and 2 after additional 500ms
+```
+So this one is more flexible and keeps emitting values according to 2nd argument.
 
 
 ## delay
