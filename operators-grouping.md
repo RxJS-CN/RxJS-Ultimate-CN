@@ -124,3 +124,6 @@ Also note I changed event to `keyup`. Now we are able to see all `keyup` events 
 
 ### Business case
 The example above could be quite usable if you want to record what another user on the site is doing and want to replay all the interactions they ever did or if they started to type and you want to send this info over a socket. The last is something of a standard functionality nowadays that you see a person typing on the other end. So there are definitely use cases for this.
+
+## groupBy
+TODO
