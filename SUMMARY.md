@@ -25,7 +25,7 @@
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
 * [Operators - construction](operators-construction.md)
-* Operators - conversion
+* [Operators - conversion](operators-conversion.md)
 * Operators - combination
 * [Operators - mathematical](operators-mathematical.md)
 * [Operators time](operators-time.md)
