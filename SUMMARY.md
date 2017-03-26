@@ -29,7 +29,7 @@
 * Operators - combination
 * [Operators - mathematical](operators-mathematical.md)
 * [Operators time](operators-time.md)
-* [Operators - Grouping](operators-grouping.md)
+* [Operators - grouping](operators-grouping.md)
 * [Error handling](error-handling.md)
 
 ## Recipes
