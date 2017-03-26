@@ -12,8 +12,11 @@
 * [Marble Diagrams](marble-diagrams.md)
 * [Operators and Ajax](operators-and-ajax.md)
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
-* [Operators - construction](operators-construction.md)
 * [Observable wrapping](observable-wrapping.md)
+* [Operators - construction](operators-construction.md)
+* Operators - conversion
+* Operators - combination
+* Operators - mathematical
 * [Operators time](operators-time.md)
 * [Operators - Grouping](operators-grouping.md)
 * [Subject](subject.md)
@@ -24,4 +27,5 @@
 * [Testing](testing.md)
 * [Recipes autocomplete](recipes.md)
 * [Recipes infinite scroll](recipes-infinite-scroll.md)
+* [book.json](bookjson.md)
 
