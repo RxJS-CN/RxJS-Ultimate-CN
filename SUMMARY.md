@@ -17,6 +17,7 @@
 * [Observable vs Promise](observable.md)
 * [Observable wrapping](observable-wrapping.md)
 * [Hot n Cold Observables](hot-n-cold-observables.md)
+* [Understanding it all](understanding-it-all.md)
 
 ## Operators
 
