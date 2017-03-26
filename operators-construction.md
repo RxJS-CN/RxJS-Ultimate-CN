@@ -17,7 +17,7 @@ Rx.Observable.create(observer => {
 
 ## range
 
-Sginature
+Signature
 
 ```
 Rx.Observable.range([start],[count])
