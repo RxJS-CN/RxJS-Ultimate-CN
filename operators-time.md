@@ -1,6 +1,11 @@
 # Operators time
 This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
 
+There are plenty of operators dealing with time in some way such as `delay` `debounce` `throttle` `interval` etc.
+
+This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
+
+
 ## interval
 This operator is used to construct an Observable and essentially what it does is to pump values at regular interval, signature:
 
@@ -26,11 +31,9 @@ Rx.Observable.interval(1000).take(3)
 
 
 ## timer
-TODO
 
-There are plenty of operators dealing with time in some way such as `delay` `debounce` `throttle` `interval` etc.
 
-This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
+
 ## delay
 `delay()` is an operator that delays every value being emitted
 Quite simply it works like this :
