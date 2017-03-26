@@ -1,3 +1,6 @@
 {
-   "title": "RxJS 5 Ultimate"
+   "title": "RxJS 5 Ultimate",
+   "structure" : {
+     "operators" : "operators-and-ajax.md"
+   }
 }
