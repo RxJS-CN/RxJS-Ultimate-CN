@@ -15,6 +15,7 @@
 * [Operators - construction](operators-construction.md)
 * [Observable wrapping](observable-wrapping.md)
 * [Operators time](operators-time.md)
+* [Operators - Grouping](operators-grouping.md)
 * [Subject](subject.md)
 * [Hot n Cold Observables](hot-n-cold-observables.md)
 * [Cascading calls](cascading-calls.md)
