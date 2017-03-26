@@ -2,7 +2,27 @@
 This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
 
 ## interval
-TODO
+This operator is used to construct an Observable and essentially what it does is to pump values at regular interval, signature:
+
+```
+Rx.Observable.interval([ms])
+```
+
+Example usage:
+
+```
+Rx.Observable.interval(100)
+
+// generates forever
+```
+
+Because this one will generate values forever you tend to want to combine it with the `take()` operator that limits the amount of values to generate before calling it quits so that would look like :
+
+```
+Rx.Observable.interval(1000).take(3)
+
+// generates 1,2,3
+```  
 
 
 ## timer
