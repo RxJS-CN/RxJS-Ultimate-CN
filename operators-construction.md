@@ -17,3 +17,16 @@ Rx.Observable.create(observer => {
 
 ## range
 
+Sginature
+
+```
+Rx.Observable.range([start],[count])
+```
+
+Example
+```
+let stream$ = Rx.Observable.range(1,3)
+
+// emits 1,2,3
+```
+
