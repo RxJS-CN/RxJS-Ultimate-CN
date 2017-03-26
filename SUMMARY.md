@@ -26,7 +26,7 @@
 * [Operators - Observable in an Observable](operators-observable-in-an-observable.md)
 * [Operators - construction](operators-construction.md)
 * [Operators - conversion](operators-conversion.md)
-* Operators - combination
+* [Operators - combination](operators-combination.md)
 * [Operators - mathematical](operators-mathematical.md)
 * [Operators time](operators-time.md)
 * [Operators - grouping](operators-grouping.md)
