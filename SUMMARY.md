@@ -45,6 +45,6 @@
 
 ## Appendices
 
-* Appendix I - ngrx
+* [Appendix I - ngrx](appendices/appendix-i-ngrx.md)
 * [Appendix II - build your own Rxjs](appendices/appendix-ii-build-your-own-rxjs.md)
 
