@@ -6,7 +6,6 @@
 * [Async code](chapter1.md)
 * [Why Rxjs](why-rxjs.md)
 * [Installation and Setup](installation-and-setup.md)
-* [Subject](subject.md)
 * [book.json](bookjson.md)
 
 ## Observables
@@ -17,7 +16,6 @@
 * [Observable vs Promise](observable.md)
 * [Observable wrapping](observable-wrapping.md)
 * [Hot n Cold Observables](hot-n-cold-observables.md)
-* [Understanding it all](understanding-it-all.md)
 
 ## Operators
 
@@ -42,5 +40,11 @@
 
 ## Advanced
 
+* [Subject](subject.md)
 * [Schedulers](schedulers.md)
+
+## Appendices
+
+* Appendix I - ngrx
+* [Appendix II - build your own Rxjs](appendices/appendix-ii-build-your-own-rxjs.md)
 
