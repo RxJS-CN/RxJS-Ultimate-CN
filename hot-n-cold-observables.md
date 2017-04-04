@@ -114,7 +114,7 @@ The `refCount()` operator ensures this observable becomes warm, i.e no values ar
 
 ## Naturally hot observables
 
-Generally something is considered hot if the values are emitted straight away without the need for a subscriber to be present. A naturally occuring example if a hot observable is `mousemove`. Most other hot observables are the result of cold observables being turned hot by using `publish()` and `connect()` or by using the `share()` operator.
+Generally something is considered hot if the values are emitted straight away without the need for a subscriber to be present. A naturally occuring example of a hot observable is `mousemove`. Most other hot observables are the result of cold observables being turned hot by using `publish()` and `connect()` or by using the `share()` operator.
 
 # Sharing
 
