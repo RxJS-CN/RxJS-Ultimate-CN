@@ -40,7 +40,7 @@ setTimeout(() => {
 },2000)
 ```
 
-## From hot to cold - Katy Perry mode
+## From cold to hot - Katy Perry mode
 
 In the example above it isn't really hot, as a matter of fact both subscribers of the values will each recive `0,1,2,3,4`. As this is the live streaming of football game it doesn't really act like we want it to, so how to fix it?
 
