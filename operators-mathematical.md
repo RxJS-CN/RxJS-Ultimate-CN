@@ -51,4 +51,3 @@ let objectStream$ = Rx.Observable.of( { name : 'chris' }, { age : 11 } )
 .reduce( (acc,curr) => Object.assign({}, acc,curr ));
 ``` 
 This will concatenate the object parts into an object.
-## avg
