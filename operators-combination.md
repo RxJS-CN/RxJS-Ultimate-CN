@@ -63,5 +63,25 @@ The result however is that the resulting observable takes all the values from th
 
 So if you have a case where a source somehow should be prioritized then this is the operator for you.
 
+## merge
+This operator enables you two merge several streams into one.
+```
+let merged$ = Rx.Observable.merge(
+    Rx.Observable.of(1).delay(500),
+    Rx.Observable.of(3,2,5)
+)
+
+let observer = {
+    next : data => console.log(data)
+}
+
+merged$.subscribe(observer);
+```
+Point with is operator is to combine several streams and as you can see above any time operators such as `delay()` is respected.
+
+
+## repeat
+## zip
+
 
 
