@@ -93,5 +93,16 @@ stream$.subscribe(observer);
 ```
 Gives us `1,2,7`
 
+Let's look at another example
+```
+let stream$ = Rx.Observable.zip(
+    Rx.Observable.of(1,5),
+    Rx.Observable.of(2,3,4),
+    Rx.Observable.of(7,9)
+);
+
+stream$.subscribe(observer);
+```
+Gives us `1,2,7` and `5,3,9` so it joins values on column basis. It will act on the least common denominator which in this case is 2. The `4` is ignored in the `2,3,4` sequence.
 
 
