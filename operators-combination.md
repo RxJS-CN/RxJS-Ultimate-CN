@@ -103,6 +103,8 @@ let stream$ = Rx.Observable.zip(
 
 stream$.subscribe(observer);
 ```
-Gives us `1,2,7` and `5,3,9` so it joins values on column basis. It will act on the least common denominator which in this case is 2. The `4` is ignored in the `2,3,4` sequence.
+Gives us `1,2,7` and `5,3,9` so it joins values on column basis. It will act on the least common denominator which in this case is 2. The `4` is ignored in the `2,3,4` sequence. As you can see from the first example it's also possible to mix different async concepts such as Promises with Observables because interval conversion happens.
+### Business case
+If you really care about what different source emitted at a certain position. Let's say the 2nd response from all your sources then `zip()` is your operator.
 
 
