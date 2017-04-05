@@ -62,3 +62,4 @@ let stream$ = Rx.Observable.of( 3, 6 ,9 )
 })
 .map( x => x.sum / x.counter )
 ```
+I admit it, this one hurted my head a little, once you crack the initial `map()` call the `reduce()` is pretty simple, and `Object.assign()` is a nice companion as usual.
