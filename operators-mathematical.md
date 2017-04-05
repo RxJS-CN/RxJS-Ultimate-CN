@@ -34,6 +34,7 @@ function comparer(x,y) {
 let stream$ = Rx.Observable.of({ name : 'chris', age : 37 }, { name : 'chross', age : 32 })
 .max(comparer);
 ```
+Because we tell it in the `comparer` what property to compare we are left with the first entry as result.
 
 ## min
 ## sum
