@@ -79,8 +79,6 @@ merged$.subscribe(observer);
 ```
 Point with is operator is to combine several streams and as you can see above any time operators such as `delay()` is respected.
 
-
-## repeat
 ## zip
 
 
