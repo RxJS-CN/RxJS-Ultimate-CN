@@ -37,5 +37,7 @@ let stream$ = Rx.Observable.of({ name : 'chris', age : 37 }, { name : 'chross', 
 Because we tell it in the `comparer` what property to compare we are left with the first entry as result.
 
 ## min
+Min is pretty much identical to `max()` operator but returns the opposite value, the smallest.
+
 ## sum
 ## avg
