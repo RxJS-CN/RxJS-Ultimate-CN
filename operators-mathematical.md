@@ -51,3 +51,14 @@ let objectStream$ = Rx.Observable.of( { name : 'chris' }, { age : 11 } )
 .reduce( (acc,curr) => Object.assign({}, acc,curr ));
 ``` 
 This will concatenate the object parts into an object.
+## average
+The `average()` operator isn't there anymore in Rxjs5 but you can still achieve the same thing with a `reduce()`
+
+```
+let stream$ = Rx.Observable.of( 3, 6 ,9 )
+.map( x => { return { sum : x, counter : 1 } } )
+.reduce( (acc,curr) => {
+    return Object.assign({}, acc, { sum : acc.sum + curr.sum ,counter : acc.counter + 1  }) 
+})
+.map( x => x.sum / x.counter )
+```
