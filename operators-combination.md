@@ -81,5 +81,17 @@ Point with is operator is to combine several streams and as you can see above an
 
 ## zip
 
+```
+let stream$ = Rx.Observable.zip(
+    Promise.resolve(1),
+    Rx.Observable.of(2,3,4),
+    Rx.Observable.of(7)
+);
+
+
+stream$.subscribe(observer); 
+```
+Gives us `1,2,7`
+
 
 
