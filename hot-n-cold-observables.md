@@ -20,7 +20,7 @@ stream.subscribe(
 )
 ```
 
-In a hot observable a subscriber receives values when it starts to subscribe, it is however more like a live streaming in football, if you start subscribing 5 minutes in the games you will have missed the first 5 minutes of action and you start receiving data from that moment on:
+In a hot observable a subscriber receives values when it starts to subscribe, it is however more like a live streaming in football, if you start subscribing 5 minutes in the game, you will have missed the first 5 minutes of action and you start receiving data from that moment on:
 
 ```
 let liveStreaming$ = Rx.Observable.interval(1000).take(5);
@@ -42,7 +42,7 @@ setTimeout(() => {
 
 ## From cold to hot - Katy Perry mode
 
-In the example above it isn't really hot, as a matter of fact both subscribers of the values will each recive `0,1,2,3,4`. As this is the live streaming of football game it doesn't really act like we want it to, so how to fix it?
+In the example above it isn't really hot, as a matter of fact both subscribers of the values will each receive `0,1,2,3,4`. As this is the live streaming of a football game it doesn't really act like we want it to, so how to fix it?
 
 Two components are needed to make something go from cold to hot. `publish()` and `connect()`. 
 
@@ -140,7 +140,7 @@ stream$.subscribe(
 );
 ```
 
-If you set a breakpoint on `observer.next(1)` you will notice that its being hit twice, once for every subscriber. This is the behaviour we expect from a cold observable. Sharing operator is a different way of turning something into  a hot observable, in fact it not only turns something hot under the right conditions but it falls back to being a cold observable under certain conditions. So what are these conditions ?
+If you set a breakpoint on `observer.next(1)` you will notice that it's being hit twice, once for every subscriber. This is the behaviour we expect from a cold observable. Sharing operator is a different way of turning something into  a hot observable, in fact it not only turns something hot under the right conditions but it falls back to being a cold observable under certain conditions. So what are these conditions ?
 
 1) **Created as hot Observable** : An Observable has not completed when a new subscription comes and subscribers > 0
 
