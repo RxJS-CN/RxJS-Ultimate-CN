@@ -57,18 +57,18 @@ let stream$ = new Rx.Observable.create((observer) => {
   }
 })
 
-stream$.subscribe((value) => {
+let subscription = stream$.subscribe((value) => {
   console.log('Value', value)
 });
 
 setTimeout(() => {
-  stream$.unsubscribe() // here we invoke the cleanup function
+  subscription.unsubscribe() // here we invoke the cleanup function
 
-})
+}, 3000)
 
 ```   
 
 So ensure that you 
 - Define a function that cleans up 
-- Implicitely call that function by calling `stream$.unsubscribe()`  
+- Implicitely call that function by calling `subscription.unsubscribe()`  
 
