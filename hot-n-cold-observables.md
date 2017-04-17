@@ -126,7 +126,7 @@ let stream$ = Rx.Observable.create((observer) => {
     observer.next( 2 );
     observer.next( 3 );
     observer.complete();
-})
+}).share()
 
 stream$.subscribe(
     (data) => console.log('subscriber 1', data),
