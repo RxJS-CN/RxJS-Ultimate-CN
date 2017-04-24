@@ -7,7 +7,7 @@
   * [Installation and Setup](installation-and-setup)
 * [OBSERVABLES]()
   * [Observable Anatomy](observable-anatomy.md)
-  * []()
+  * [Observer](observer.md)
   * []()
   * []()
   * []()
