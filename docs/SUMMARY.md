@@ -15,7 +15,7 @@
 * [OPERATORES]()
   * [Operators first look](operators.md)
   * [Marble Diagrams](marble-diagrams.md)
-  * []()
+  * [Operators and Ajax](operators-and-ajax.md)
   * []()
   * []()
   * []()
