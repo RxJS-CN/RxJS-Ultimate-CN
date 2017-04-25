@@ -10,4 +10,4 @@
   * [Observer](observer.md)
   * [Producer](producer.md)
   * [Observable vs Promise](observable.md)
-  * []()
+  * [Observable wrapping](observable-wrapping.md)
