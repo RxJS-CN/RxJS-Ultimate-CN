@@ -19,6 +19,6 @@
   * [Observable in an Observable](operators-observable-in-an-observable.md)
   * [Operators construction](operators-construction.md)
   * [Operators conversion](operators-conversion.md)
-  * []()
+  * [Operators combination](operators-combination.md)
   * []()
   * []()
