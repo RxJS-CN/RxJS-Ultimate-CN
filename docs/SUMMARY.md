@@ -22,3 +22,5 @@
   * [Operators combination](operators-combination.md)
   * [Operators matchematical](operators-mathematical.md)
   * [Operators time](operators-time.md)
+  * [Operators grouping](operators-grouping.md)
+  * []()
