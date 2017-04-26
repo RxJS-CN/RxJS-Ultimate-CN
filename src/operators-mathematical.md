@@ -1,0 +1,77 @@
+# Operators matchematical
+
+## max
+
+```javascript
+let stream$ = Rx.Observable.of(5,4,7,-1)
+.max();
+```
+
+This emits `7`. It's obvious what this operator does, it gives us just one value, the max. There is different ways of calling it though. You can give it a comparer:
+
+```javascript
+function comparer(x,y) {
+    if( x > y ) {
+        return 1;
+    } else if( x < y ) {
+        return -1;
+    } else return 0;
+}
+
+let stream$ = Rx.Observable.of(5,4,7,-1)
+.max(comparer);
+```
+
+In this case we define a `comparer` which runs a sort algorithm under the hood and all we have to do is to help it determine when something is _larger than_, _equal_ or _smaller than_. Or with an object the idea is the same:
+
+```javascript
+function comparer(x,y) {
+    if( x.age > y.age ) {
+        return 1;
+    } else if( x.age < y.age ) {
+        return -1;
+    } else return 0;
+}
+
+let stream$ = Rx.Observable.of({ name : 'chris', age : 37 }, { name : 'chross', age : 32 })
+.max(comparer);
+```
+
+Because we tell it in the `comparer` what property to compare we are left with the first entry as result.
+
+## min
+
+Min is pretty much identical to `max()` operator but returns the opposite value, the smallest.
+
+## sum
+
+`sum()` as operator has seized to exist but we can use `reduce()` for that instead like so:
+
+```javascript
+let stream$ = Rx.Observable.of(1,2,3,4)
+.reduce((accumulated, current) => accumulated + current )
+```
+
+This can be applied to objects as well as long as we define what the `reduce()` function should do, like so:
+
+```javascript
+let objectStream$ = Rx.Observable.of( { name : 'chris' }, { age : 11 } )
+.reduce( (acc,curr) => Object.assign({}, acc,curr ));
+```
+
+This will concatenate the object parts into an object.
+
+## average
+
+The `average()` operator isn't there anymore in Rxjs5 but you can still achieve the same thing with a `reduce()`
+
+```javascript
+let stream$ = Rx.Observable.of( 3, 6 ,9 )
+.map( x => { return { sum : x, counter : 1 } } )
+.reduce( (acc,curr) => {
+    return Object.assign({}, acc, { sum : acc.sum + curr.sum ,counter : acc.counter + 1  })
+})
+.map( x => x.sum / x.counter )
+```
+
+I admit it, this one hurted my head a little, once you crack the initial `map()` call the `reduce()` is pretty simple, and `Object.assign()` is a nice companion as usual.
