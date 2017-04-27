@@ -28,5 +28,4 @@
   * [Testing](testing.md)
   * [Cascading calls](cascading-calls.md)
   * [Recipes - auto complete](recipes-auto-complete.md)
-  * []()
-  * []()
+  * [Recipes - infinte scroll](recipes-infinte-scroll.md)
