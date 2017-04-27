@@ -32,3 +32,5 @@
 * [ADVANCED]()
     * [Subject](subject.md)
     * [Schedulers](schedulers.md)
+* [APPENDICES]()
+    * [Appendix I - ngrx](appendices/appendix-i-ngrx.md)
