@@ -27,6 +27,6 @@
 * [RECIPES]()
   * [Testing](testing.md)
   * [Cascading calls](cascading-calls.md)
-  * []()
+  * [Recipes - auto complete](recipes-auto-complete.md)
   * []()
   * []()
