@@ -22,7 +22,7 @@ Rx.Observable.of(1,2,3)
 
 ### 陷阱
 
-`import Rx from 'rxjs/Rx'` 语句会导入整个库。对于测试各种特性这很方便，但对于生产环境这就不是一个好主意了，因为 RxJS 本身是个重量级的库。在一个更现实的场景中，你可能想要使用下面这种方案，只导入实际要使用的操作符：
+`import Rx from 'rxjs/Rx'` 语句会导入整个库。对于测试各种特性这很方便，但对于生产环境这就不是一个好主意了，因为 RxJS 本身是个重量级的库。在一个更现实的场景中，你可能想要使用下面这种方式，只导入实际要使用的操作符：
 
 ```javascript
 import { Observable } from 'rxjs/Observable';
@@ -40,45 +40,45 @@ stream$.subscribe((val) => {
 
 安装方法同 ES6
 
-### Install
+### 安装
 
 ```shell
 npm install Rxjs
 ```
 
-### Setup
+### 设置
 
-Setup is different though
+设置是不同的
 
-Below is yet again showcasing the greedy import that is great for testing but bad for production
+下面再次展示了对于测试非常便利的全部导入，但不适合在生产环境中使用
 
 ```javascript
 var Rx = require('rxjs/Rx');
 
-Rx.Observable.of(1,2,3); // etc
+Rx.Observable.of(1,2,3); // 等等
 ```
 
-And the better approach here being:
+更好的方式:
 
 ```javascript
 let Observable = require('rxjs/Observable').Observable;
-// patch Observable with appropriate methods
+// 使用适合的方法为 Observable 打补丁
 require('rxjs/add/observable/of');
 require('rxjs/add/operator/map');
 
-Observable.of(1,2,3).map((x) => { return x + '!!!'; }); // etc
+Observable.of(1,2,3).map((x) => { return x + '!!!'; }); // 等等
 ```
 
-As you can see require('rxjs/Observable') just gives us the Rx object and we need to dig one level down to find the Observable.
+如你所见，`require('rxjs/Observable')` 只提供了 Rx 对象，而我们需要深入到下一层级以找到 Observable 。
 
-Notice also we just require('path/to/operator') to get the operator we want to import for our app.
+注意 `require('path/to/operator')` 用来获取应用中所需要导入的操作符。
 
-## CDN or ES5
+## CDN 或 ES5
 
-If I am on neither ES6 or CommonJS there is another approach namely:
+如果我用的既不是 ES6，也不是 CommonJS 的话，那么还有另外一种方式：
 
 ```html
 <script src="https://unpkg.com/rxjs/bundles/Rx.min.js"></script>
 ```
 
-Notice however this will give you the full lib. As you are requiring it externally it won't affect your bundle size though.
+注意，这会引入完整的库。因为是从外部引用的，所以不会影响 bundle 的大小。
