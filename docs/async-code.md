@@ -43,21 +43,21 @@ input.on('click', () => {
 想象一下执行下面的代码
 
 ```javascript
-syncCode()  // emit 1
-syncCode2()  // emit 2
-asyncCode()  // emit 3
-syncCode4()  // emit 4
+syncCode()  // 输出 1
+syncCode2()  // 输出 2
+asyncCode()  // 输出 3
+syncCode4()  // 输出 4
 ```
 
-The output could very well be
+输出
 
 ```javascript
 1,2,4,3
 ```
 
-Because the async method may take a long time to finish. There is really no way of knowing by looking at it when something finish. The problem is if we care about order so that we get 1,2,3,4
+因为异步方法需要时间才能完成，通过看代码是没有办法知道什么时候会完成。现在问题是如果我们想要得到 1,2,3,4 就需要考虑执行的顺序。
 
-We might resort to a callback making it look like
+我们可能需要调整一下回调函数的顺序，像这样：
 
 ```javascript
 syncCode()
@@ -67,7 +67,7 @@ asyncCode(()= > {
 })
 ```
 
-At this point it is readable, somewhat but imagine we have only async code then it might look like:
+目前来说还是可读的，但稍微想象一下，我们的异步代码可能会变成这样：
 
 ```javascript
 asyncCode(() => {
@@ -79,9 +79,9 @@ asyncCode(() => {
 })
 ```
 
-Also known as callback hell, pause for effect :)
+这就是大家熟知的回调地狱(callback hell)，就此打住吧 :)
 
-For that reason promises started to exist so we got code looking like
+出于这个原因，于是 promises 开始出现了，之后我们就有了像这样的代码：
 
 ```javascript
 getData()
@@ -89,4 +89,4 @@ getData()
   .then(getEvenMoreData)
 ```
 
-This is great for Request/Response patterns but for more advanced async scenarios I dare say only Rxjs fits the bill.
+对于请求/响应模式，promise 已经足够好了，但对于更高级的异步场景，我敢说只有 RxJS 方能胜任。
