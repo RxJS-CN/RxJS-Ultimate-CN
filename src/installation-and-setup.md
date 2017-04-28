@@ -2,7 +2,7 @@
 
 The content for this chapter is taken from the offical docs but I am trying to provide you with a little more information as to why and also its nice to have everything in one place. [Official docs](https://github.com/ReactiveX/rxjs)
 
-TH Rxjs lib can be consumed in many different ways, namely ES6, CommonJS and as ES5/CDN.
+TH Rxjs lib can be consumed in many different ways, namely `ES6`, `CommonJS` and as `ES5/CDN`.
 
 ## ES6
 
@@ -22,7 +22,7 @@ Rx.Observable.of(1,2,3)
 
 ### GOTCHA
 
-this statement import Rx from 'rxjs/Rx' utilizes the entire library. It is great for testing out various features but once hitting production this is a bad idea as Rxjs is quite a heave library. In a more realistic scenario you would want to use the alternate approach below that only imports the operators that you actually use :
+this statement `import Rx from 'rxjs/Rx'` utilizes the entire library. It is great for testing out various features but once hitting production this is a bad idea as Rxjs is quite a heave library. In a more realistic scenario you would want to use the alternate approach below that only imports the operators that you actually use :
 
 ```javascript
 import { Observable } from 'rxjs/Observable';
@@ -69,9 +69,9 @@ require('rxjs/add/operator/map');
 Observable.of(1,2,3).map((x) => { return x + '!!!'; }); // etc
 ```
 
-As you can see require('rxjs/Observable') just gives us the Rx object and we need to dig one level down to find the Observable.
+As you can see `require('rxjs/Observable')` just gives us the Rx object and we need to dig one level down to find the Observable.
 
-Notice also we just require('path/to/operator') to get the operator we want to import for our app.
+Notice also we just `require('path/to/operator')` to get the operator we want to import for our app.
 
 ## CDN or ES5
 
