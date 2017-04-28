@@ -20,7 +20,7 @@ stream$.subscribe((data) => {
 // 1
 ```
 
-When observer.next(<value>) is being called the fnValue is being invoked.
+When `observer.next(<value>)` is being called the `fnValue` is being invoked.
 
 The second callback **fnError** is the error callback and is being invoked by the following code, i.e `observer.error(<message>)`
 
