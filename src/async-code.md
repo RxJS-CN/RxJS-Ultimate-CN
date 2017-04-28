@@ -8,7 +8,7 @@ setTimeout(() => {
 }, 3000 )
 ```
 
-3s seconds in the future the timeout is done and do stuff is echoed to the screen. We can see that the anonymous function we provide is being triggered when time has passed. Now for another more revealing example:
+3s seconds in the future the timeout is done and `do stuff` is echoed to the screen. We can see that the anonymous function we provide is being triggered when time has passed. Now for another more revealing example:
 
 ```javascript
 doWork( () => {
@@ -24,7 +24,7 @@ function doWork(cb){
 }
 ```
 
-Other example of callback code are events here demonstrated by a jQuery example
+Other example of callback code are events here demonstrated by a `jQuery` example
 
 ```javascript
 input.on('click', () => {
