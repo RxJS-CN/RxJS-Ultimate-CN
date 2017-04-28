@@ -1,6 +1,6 @@
-# Async code
+# 异步代码
 
-Async code is code that isn't done immediately when being called.
+异步代码是指当调用后不会立即完成的代码。
 
 ```javascript
 setTimeout(() => {
@@ -8,7 +8,7 @@ setTimeout(() => {
 }, 3000 )
 ```
 
-3s seconds in the future the timeout is done and do stuff is echoed to the screen. We can see that the anonymous function we provide is being triggered when time has passed. Now for another more revealing example:
+在 `setTimeout` 执行完3秒后 `do stuff` 会输出到控制台。我们可以看出当指定的时间过去后我们所提供的异步函数会触发。现在来看个更有启发性的示例：
 
 ```javascript
 doWork( () => {
@@ -24,7 +24,7 @@ function doWork(cb){
 }
 ```
 
-Other example of callback code are events here demonstrated by a jQuery example
+另外一个回调函数代码的例子就是事件，这里使用了 `jQuery` 事件的写法。
 
 ```javascript
 input.on('click', () => {
@@ -32,15 +32,15 @@ input.on('click', () => {
 })
 ```
 
-The gist of callbacks and async in general is that one or more methods are invoked sometime in the future, unknown when.
+回调函数和异步的要点通常来说就是一个或多个函数在未来某个时间点会被调用，而这个时间点是未知的。
 
-## The Problem
+## 问题
 
-So we established a callback can be a timer, ajax code or even an event but what is the problem with all that?
+所以我们已经确定了回调函数可以是定时器、ajax 代码甚至是事件，但这一切有什么问题呢？
 
-One word **Readability**
+简而言之就是 **可读性**
 
-Imagine doing the following code
+想象一下执行下面的代码
 
 ```javascript
 syncCode()  // emit 1
