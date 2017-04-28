@@ -34,18 +34,18 @@ stream$.subscribe(
    (error) => console.log('Error', error)
 ```
 
-Lastly we have the **fnComplete** and it should be invoked when a stream is done and has no more values to emit. It is triggered by a call to `observer.complete()` like so:
+最后是 **fnComplete**，当流完成时调用，并且不会再发出任何值。它是通过 `observer.complete()` 来触发的，像这样：
 
 ```javascript
 let stream$ = Rx.Observable.create((observer) => {
-   // x calls to observer.next(<value>)
+   // 多次调用 observer.next(<value>)
    observer.complete();
 })
 ```
 
 ## Unsubscribe
 
-So far we have been creating an irresponsible Observable. Irresponsible in the sense that it doesn't clean up after itself. So let's look at how to that:
+目前为止，我们创建的是一个不负责任的 Observable 。在这里不负责任是指它并没有清理它自身。那么我们来看下如何做到这点：
 
 ```javascript
 let stream$ = new Rx.Observable.create((observer) => {
@@ -64,11 +64,11 @@ let subscription = stream$.subscribe((value) => {
 });
 
 setTimeout(() => {
-  subscription.unsubscribe() // here we invoke the cleanup function
+  subscription.unsubscribe() // 在这我们调用了清理函数
 
 }, 3000)
 ```
 
-So ensure that you
-* Define a function that cleans up
-* Implicitely call that function by calling `subscription.unsubscribe()`
+所以你要确保
+* 定义一个清理函数
+* 通过调用 `subscription.unsubscribe()` 隐式的调用清理函数
