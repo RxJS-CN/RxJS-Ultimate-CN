@@ -1,12 +1,12 @@
-# Observable Anatomy
+# Observable 剖析
 
-An observable's subscribe method has the following signature
+Observable 的 subscribe 方法签名如下：
 
 ```javascript
 stream.subscribe(fnValue, fnError, fnComplete)
 ```
 
-The first one is being demonstrated below **fnValue**
+下面所演示的是第一个参数 **fnValue**
 
 ```javascript
 let stream$ = Rx.Observable.create((observer) => {
@@ -20,9 +20,9 @@ stream$.subscribe((data) => {
 // 1
 ```
 
-When observer.next(<value>) is being called the fnValue is being invoked.
+当执行 `observer.next(<value>)` 时， `fnValue` 就会被调用。
 
-The second callback **fnError** is the error callback and is being invoked by the following code, i.e `observer.error(<message>)`
+第二个回调函数 **fnError** 是异常回调，通过下面的代码来调用，例如 `observer.error(<message>)`
 
 ```javascript
 let stream$ = Rx.Observable.create((observer) => {
