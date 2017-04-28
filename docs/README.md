@@ -1,13 +1,13 @@
-# Rxjs 5 ultimate
+# Rxjs 5 基本原理
 
-This book is meant to be starter as well as intermediate book for anyone starting out with Rxjs.
+本书是 Rxjs 的初中级书，适用于任何想要入门 Rxjs 的开发者。
 
-Tweet me @chris_noring for questions, cheers, comments. See you out there
+可以在推特上@我提问，评论或以兹鼓励，我的推特账号是 chris_noring，我在那等着你们。
 
-The different articles can be read in any order but it is recommended when you are new to Rxjs to look at the basics like [Observable](observable-anatomy.md) [Observer](observer.md) and [Producer](producer.md)
+阅读本书不必遵循特定的顺序，但如果你是 Rxjs 新手的话建议先看一些基础篇章，比如 [Observable](observable-anatomy.md)、[Observer](observer.md) 和 [Producer](producer.md)
 
-This is a work in progress so chapters are likely to be added and changed, less and less so as time passes, but the work was started on this on the 21 feb 2017..
+本书仍在编写的过程中，所以章节有可能添加和修改，但随着时间的流逝这种改动会越来越少，另外说句，本书的编写工作是从2017年2月21日开始的..
 
-If you like using Rxjs /Rxjs 5 be sure to tweet @BenLesh or @mattpodwysocki etc and say thank you, or good job. It means a lot..
+如果你喜欢 Rxjs / Rxjs 5 的话，请务必在推特上@ BenLesh 或 mattpodwysocki 等人并说句 thank you 或者 good job 。对于他们来说这意义非凡..
 
 Chris Noring
