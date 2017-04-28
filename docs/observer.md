@@ -1,6 +1,6 @@
-# Observer
+# Observer (观察者)
 
-Note the following code example creating an `Observable`
+注意下面的代码示例创建了一个 `Observable`
 
 ```javascript
 let stream$ = Rx.Observables.create((observer) => {
@@ -8,9 +8,9 @@ let stream$ = Rx.Observables.create((observer) => {
 })
 ```
 
-`create` method takes a function with an input parameter `observer`.
+`create` 方法接收一个函数，该函数有一个入参 `observer` 。
 
-An Observer is just an object with the following methods `next` `error` `complete`
+Observer 只是一个拥有 `next`、`error` 和 `complete` 三个方法的普通对象而已
 
 ```javascript
 observer.next(1);
