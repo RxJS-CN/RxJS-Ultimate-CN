@@ -1,3 +1,6 @@
-# Why Rxjs
+# 为什么要用 RxJS
 
-Promises lack the ability to generate more than one value, ability to retry and it doesn't really play well with other async concepts.
+Promises 欠缺如下能力：
+* 不能生产多个值
+* 不能重试
+* 不能真正地玩转其它异步思想
