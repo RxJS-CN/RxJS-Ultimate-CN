@@ -1,18 +1,18 @@
-# Installation and Setup
+# 安装设置
 
-The content for this chapter is taken from the offical docs but I am trying to provide you with a little more information as to why and also its nice to have everything in one place. [Official docs](https://github.com/ReactiveX/rxjs)
+本章的内容取自官方文档，但我尝试为你提供一些更多的信息以了解为什么，而且将所有内容都放在一个位置也是个不错的选择。[官方文档](https://github.com/ReactiveX/rxjs)
 
-TH Rxjs lib can be consumed in many different ways, namely ES6, CommonJS and as ES5/CDN.
+RxJS 库可以以多种不同的方式来使用，即 `ES6`、`CommonJS` 和 `ES5/CDN` 。
 
 ## ES6
 
-### Install
+### 安装
 
 ```shell
 npm install Rxjs
 ```
 
-### Setup
+### 设置
 
 ```javascript
 import Rx from 'rxjs/Rx';
@@ -20,9 +20,9 @@ import Rx from 'rxjs/Rx';
 Rx.Observable.of(1,2,3)
 ```
 
-### GOTCHA
+### 陷阱
 
-this statement import Rx from 'rxjs/Rx' utilizes the entire library. It is great for testing out various features but once hitting production this is a bad idea as Rxjs is quite a heave library. In a more realistic scenario you would want to use the alternate approach below that only imports the operators that you actually use :
+`import Rx from 'rxjs/Rx'` 语句会导入整个库。对于测试各种特性这很方便，但对于生产环境这就不是一个好主意了，因为 RxJS 本身是个重量级的库。在一个更现实的场景中，你可能想要使用下面这种方案，只导入实际要使用的操作符：
 
 ```javascript
 import { Observable } from 'rxjs/Observable';
@@ -38,7 +38,7 @@ stream$.subscribe((val) => {
 
 ## CommonJS
 
-Same install as with ES6
+安装方法同 ES6
 
 ### Install
 
