@@ -1,7 +1,6 @@
-# Producer
+# Producer (生产者)
 
-A producer have the task of producing the values emitted by an Observable
-
+Producer 的任务是生产 Observable 所发出的值。
 
 ```javascript
 class Producer {
@@ -15,7 +14,7 @@ class Producer {
 }
 ```
 
-And to use it
+使用 Producer
 
 ```javascript
 let stream$ = Rx.Observable.create( (observer) => {
@@ -24,4 +23,4 @@ let stream$ = Rx.Observable.create( (observer) => {
 })
 ```
 
-In the [Observable Anatomy](observable-anatomy.md) chapter there is no `Producer` in the examples but most `Observables` that are created by a helper method will have an internal `Producer` producing values that the observer emits using the `observer.next` method
+在 [Observable Anatomy](observable-anatomy.md) 章节中并没有在示例中使用 `Producer`，大多数 `Observables` 都是通过辅助方法创建的，在这些方法中会有内部的 `Producer` 来生产值，这些值通过 observer 的 `observer.next` 方法发出
