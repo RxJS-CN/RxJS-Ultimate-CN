@@ -1,6 +1,6 @@
 # Observable vs Promise
 
-Let's dive right in. We have created something called an Observable. An async construct, much like a promise that we can listen to once the data arrives.
+我们来直奔主题。我们创建了一个叫为 Observable 的东西。它是一个异步的概念，与 Promise 非常相似，一旦数据达到就可以触发监听。
 
 ```javascript
 let stream$ = Rx.Observable.from([1,2,3])
@@ -12,7 +12,7 @@ stream$.subscribe( (value) => {
 // 1,2,3
 ```
 
-The corresponding way of doing this if dealing with promises would be to write
+如果使用 Promise 的话，相对应的写法如下：
 
 ```javascript
 let promise = new Promise((resolve, reject) => {
@@ -27,4 +27,7 @@ promise.then((value) => {
 })
 ```
 
-Promises lack the ability to generate more than one value, ability to retry and it doesn't really play well with other async concepts.
+Promises 欠缺如下能力：
+* 不能生产多个值
+* 不能重试
+* 不能真正地玩转其它异步思想
