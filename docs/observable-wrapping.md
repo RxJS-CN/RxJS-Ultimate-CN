@@ -1,10 +1,10 @@
-# Observable wrapping
+# Observable 包装
 
-We have just learned in [Observable Anatomy](observable-anatomy.md) that the key operators `next()` , `error()` and `complete` is what makes our Observable tick, if we define it ourselves. We have also learned that these methods triggers a corresponding callback on our subscription.
+在 [Observable 剖析](observable-anatomy.md)章节中我们只学到了关键操作符 `next()`、`error()` 和 `complete()`，如果是我们自己定义的 Observable 的话，可以使用这些方法来驱动 Observable 。我们还学到了，这些方法会触发相应的回调函数。
 
-Wrapping something in an observable means we take something that is NOT an Observable and turn it into one, so it can play nice with other Observables. It also means that it can now use [Operators](operators.md).
+用 Observable 包装意味着接收一些非 Observable 的东西并将其转换为 Observable，这样就可以很好的与其它 Observable 配合使用。同样还意味着现在我们可以使用[操作符](operators.md)了。 
 
-## Wrapping an ajax call
+## 包装 ajax 调用
 
 ```javascript
 let stream = Rx.Observable.create((observer) => {
@@ -30,18 +30,18 @@ stream.subscribe(
    (data) => console.log( data )  
 )
 ```
-Three things we need to do here `emit data`, `handle errors` and `close the stream`
+这里我们需要做的三件事：`发出数据`、`异常处理`和`关闭流`
 
-### Emit the data
+### 发出数据
 
 ```javascript
 if(request.status === 200) {
-  observer.next( request.response )  // emit data
+  observer.next( request.response )  // 发出数据
 
 }
 ```
 
-### Handle potential errors
+### 处理潜在的异常
 
 ```javascript
 else {
