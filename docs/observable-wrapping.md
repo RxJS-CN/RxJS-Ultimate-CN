@@ -153,9 +153,9 @@ return () => {
 
 所以我们可以通过调用 `speechRecognition.unsubscribe()` 来清理系统资源
 
-### Speech synthesis utterance, say
+### 语音合成, say
 
-This is responsible for uttering what you want it to utter ( say ).
+函数 `say` 负责发出你想要表达的语音。
 
 ```javascript
 const say = (text) => new Observable(observer => {
@@ -168,7 +168,7 @@ const say = (text) => new Observable(observer => {
 });
 ```
 
-### main stream hey$
+### 主体流 hey$
 
 ```javascript
 heyClick$
@@ -196,10 +196,10 @@ heyClick$
   .subscribe(e => console.log(e));
 ```
 
-Logic should be read as follows `heyClick$` is activated on a click on a button. `speechRecognition` is listening for what we say and sends that result into `heyClick$` where the switching logic determines an appropriate response that is uttered by `say` Observable.
+整体逻辑应该是这样的：点击按钮激活 `heyClick$` 。`speechRecognition$` 监听我们说了什么并把结果发送给 `heyClick$` 的转换逻辑，转换逻辑的结果将由 `say` Observable 发出声音。
 
-all credit due to @ladyleet and @benlesh
+这一切归功于 @ladyleet 和 @benlesh
 
-## Summary
+## 总结
 
-One easier Ajax wrapping and one a little more advanced Speech API has been wrapped into an Observable. The mechanics are still the same though: 1) where data is emitted, add a call to `next() `2) if there is NO more data to emit call `complete` 3) if there is a need for it, define a function that can be called upon `unsubscribe()` 4) Handle errors through calling `.error()` in the appropriate place. (only done in the first example)
+这两个 Observable 包装示例其中一个是简单些的 Ajax，而另一个是有一点点高级的语音 API 。但原理都是相同的： 1）数据是通过调用 `next()` 来发送的 2）如果没有更多的数据要发送则调用 `complete()` 3）如果有需要的话，定义一个清理函数可以通过 `unsubscribe()` 来调用 4）在合适的地方通过调用 `error()` 来进行异常处理。(只在第一个示例中这样做了)
