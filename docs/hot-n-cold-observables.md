@@ -42,9 +42,9 @@ setTimeout(() => {
 
 ## 由冷及热 - 凯蒂·佩里模式
 
-上面的示例其实并不是真正的热的 Observable，事实上两个订阅者接收到的值都是`0,1,2,3,4`。因为这是一场足球比赛的实况直播，所以这样的结果并不是我们想要的，那么如何来修复呢？
+上面的示例其实并不是真正的热的 observable，事实上两个订阅者接收到的值都是`0,1,2,3,4`。因为这是一场足球比赛的实况直播，所以这样的结果并不是我们想要的，那么如何来修复呢？
 
-需要两个部件来将冷的 Observable 转变成热的， `publish()` 和 `connect()` 。
+需要两个部件来将冷的 observable 转变成热的， `publish()` 和 `connect()` 。
 
 ```javascript
 let publisher$ = Rx.Observable
@@ -73,11 +73,11 @@ publisher$.connect();
 
 在这个案例中，我们看到第一个订阅者输出的是`0,1,2,3,4`，而第二个输出的是`3,4`。很明显订阅的时间点是很重要的。
 
-## Warm observables
+## 暖的 Observables
 
-There is another type of observables that acts a lot like a hot observable but is in a way lazy. What I mean with this is that they are essentially not emitting any values until a subscriber arrives. Let's compare a hot and a warm observable
+这是 observalbes 的另外一种类型，它的表现很像热的 observable ，但它在某种程度上是惰性的。我想表达的是从本质上来说，在有订阅发生之前它们不会发出任何值。让我们来比较一下热的和暖的 observable
 
-**hot observable**
+**热的 observable**
 
 ```javascript
 let stream$ = Rx.Observable
@@ -92,11 +92,11 @@ setTimeout(() => {
 }, 2000);
 ```
 
-Here we can see that the hot observable will loose the first value being emitted as the subscribe arrives late to the party.
+这里我们可以看到热的 observable 会丢失第一个发出的值，因为订阅是延迟发生的。
 
-Let's contrast this to our warm observable
+和暖的 observable 进行下对比
 
-**warm observable**
+**暖的 observable**
 
 ```javascript
 let obs = Rx.Observable.interval(1000).take(3).publish().refCount();
@@ -110,7 +110,7 @@ setTimeout(() => {
 },2000)
 ```
 
-The `refCount()` operator ensures this observable becomes warm, i.e no values are emitted until `sub1` subscribes. `sub2` on the other hand arrives late to the party, i.e that subscription receives the value its currently on and not the values from the beginning.
+`refCount()` 操作符确保 observable 变成暖的，也就是不会发出值直到 `sub1` 订阅了流。另一方面 `sub2` 是后加入的，也就是说订阅接收的是当前的值，而无法接收订阅之前的值。
 
 ## Naturally hot observables
 
