@@ -112,13 +112,13 @@ setTimeout(() => {
 
 `refCount()` 操作符确保 observable 变成暖的，也就是不会发出值直到 `sub1` 订阅了流。另一方面 `sub2` 是后加入的，也就是说订阅接收的是当前的值，而无法接收订阅之前的值。
 
-## Naturally hot observables
+## 天生的热 observables
 
-Generally something is considered hot if the values are emitted straight away without the need for a subscriber to be present. A naturally occuring example of a hot observable is `mousemove`. Most other hot observables are the result of cold observables being turned hot by using `publish()` and `connect()` or by using the `share()` operator.
+通常来说，如果 observable 的值被立即发出而不需要订阅者的话，那么就认为它是热的，一个最常见的例子就是 `mousemove` 。其它大多数热的 observables 都是通过使用 `publish()` 和 `connect()` ，或者使用 `share()` 操作符将冷的 observables 转变成热的结果。
 
-# Sharing
+# 共享
 
-Sharing means using a useful operator called `share()`. Imagine you have the following normal cold observable case :
+共享意味着要使用一个十分有用，叫做 `share()` 的操作符。想象一下你有这样一个普通的冷 observable：
 
 ```javascript
 let stream$ = Rx.Observable.create((observer) => {
@@ -140,12 +140,12 @@ stream$.subscribe(
 );
 ```
 
-If you set a breakpoint on `observer.next(1)` you will notice that it's being hit twice, once for every subscriber. This is the behaviour we expect from a cold observable. Sharing operator is a different way of turning something into a hot observable, in fact it not only turns something hot under the right conditions but it falls back to being a cold observable under certain conditions. So what are these conditions ?
+如果在 `observer.next(1)` 打个断点，你会注意到它执行了两次，每个订阅者一次。这个行为是我们对冷的 observable 的期望。共享操作符用了一种不同的方式将其转换成热的 observable，事实上，它不仅在正确的条件下转变成热的 observable，而且在某些条件下可以回退成冷的 observable 。那么这些条件是？
 
-1) **Created as hot Observable** : An Observable has not completed when a new subscription comes and subscribers > 0
+1) **创建热的 Observable**： 当有新的订阅时 Observable 还未完成并且订阅者数量大于0
 
-2) **Created as Cold Observable** Number of subscribers becomes 0 before a new subscription takes place. I.e a scenario where one or more subscriptions exist for a time but is being unsubscribed before a new one has a chance to happen
+2) **创建冷的 Observable** 在新的订阅之前订阅者的数量已经变成了0，也就是说，一个或多个订阅存在过一段时间，但是在新的订阅发生前已经取消了订阅。
 
-3) **Created as Cold Observable** when an Observable completed before a new subscription
+3) **创建冷的 Observable** 当新的订阅发生之前 Observable 已经完成
 
-Bottom line here is an active Observable producing values still and have at least one preexisting subscriber. We can see that the Observable in case 1) is dormant before a second subscriber happens and it suddenly becomes hot on the second subscriber and thereby starts sharing the data where it is.
+结果就是一个**活动的** Observable 要继续产生值至少要有一个存在的订阅者。我们可以看到情况1)中的 Observable 在第有两个订阅者之前是休眠的，当订阅发生时它会立即转变成热的从而开始共享数据。
