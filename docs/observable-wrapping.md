@@ -120,9 +120,9 @@ heyClick$
   .subscribe(e => console.log(e));
 ```
 
-### Speech recognition stream
+### 语音识别流
 
-This activates the microphone in the browser and records us
+这将激活浏览器的麦克风并记录我们的语音
 
 ```javascript
 const speechRecognition$ = new Observable(observer => {
@@ -141,9 +141,9 @@ const speechRecognition$ = new Observable(observer => {
 });
 ```
 
-This essentially sets up the speech recognition API. We wait for one response and after that we complete the stream, much like the first example with AJAX.
+这段代码建立了语音识别 API，然后等待响应，并在响应一次后完成流，很像第一个使用 AJAX 的示例。
 
-Note also that a function is defined for cleanup
+注意还定义一个函数用来清理
 
 ```javascript
 return () => {
@@ -151,7 +151,7 @@ return () => {
  }
 ```
 
-so that we can call speechRecognition.unsubscribe() to clean up resources
+所以我们可以通过调用 `speechRecognition.unsubscribe()` 来清理系统资源
 
 ### Speech synthesis utterance, say
 
