@@ -151,7 +151,7 @@ return () => {
  }
 ```
 
-so that we can call speechRecognition.unsubscribe() to clean up resources
+so that we can call `speechRecognition.unsubscribe()` to clean up resources
 
 ### Speech synthesis utterance, say
 
@@ -202,4 +202,4 @@ all credit due to @ladyleet and @benlesh
 
 ## Summary
 
-One easier Ajax wrapping and one a little more advanced Speech API has been wrapped into an Observable. The mechanics are still the same though: 1) where data is emitted, add a call to `next() `2) if there is NO more data to emit call `complete` 3) if there is a need for it, define a function that can be called upon `unsubscribe()` 4) Handle errors through calling `.error()` in the appropriate place. (only done in the first example)
+One easier Ajax wrapping and one a little more advanced Speech API has been wrapped into an Observable. The mechanics are still the same though: 1) where data is emitted, add a call to `next()` 2) if there is NO more data to emit call `complete()` 3) if there is a need for it, define a function that can be called upon `unsubscribe()` 4) Handle errors through calling `error()` in the appropriate place. (only done in the first example)
