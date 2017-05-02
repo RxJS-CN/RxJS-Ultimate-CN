@@ -1,8 +1,8 @@
-# Operators
+# 操作符
 
-Operators are what gives Observables their power. Without them they are nothing. There are close to 60+ operators
+操作符赋予了 Observables 的强大。如果没有了操作符，Observables 将一无是处。RxJS 中有60+个操作符
 
-Let's look at some:
+我们来看其中一些：
 
 ## of
 
@@ -10,7 +10,7 @@ Let's look at some:
 let stream$ = Rx.Observable.of(1,2,3,4,5)
 ```
 
-Right here we are using a creation type operator to create an observable for us. This is synchronous in nature and outputs the values as soon as possible. Essentially it lets you specify what values to emit in a comma separated list.
+这里我们使用了创建类型的操作符创建了 observable 。它实际上是同步的，所以值立即便输出了。事实上，它允许你用逗号分隔的要发出值的列表。
 
 ## do
 
@@ -23,7 +23,7 @@ Rx.Observable
   });
 ```
 
-This is a very handy operator as it is used for debugging of your Observable.
+这是一个非常方便的操作符，用来调试 Observable 。
 
 ## filter
 
