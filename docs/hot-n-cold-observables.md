@@ -20,7 +20,7 @@ stream.subscribe(
 )
 ```
 
-如果是热的 observable 的话，订阅者只能收到当它开始订阅后的值，这很像是足球的视频直播，如果你在开场5分钟后才开始观看，你会错失开场前5分钟的一切，从观看的这一刻起你才开始接收数据：
+如果是热的 observable 的话，订阅者只能收到当它开始订阅后的值，这很像是足球比赛的实况直播，如果你在开场5分钟后才开始观看，你会错失开场前5分钟的一切，从观看的这一刻起你才开始接收数据：
 
 ```javascript
 let liveStreaming$ = Rx.Observable.interval(1000).take(5);
@@ -40,11 +40,11 @@ setTimeout(() => {
 },2000)
 ```
 
-## From cold to hot - Katy Perry mode
+## 由冷及热 - 凯蒂·佩里模式
 
-In the example above it isn't really hot, as a matter of fact both subscribers of the values will each receive `0,1,2,3,4`. As this is the live streaming of a football game it doesn't really act like we want it to, so how to fix it?
+上面的示例其实并不是真正的热的 Observable，事实上两个订阅者接收到的值都是`0,1,2,3,4`。因为这是一场足球比赛的实况直播，所以这样的结果并不是我们想要的，那么如何来修复呢？
 
-Two components are needed to make something go from cold to hot. `publish()` and `connect()`.
+需要两个部件来将冷的 Observable 转变成热的， `publish()` 和 `connect()` 。
 
 ```javascript
 let publisher$ = Rx.Observable
@@ -71,7 +71,7 @@ setTimeout(() => {
 publisher$.connect();
 ```
 
-In this case we see that the output for the first stream that starts to subscribe straight away is `0,1,2,3,4` whereas the second stream is emitting `3,4`. It's clear it matters when the subscription happens.
+在这个案例中，我们看到第一个订阅者输出的是`0,1,2,3,4`，而第二个输出的是`3,4`。很明显订阅的时间点是很重要的。
 
 ## Warm observables
 
