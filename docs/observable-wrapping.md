@@ -2,7 +2,7 @@
 
 在 [Observable 剖析](observable-anatomy.md)章节中我们只学到了关键操作符 `next()`、`error()` 和 `complete()`，如果是我们自己定义的 Observable 的话，可以使用这些方法来驱动 Observable 。我们还学到了，这些方法会触发相应的回调函数。
 
-用 Observable 包装意味着接收一些非 Observable 的东西并将其转换为 Observable，这样就可以很好的与其它 Observable 配合使用。同样还意味着现在我们可以使用[操作符](operators.md)了。 
+用 Observable 包装意味着接收一些非 Observable 的东西并将其转换为 Observable，这样就可以很好的与其它 Observable 配合使用。同样还意味着现在我们可以使用[操作符](operators.md)了。
 
 ## 包装 ajax 调用
 
@@ -49,16 +49,16 @@ else {
 }
 ```
 
-### Close the stream
+### 关闭流
 
 ```javascript
 if(request.status === 200) {
   observer.next( request.response )
-  observer.complete()  // close stream, as we don't expect more data
+  observer.complete()  // 关闭流，因为我们不想要更多的数据了
 }
 ```
 
-## Wrapping a speech audio API
+## 包装语音音频 API
 
 ```javascript
 console.clear();
