@@ -1,18 +1,18 @@
-# Hot n Cold Observables
+# 热&冷的 Observables
 
-There are hot and cold observables. Let's talk about what a cold observable is. In a cold observable two subscribers get their own copies of values like so:
+Observable 有冷热两种类型。我们先来看看什么是冷的 observable 。如果是冷的 observable 的话，那么两个订阅者得到值是两份完全相同的副本，示例如下：
 
 ```javascript
-// cold observable example
+// 冷的 observable 示例
 let stream$ = Rx.Observable.of(1,2,3);
-//subscriber 1: 1,2,3
+//订阅者 1: 1,2,3
 stream.subscribe(
    data => console.log(data),
    err => console.error(err),
    () => console.log('completed')
 )
 
-//subscriber 2: 1,2,3
+//订阅者 2: 1,2,3
 stream.subscribe(
    data => console.log(data),
    err => console.error(err),
@@ -20,7 +20,7 @@ stream.subscribe(
 )
 ```
 
-In a hot observable a subscriber receives values when it starts to subscribe, it is however more like a live streaming in football, if you start subscribing 5 minutes in the game, you will have missed the first 5 minutes of action and you start receiving data from that moment on:
+如果是热的 observable 的话，订阅者只能收到当它开始订阅后的值，这很像是足球的视频直播，如果你在开场5分钟后才开始观看，你会错失开场前5分钟的一切，从观看的这一刻起你才开始接收数据：
 
 ```javascript
 let liveStreaming$ = Rx.Observable.interval(1000).take(5);
