@@ -64,13 +64,13 @@ stream$.subscribe( data => console.log('Concat ' + data));
 // source2 : 0, source2 : 1
 ```
 
-The result however is that the resulting observable takes all the values from the first source and emits those first then it takes all the values from source 2, so order in which the source go into `concat()` operator matters.
+从结果可以看出，组合后的 observable 接收了第一个 source 的所有值然后先将它们发出，然后再接收 source 2的所有值，所以说 `concat()` 操作符中的 source 顺序很重要。
 
-So if you have a case where a source somehow should be prioritized then this is the operator for you.
+所以当遇到应该优先考虑某个 source 的情况时，就要使用 `concat` 操作符。
 
 ## merge
 
-This operator enables you two merge several streams into one.
+这个操作符可以将多个流合并成一个。
 
 ```javascript
 let merged$ = Rx.Observable.merge(
@@ -85,7 +85,7 @@ let observer = {
 merged$.subscribe(observer);
 ```
 
-Point with is operator is to combine several streams and as you can see above any time operators such as `delay()` is respected.
+要点是这个操作符组合了几个流，并且就像你在上面所看到的一样，任何像 `delay()` 这样的时间操作符都是起作用的。
 
 ## zip
 
