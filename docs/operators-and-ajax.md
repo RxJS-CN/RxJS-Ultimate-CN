@@ -1,8 +1,8 @@
-# Operators and Ajax
+# 操作符和 Ajax
 
-There is an `ajax` operator on the Rx object.
+这是 Rx 对象上的 `ajax` 操作符。
 
-## Using the ajax() operator
+## 使用 ajax() 操作符
 
 index.html
 
