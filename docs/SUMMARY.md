@@ -23,7 +23,7 @@
 * [操作符和 Ajax](operators-and-ajax.md)
 * [高阶 Observable](operators-observable-in-an-observable.md)
 * [创建操作符](operators-construction.md)
-* [转化操作符](operators-conversion.md)
+* [转换操作符](operators-conversion.md)
 * [组合操作符](operators-combination.md)
 * [数学操作符](operators-mathematical.md)
 * [时间操作符](operators-time.md)
