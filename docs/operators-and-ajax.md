@@ -39,13 +39,13 @@ const subscription = person$
   });
 ```
 
-A little GOTCHA from this is how we call the `ajax()` operator, we obviously specify a bunch of stuff other thant the `url` property. The reason for this is that the `ajax` operator does the following :
+有一点坑的是我们调用 `ajax()` 操作符的方式，除了 `url` 属性外我们显示地指定了一堆配置。这样做的原因是 `ajax` 操作符内部是这样运行的：
 
-> default factory of XHR in ajaxObservable sets withCredentials to true by default
+> 执行 ajaxObservable 中的 XHR 的默认工厂函数，并把 withCredentials 默认设置为 true
 
-So we give at a custom factory and it works. I understand this is an issue that is currently looked upon
+所以我们给定了一个自定义工厂函数而且它可以正常运行。我明白目前这也被看做是一个 issue
 
-## Using fetch API
+## 使用 fetch API
 
 ```javascript
 const fetchSubscription = Rx.Observable
@@ -56,9 +56,9 @@ const fetchSubscription = Rx.Observable
 })
 ```
 
-So a couple of things here happens worth mentioning
+这里有几件事情值得一提
 
-* fetch api is promised base, however using `.from()` Rxjs allows us to insert promise as a parameter and converts it to an Observable.
-* BUT the result coming back is a response object that we need to convert to Json. Calling `json()` will do that for you but that operation returns a Promise. So we need to use another `from()` operator. But creating an Observable inside an observable creates a list of observables and we can't have that, we want Json. So we use an operator called `flatMap()` to fix that. Read more on `flatMap()` [here](operators-observable-in-an-observable.md)
+* fetch api 是基于 promise 的，然而使用 `.from()` RxJS 允许我们输入一个 promise 作为参数并将其转换为 Observable 。
+* 请求回来的结果是一个 `response` 对象，需要将它转换成 JSON 。调用 `json()` 方法可以完成这项工作，但 `json()` 返回的也是 Promise 。所以我们需要再次使用 `from()` 操作符。但在一个 Observable 内再创建一个 Observable 的话会形成嵌套的 Observable，这不是我们想要的，我们要的只是 JSON 。所以我们使用一个叫做 `flatMap()` 的操作符来修复它。想深入了解 `flatMap()`，请参加[这里](operators-observable-in-an-observable.md)
 
-And finally we get the Json we expect, no issues with CORS but a little more to write.
+最终我们得到了预期的 JSON，如果要跨域请求接口的话，fetch 还需要进行额外的配置。
