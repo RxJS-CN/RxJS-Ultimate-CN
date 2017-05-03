@@ -25,7 +25,7 @@ stream.subscribe((val) => console.log(val))
 
 --1------2-----3------> --json-- json--json -->
 
-The reason for us NOT doing it like this with a `.map()` operator
+我们没有像下面这样使用 `.map()` 操作符的理由
 
 ```javascript
 let stream$ = Rx.Observable
@@ -38,11 +38,11 @@ let stream$ = Rx.Observable
 })
 ```
 
-is that it would not give the result we want instead the result would be:
+是它给你的结果不是你想要的，而会是下面这样：
 
 
 ```javascript
 // Observable, Observable, Observable
 ```
 
-because we have created a list of observables, so three different streams. The `flatMap()` operator however is able to flatten these three streams into one stream called a `metastream`. There is however another interesting operator that we should be using when dealing with ajax generally and it's called `switchMap()`. Read more about it here [Cascading calls](cascading-calls.md)
+因为我们创建了一个 observable 列表，即三个不同的流，所以订阅得到是流而不是我们想要的数据。然而 `flatMap()` 操作符可以把这种叫做 `metastream` 的流中流变扁平。还有一个有趣的操作符叫做 `switchMap()`，通常它用来处理 ajax 。想了解更多，请参见[级联调用](cascading-calls.md)
