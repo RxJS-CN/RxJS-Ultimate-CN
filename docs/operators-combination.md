@@ -27,19 +27,23 @@ stream$.subscribe(data => console.log(data));
 // 发出 source1: 0, source2 : 0 |  source1 : 0, source2 : 1 | source1 : 1, source2 : 1, 等等
 ```
 
-What this does is to essentially take the latest response from each source and return it as an array of x number of elements. One element per source.
+`combineLatest` 实际上是从每个 `source` 取最新的响应值然后返回有x个元素的数组。每个 `source` 对应一个元素。
 
-As you can see source2 stops emitting after 2 values but is able to keep sending the latest emitted.
+如你所见，source2 在发出2个值后就停止了，但仍然可以持续发出最新的值。
+
+### 业务场景
+
+业务场景是当你对每个 source 的最新值感兴趣，而对过往的值不感兴趣，当然你要有一个以上想要组合的 source 。
 
 ## concat
 
-The signature is :
+函数签名如下：
 
 ```javascript
 Rx.Observable([ source_1,... sournce_n ])
 ```
 
-Looking at the following data, it's easy to think that it should care when data is emitted:
+看看下面输出的数据，很容易可以想到数据是何时发出的：
 
 ```javascript
 let source1 = Rx.Observable.interval(100)
