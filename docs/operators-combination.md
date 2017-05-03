@@ -100,9 +100,9 @@ let stream$ = Rx.Observable.zip(
 stream$.subscribe(observer);
 ```
 
-Gives us `1,2,7`
+我们得到 `1,2,7`
 
-Let's look at another example
+再来看另外一个示例
 
 ```javascript
 let stream$ = Rx.Observable.zip(
@@ -114,8 +114,8 @@ let stream$ = Rx.Observable.zip(
 stream$.subscribe(observer);
 ```
 
-Gives us `1,2,7` and `5,3,9` so it joins values on column basis. It will act on the least common denominator which in this case is 2. The `4` is ignored in the `2,3,4` sequence. As you can see from the first example it's also possible to mix different async concepts such as Promises with Observables because interval conversion happens.
+得到的是`1,2,7`和`5,3,9`，所以它是以列为基础连接值的。它将采用最小的共同标准，在这个案例中是2。`2,3,4`序列中`4`会被忽略。正如你在第一个示例中所看见的，它还可以混用不同的异步概念，比如 Promise 和 Observable，这是因为发生了间隔转换。
 
-### Business case
+### 业务场景
 
-If you really care about what different sources emitted at a certain position. Let's say the 2nd response from all your sources then `zip()` is your operator.
+如果你真正关心不同 sources 在同一个位置所发出值的区别，假设所有 sources 的第2个响应值，那么你需要 `zip()` 操作符。
