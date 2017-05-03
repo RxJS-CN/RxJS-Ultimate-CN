@@ -23,7 +23,7 @@ Rx.Observable.from(new Promise(resolve, reject) => {
 
 ## of
 
-The of operator takes x number of arguments so you can call it with one arguments as well as 10 arguments like so:
+The `of` operator takes x number of arguments so you can call it with one arguments as well as 10 arguments like so:
 
 ```javascript
 Rx.Observable.of(1,2);
