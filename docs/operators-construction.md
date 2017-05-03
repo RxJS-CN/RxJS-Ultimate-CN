@@ -1,14 +1,14 @@
-# Operators construction
+# 创建操作符
 
 ## create
 
-When you are starting out or you just want to test something you tend to start out with the `create()` operator. This takes a function with an `observer` as a parameter. This has been mentioned in previous sections such as [Observable Wrapping](observable-wrapping.md). The siignature looks like the following
+当你刚起步或者只是想要测试一些东西时，倾向于从 `create()` 操作符入手。它接收一个有 `observer` 参数的函数。在前面的一些章节中已提及过，比如 [Observable 包装](observable-wrapping.md)章节。函数签名如下：
 
 ```javascript
 Rx.Observable.create([fn])
 ```
 
-And an example looks like:
+示例如下：
 
 ```javascript
 Rx.Observable.create(observer => {
@@ -18,16 +18,16 @@ Rx.Observable.create(observer => {
 
 ## range
 
-Signature
+函数签名
 
 ```javascript
 Rx.Observable.range([start],[count])
 ```
 
-Example
+示例
 
 ```javascript
 let stream$ = Rx.Observable.range(1,3)
 
-// emits 1,2,3
+// 发出 1,2,3
 ```
