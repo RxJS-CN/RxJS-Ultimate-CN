@@ -1,4 +1,4 @@
-# Operators matchematical
+# 数学操作符
 
 ## max
 
@@ -7,7 +7,7 @@ let stream$ = Rx.Observable.of(5,4,7,-1)
 .max();
 ```
 
-This emits `7`. It's obvious what this operator does, it gives us just one value, the max. There is different ways of calling it though. You can give it a comparer:
+发出的值是`7`。这个操作符的功能显而易见，只提供一个最大值。还有不同的方式来调用它，可以传入一个 comparer 函数：
 
 ```javascript
 function comparer(x,y) {
@@ -22,7 +22,7 @@ let stream$ = Rx.Observable.of(5,4,7,-1)
 .max(comparer);
 ```
 
-In this case we define a `comparer` which runs a sort algorithm under the hood and all we have to do is to help it determine when something is _larger than_, _equal_ or _smaller than_. Or with an object the idea is the same:
+在这个案例中，我们定义了 `comparer` 函数，它会在底层运行排序算法，我们所要做的只是帮助它判断是 **大于**、**等于** 还是 **小于**。还可以使用对象进行比较，概念都是一样的：
 
 ```javascript
 function comparer(x,y) {
@@ -37,7 +37,7 @@ let stream$ = Rx.Observable.of({ name : 'chris', age : 37 }, { name : 'chross', 
 .max(comparer);
 ```
 
-Because we tell it in the `comparer` what property to compare we are left with the first entry as result.
+因为我们在 `comparer` 中声明了要比较什么属性，所以第一条数据会被留下作为结果。
 
 ## min
 
