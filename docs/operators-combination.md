@@ -1,10 +1,10 @@
-# Operators combination
+# 组合操作符
 
-There are many operators out there that allows you to combine the values from 2 or more source, they act a bit differently though and its important to know the difference.
+有一些操作符允许你组合两个及以上的 source，它们的行为有所不同，重要的是要知道它们之间的区别。
 
 ## combineLatest
 
-The signature on this one is:
+函数签名如下:
 
 ```javascript
 Rx.Observable.combineLatest([ source_1, ...  source_n])
@@ -24,7 +24,7 @@ let stream$ = Rx.Observable.combineLatest(
 
 stream$.subscribe(data => console.log(data));
 
-// emits source1: 0, source2 : 0 |  source1 : 0, source2 : 1 | source1 : 1, source2 : 1, etc
+// 发出 source1: 0, source2 : 0 |  source1 : 0, source2 : 1 | source1 : 1, source2 : 1, 等等
 ```
 
 What this does is to essentially take the latest response from each source and return it as an array of x number of elements. One element per source.
