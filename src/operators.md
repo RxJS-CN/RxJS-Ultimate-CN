@@ -40,7 +40,7 @@ Rx.Observable
 
 So this stops certain values from being emitted
 
-Notice however that I can add the do operator in a handy place and can still investigate all the values
+Notice however that I can add the `do` operator in a handy place and can still investigate all the values
 
 ```javascript
 let stream$ =
