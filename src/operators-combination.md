@@ -27,9 +27,13 @@ stream$.subscribe(data => console.log(data));
 // emits source1: 0, source2 : 0 |  source1 : 0, source2 : 1 | source1 : 1, source2 : 1, etc
 ```
 
-What this does is to essentially take the latest response from each source and return it as an array of x number of elements. One element per source.
+What this does is to essentially take the latest response from each `source` and return it as an array of x number of elements. One element per source.
 
 As you can see source2 stops emitting after 2 values but is able to keep sending the latest emitted.
+
+### Business case
+
+The business case is when you are interested in the very latest from each source and past values is of less interest, and of course you have more than one source that you want to combine.
 
 ## concat
 
