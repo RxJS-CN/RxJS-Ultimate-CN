@@ -38,9 +38,9 @@ Rx.Observable
 // 2,4
 ```
 
-So this stops certain values from being emitted
+这样可以阻止某些值被发出
 
-Notice however that I can add the do operator in a handy place and can still investigate all the values
+不过请注意，可以将 `do` 操作符添加到一个合适的地方，并且仍然可以查看所有的值
 
 ```javascript
 let stream$ =
