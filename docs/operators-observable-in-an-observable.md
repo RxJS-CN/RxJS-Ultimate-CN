@@ -1,8 +1,8 @@
-# Observable in an Observable
+# 高阶 Observable
 
-Quite often you come to a point where you start with one type of Observable and you want it to turn into something else.
+通常你会遇到这种情况，以一种类型的 Observable 为起始，然后你想要将它转变为其它的东西。
 
-## Example
+## 示例
 
 ```javascript
 let stream$ = Rx.Observable
@@ -21,7 +21,7 @@ stream.subscribe((val) => console.log(val))
 // { id : 3, name : 'Luke Skywalker' }
 ```
 
-So here we have a case of starting with values 1,2,3 and wanting those to lead up to an ajax call each
+这里我们以值1,2,3为起始，然后想把每个值来引导一次 ajax 请求
 
 --1------2-----3------> --json-- json--json -->
 
