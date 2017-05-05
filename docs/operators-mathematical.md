@@ -41,29 +41,29 @@ let stream$ = Rx.Observable.of({ name : 'chris', age : 37 }, { name : 'chross', 
 
 ## min
 
-Min is pretty much identical to `max()` operator but returns the opposite value, the smallest.
+`min` 和 `max()` 操作符基本一样，只是返回的是最小值。
 
 ## sum
 
-`sum()` as operator has seized to exist but we can use `reduce()` for that instead like so:
+`sum()` 操作符已经不复存在，但是我们可以使用 `reducer()` 来完成同样的功能，像这样：
 
 ```javascript
 let stream$ = Rx.Observable.of(1,2,3,4)
 .reduce((accumulated, current) => accumulated + current )
 ```
 
-This can be applied to objects as well as long as we define what the `reduce()` function should do, like so:
+同样也适用于对象，只要我们定义好 `reduce()` 函数应该怎么做，像这样：
 
 ```javascript
 let objectStream$ = Rx.Observable.of( { name : 'chris' }, { age : 11 } )
 .reduce( (acc,curr) => Object.assign({}, acc,curr ));
 ```
 
-This will concatenate the object parts into an object.
+这会把所有对象合并为一个对象。
 
 ## average
 
-The `average()` operator isn't there anymore in Rxjs5 but you can still achieve the same thing with a `reduce()`
+RxJS 5中取消了 `average()` 操作符，但是仍可以使用 `reduce()` 来完成同样的功能
 
 ```javascript
 let stream$ = Rx.Observable.of( 3, 6 ,9 )
@@ -74,4 +74,4 @@ let stream$ = Rx.Observable.of( 3, 6 ,9 )
 .map( x => x.sum / x.counter )
 ```
 
-I admit it, this one hurted my head a little, once you crack the initial `map()` call the `reduce()` is pretty simple, and `Object.assign()` is a nice companion as usual.
+我承认这个实现有一点绕，一旦你理解了起初调用的 `map()`，那么 `reduce()` 就很好理解了，`Object.assign()` 一如既往的是个好助手。
