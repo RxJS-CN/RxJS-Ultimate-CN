@@ -1,25 +1,23 @@
-# Operators time
+# 时间操作符
 
-This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
+这可不是一个简单的话题。其中涉及了应用程序中的诸多领域，你可能想要同步 API 的响应，或者你想要处理其它类型的流，比如 UI 中的点击事件或键盘事件。
 
-There are plenty of operators dealing with time in some way such as `delay` `debounce` `throttle` `interval` etc.
-
-This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
+有大量的操作符以它们各自的方式来处理时间，比如 `delay`、 `debounce`、 `throttle`、 `interval`， 等等。
 
 ## interval
 
-This operator is used to construct an Observable and essentially what it does is to pump values at regular interval, signature:
+这个操作符用来创建一个 Observable，基本上它所做的就是按固定的时间间隔提供值，函数签名如下：
 
 ```javascript
 Rx.Observable.interval([ms])
 ```
 
-Example usage:
+示例用法:
 
 ```javascript
 Rx.Observable.interval(100)
 
-// generates forever
+// 无限生成下去
 ```
 
 Because this one will generate values forever you tend to want to combine it with the `take()` operator that limits the amount of values to generate before calling it quits so that would look like :
