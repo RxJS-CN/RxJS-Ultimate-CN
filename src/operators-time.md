@@ -4,8 +4,6 @@ This is not an easy topic. There are many areas of application here, either you 
 
 There are plenty of operators dealing with time in some way such as `delay` `debounce` `throttle` `interval` etc.
 
-This is not an easy topic. There are many areas of application here, either you might want to synchronize responses from APIS or you might want to deal with other types of streams such as events like clicks or keyup in a UI.
-
 ## interval
 
 This operator is used to construct an Observable and essentially what it does is to pump values at regular interval, signature:
