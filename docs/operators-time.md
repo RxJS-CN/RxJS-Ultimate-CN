@@ -20,33 +20,32 @@ Rx.Observable.interval(100)
 // 无限生成下去
 ```
 
-Because this one will generate values forever you tend to want to combine it with the `take()` operator that limits the amount of values to generate before calling it quits so that would look like :
+因为这个操作符会不停地生成值，所以倾向于和 `take()` 操作符一起使用，这样可以在调用它之前限制生成值的数量，就像这样：
 
 ```javascript
 Rx.Observable.interval(1000).take(3)
 
-// generates 1,2,3
+// 生成 1,2,3
 ```
 
 ## timer
 
-Timer is an interesting one as it can act in several ways depending on how you call it. It's signature is
-
+`timer` 是个有趣的操作符，它可以有多种行为，这取决于你如何使用它。它的函数签名是
 
 ```javascript
 Rx.Observable.timer([initial delay],[thereafter])
 ```
 
-However only the initial args is mandatory so depending on the number of args used these are the different types that exist because of it.
+然后只有第一个参数是必须的，所以取决于使用参数的数量，它会有不同的用法。
 
-**one-off**
+**一次性的**
 
 ```javascript
 let stream$ = Rx.Observable.timer(1000);
 
 stream$.subscribe(data => console.log(data));
 
-// generates 0 after 1 sec
+// 1秒后生成0
 ```
 
 This becomes a one-ff as we don't define when the next value should happen.
