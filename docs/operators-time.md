@@ -86,9 +86,9 @@ stream$
 
 想了解更多，请阅读[异常处理](error-handling.md)章节
 
-## sample
+## sampleTime
 
-我通常认为这个场景可以称之为“懒得理你”。我的意思是事件只会在特定的点被触发。
+我通常认为这个场景可以称之为“懒得理你”。我的意思是事件只会在特定的时间点被触发。
 
 ### 业务场景
 
@@ -108,15 +108,15 @@ input$.subscribe(val => {
 });
 ```
 
-The code above does just that.
+上面的代码所做的就是这件事。
 
 ## debounceTime
 
-So `debounceTime()` is an operator that tells you: I will not emit the data all the time but at certain intervals.
+`debounceTime()` 操作符会告诉你：我只会以一定的时间间隔发出数据，而不会一直发出数据。
 
-### Business case
+### 业务场景
 
-Debounce is a known concept especially when you type keys on a keyboard. It's a way of saying we don't care about every keyup but once you stop typing for a while we should care. That, is how you would normally start an auto complete. Say your user hasn't typed for x miliseconds that probably means we should be doing an ajax call and retrieve a result.
+Debounce 是一个已知的概念，特别是当你敲击键盘的时候。就像是在说，我们不在乎你的每次敲击键盘，但是一旦你停止打字后的一段时间是我们所关心的。一个普通的 auto complete (自动完成/智能提示) 就应该在这个时候开始启动了。如果说你的用户停止打字已经有x毫秒了，通常这意味着我们应该执行一次 ajax 调用并取回结果。
 
 ```javascript
 const input = document.getElementById('input');
