@@ -48,23 +48,23 @@ stream$.subscribe(data => console.log(data));
 // 1秒后生成0
 ```
 
-This becomes a one-ff as we don't define when the next value should happen.
+这样就是一次性的，因为并没有规定何时发出下一个值。
 
-**with 2nd arg specified**
+**指定第二个参数**
 
 ```javascript
 let moreThanOne$ = Rx.Observable.timer(2000, 500).take(3);
 
 moreThanOne$.subscribe(data => console.log('timer with args', data));
 
-// generate 0 after 2 sec and thereafter 1 after 500ms and 2 after additional 500ms
+// 2秒后生成0，然后再500毫秒后生成1，然后再500毫秒生成2
 ```
 
-So this one is more flexible and keeps emitting values according to 2nd argument.
+这样更灵活一些，会根据第二个参数持续性的发出值。
 
 ## delay
 
-`delay()` is an operator that delays every value being emitted Quite simply it works like this :
+`delay()` 操作符只是简单地延迟每个要发出的值，它是这样使用的：
 
 ```javascript
 var start = new Date();
