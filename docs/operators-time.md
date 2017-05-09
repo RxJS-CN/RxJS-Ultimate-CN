@@ -77,22 +77,22 @@ stream$
     console.log( new Date() - start );
 })
 
-//0 800ms, 1 1300ms,2 1800ms
+// 800ms左右后输出 0 , 1300ms左右后输出1, 1800ms左后后输出2
 ```
 
-### Business case
+### 业务场景
 
-Delay can be used in a multitude of places but one such good case is when handling errors especially if we are dealing with shaky connections and want it to retry the whole stream after x miliseconds:
+`delay` 操作符可以在很多地方使用，但其中一个很好的场景是异常处理，尤其是当网络不稳定时我们想要在x毫秒后重试整个流：
 
-Read more in chapter [Error handling](error-handling.md)
+想了解更多，请阅读[异常处理](error-handling.md)章节
 
 ## sample
 
-I usually think of this scenario as talk to the hand. What I mean by that is that events are only fired at specific points
+我通常认为这个场景可以称之为“懒得理你”。我的意思是事件只会在特定的点被触发。
 
-### Business case
+### 业务场景
 
-So the ability to ignore events for x miliseconds is pretty useful. Imagine a save button being repeatedly pushed. Wouldn't it be nice to only act after x miliseconds and ignore the other pushes ?
+所以在x毫秒内的忽略事件的能力是非常有用的。想象一下，一个保存按钮被狂点N次，只在x毫秒后只有最近的一次点击生效而忽略其它的点击不是很好吗？
 
 ```javascript
 const btn = document.getElementById('btnIgnore');
