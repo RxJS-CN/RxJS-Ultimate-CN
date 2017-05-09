@@ -77,7 +77,7 @@ stream$
     console.log( new Date() - start );
 })
 
-// 800ms左右后输出 0 , 1300ms左右后输出1, 1800ms左后后输出2
+// 800毫秒左右后输出 0 , 1300毫秒左右后输出1, 1800毫秒左后后输出2
 ```
 
 ### 业务场景
@@ -125,7 +125,7 @@ const example = Rx.Observable
   .fromEvent(input, 'keyup')
   .map(i => i.currentTarget.value);
 
-//wait 0.5s, between keyups, throw away all other values
+// 在两次敲击键盘事件之间，有0.5秒的等待时间，如果时间小于0.5秒则丢弃前一个敲击键盘事件
 const debouncedInput = example.debounceTime(500);
 
 const subscribe = debouncedInput.subscribe(val => {
@@ -133,7 +133,7 @@ const subscribe = debouncedInput.subscribe(val => {
 });
 ```
 
-The following only outputs a value, from our input field, after you stopped typing for 500ms, then it's worth reporting about it, i.e emit a value.
+上面的代码只会输出一个值，值来源于 input 表单，在你停止打字后的500毫秒后，才值得它报告一下，也就是发出一个值。
 
 ## throttleTime
 
@@ -141,7 +141,7 @@ TODO
 
 ## buffer
 
-This operator has the ability to record x number of emitted values before it outputs its values, this one comes with one or two input parameters.
+`buffer` 操作符的能力是在输出它的值前记录x个发出的值，它可以使用一个或两个参数。
 
 ```javascript
 .buffer( whenToReleaseValuesStartObservable )
