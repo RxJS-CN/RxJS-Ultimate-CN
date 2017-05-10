@@ -162,18 +162,18 @@ let emitter$ = Rx.Observable.interval(100).take(10) // 总共会输出10个值
 // 500毫秒后输出: [0,1,2,3,4]  1秒后输出: [5,6,7,8,9]
 ```
 
-Marble diagram
+弹珠图
 
 ```
 --- c --- c - c --- >
 -------| ------- |- >
-Resulting stream is :
+结果流是 :
 ------ r ------- r r  -- >
 ```
 
-### Business case
+### 业务场景
 
-So whats the business case for this one? `double click`, it's obviously easy to react on a `single click` but what if you only want to perform an action on a `double click` or `triple click`, how would you write code to handle that? You would probably start with something looking like this :
+那么 `buffer` 的业务场景到底是什么？ 那就是双击，对单击作出响应显然是很简单的，但如果只想对双击或是三连击进行处理，又应该如何用代码来处理呢？你可能会用类似下面的方法来处理：
 
 ```javascript
 $('#btn').bind('click', function(){
