@@ -190,25 +190,25 @@ $('#btn').bind('click', function(){
 })
 ```
 
-Look at the above as an attempt at pseudo code. The point is that you need to keep track of a bunch of variables of how much time has passed between clicks. This is not nice looking code, lacks elegance
+看下上面的伪代码。关键是你需要记录一些在点击之间的时间变量。这样的代码缺乏优雅性，不能算是一种好的代码
 
-#### Model in Rxjs
+#### 在 RxJS 中建模
 
-By now we know Rxjs is all about streams and modeling values over time. Clicks are no different, they happen over time.
+到目前为止，对于 RxJS 我们所知道的一切都是关于流和随着时间的推移对值进行建模。点击没什么不同，它们也是随着时间的推移而产生。
 
 ```
 ---- c ---- c ----- c ----- >
 ```
 
-We however care about the clicks when they appear close together in time, i.e as double or triple clicks like so :
+然而，我们关心的是短时间内接连出现的点击，即像下面这样的双击或三连击：
 
 ```
 --- c - c ------ c -- c -- c ----- c
 ```
 
-From the above stream you should be able to deduce that a `double click`, one `triple click` and one `single click` happened.
+从上面的流中你应该可以推断出发生了一次双击、一次三连击和一次单击。
 
-So let's say I do, then what? You want the stream to group itself nicely so it tells us about this, i.e it needs to emit these clicks as a group. `filter()` as an operator lets us do just that. If we define let's say 300ms is a long enough time to collect events on, we can slice up our time from 0 to forever in chunks of 300 ms with the following code:
+假设我就是这么做的，那么然后呢？你希望流自己分组，以便告诉我们这一点，即需要将哪些点击作为一个组发出。`filter()` 操作符可以帮我们完成任务。如果我们定义了一个足够长的时间(假设是300毫秒)来收集事件，可以使用下面的代码将时间从0到永远以300毫秒的时间块进行分割：
 
 ```javascript
 let clicks$ = Rx.Observable.fromEvent(document.getElementById('btn'), 'click');
