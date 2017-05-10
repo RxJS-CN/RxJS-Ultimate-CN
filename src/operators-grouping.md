@@ -26,7 +26,7 @@ In this case the values 0,1,2,3 is emitted all at once.
 **Auto complete** The most obvious case when dealing with the `buffer()` operator is an `auto complete`. But how does `auto complete` work? Let's look at it in steps
 
   * user enter keys
-  * search is made base on those keystrokes The important thing though is that the search itself is carried out as you are typing, either it's carried out because you typed x number of characters or the more common approach is to let you finish typing and do the search, you could be editing as you type. So let's take our first step into such a solution:
+  * search is made base on those keystrokes. The important thing though is that the search itself is carried out as you are typing, either it's carried out because you typed x number of characters or the more common approach is to let you finish typing and do the search, you could be editing as you type. So let's take our first step into such a solution:
 
 ```javascript
 let input = document.getElementById('example');
