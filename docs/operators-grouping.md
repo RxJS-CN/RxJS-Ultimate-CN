@@ -97,13 +97,13 @@ btnBuffered$.subscribe((data) => console.log( 'values',data ));
 
 ## bufferTime
 
-The signature of `bufferTime()` is
+`bufferTime()` 的函数签名：
 
 ```javascript
 bufferTime([ms])
 ```
 
-The idea is to record everything that happens during that time slice and output all the values. Below is an example of recording all activities on an input in 1 second time slices.
+作用是记录在该时间段内发生的所有事情并输出所有的值。下面的示例是以1秒为时间片段记录输入的所有活动事件。
 
 ```javascript
 let input = document.getElementById('example');
@@ -113,15 +113,26 @@ let input$  = Rx.Observable.fromEvent( input, 'input' )
 input$.subscribe((data) => console.log('all inputs in 1 sec', data));
 ```
 
-In this case you will get an output looking like:
+在这个案例中你得到的输出会是这样的：
 
 ```javascript
 all inputs in 1 sec [ Event, Event... ]
 ```
 
-Not so usable maybe so we probably need to make it nice with a `filter()` to see what was actually typed, like so:
+得到的数据似乎没什么用，所以我们可能需要使用 `map()` 来使数据变得清晰，以便于看到用户实际的按键，像这样：
 
-### Business case
+```javascript
+let input = document.getElementById('example');
+let input$  = Rx.Observable.fromEvent( input, 'keyup' )
+.map( ev => ev.key)
+.bufferTime(1000);
+
+input$.subscribe((data) => console.log('all inputs in 1 sec', data));
+```
+
+Also note I changed event to `keyup`. Now we are able to see all `keyup` events that happened for a sec.
+
+### 业务场景
 
 The example above could be quite usable if you want to record what another user on the site is doing and want to replay all the interactions they ever did or if they started to type and you want to send this info over a socket. The last is something of a standard functionality nowadays that you see a person typing on the other end. So there are definitely use cases for this.
 
