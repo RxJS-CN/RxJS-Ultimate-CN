@@ -231,6 +231,6 @@ clicks$.buffer( scissor$ )
       });
 ```
 
-Read the code in the following way, the buffer stream, `clicks$` will emit its values every 300ms, 300 ms is decided by `scissor$` stream. So the `scissor$` stream is the scissor, if you will, that cuts up our click stream and voila we have an elegant `double click` approach. As you can see the above code captures all types of clicks but by uncommenting the `filter()` operation we get only `double clicks` and `triple clicks`.
+请使用如下的方式来阅读此段代码，要缓冲的流 `clicks$` 每300毫秒会发出它的值，300毫秒是由 `scissor$` 流决定的。所以 `scissor$` 流是一把剪刀，如果你愿意，它可以将 `clicks$` 流切碎，瞧，我们有一个优雅获取双击的方法了。如你所见，上面的代码捕获了所有类型的点击，但通过解除注释 `filter()` 操作的话，我们就只能获得双击和三连击。
 
-`filter()` operator can be used for other purposes as well like recording what happened in a UI over time and replay it for the user, only your imagination limits what it can be used for.
+`filter()` 操作符同样可以用于其它目的，像随着时间推移记录 UI 发生了什么并回放给用户，唯一能限制它所能做的就是你的想象力。
