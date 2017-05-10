@@ -130,11 +130,11 @@ let input$  = Rx.Observable.fromEvent( input, 'keyup' )
 input$.subscribe((data) => console.log('all inputs in 1 sec', data));
 ```
 
-Also note I changed event to `keyup`. Now we are able to see all `keyup` events that happened for a sec.
+还要注意一点，我把事件改成了 `keyup` 。现在我们可以看见1秒内发生的所有 `keyup` 事件。
 
 ### 业务场景
 
-The example above could be quite usable if you want to record what another user on the site is doing and want to replay all the interactions they ever did or if they started to type and you want to send this info over a socket. The last is something of a standard functionality nowadays that you see a person typing on the other end. So there are definitely use cases for this.
+如果你想要记录该网站上的其它用户正在做什么，并希望重播他们曾经做过的所有交互，或者当他们开始输入，你希望通过 socket 发送此信息的话，那么上面的示例会非常有用。最后一个是当下的标准功能，你看见一个人在另一个终端上打字。所以确实有这样的业务案例。
 
 ## groupBy
 
