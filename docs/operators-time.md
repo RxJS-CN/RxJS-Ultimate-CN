@@ -146,20 +146,20 @@ TODO
 ```javascript
 .buffer( whenToReleaseValuesStartObservable )
 
-or
+或
 
 .buffer( whenToReleaseValuesStartObservable, whenToReleaseValuesEndObservable )
 ```
 
-So what does this mean? It means given we have for example a click of streams we can cut it into nice little pieces where every piece is equally long. Using the first version with one parameter we can give it a time argument, let's say 500 ms. So something emits values for 500ms then the values are emitted and another Observable is started, and the old one is abandoned. It's much like using a stopwatch and record for 500 ms at a time. Example :
+那么这意味着什么呢？它的意思是，如果我们有一个点击流的话，可以将其我切成漂亮的小块流，每一小块流包含的事件的数量都是相同的。使用一个参数的话，我们可以给它一个时间参数(译者注: 这里说时间参数可能不太准确，会让人联想到500毫秒这样的参数，应该是时间相关的 Observable，比如 interval 操作符生成的)，假设是500毫秒。所以原本要发出的值会积攒500毫秒后发出，然后另一个 Observable 会开启，老的 Observable 则被抛弃。这很像是在使用秒表，一次记录500毫秒。示例：
 
 ```javascript
 let scissor$ = Rx.Observable.interval(500)
 
-let emitter$ = Rx.Observable.interval(100).take(10) // output 10 values in total
+let emitter$ = Rx.Observable.interval(100).take(10) // 总共会输出10个值
 .buffer( scissor$ )
 
-// [0,1,2,3,4] 500ms [5,6,7,8,9]
+// 500毫秒后输出: [0,1,2,3,4]  1秒后输出: [5,6,7,8,9]
 ```
 
 Marble diagram
