@@ -42,7 +42,7 @@ let stream$ = input$
 stream$.subscribe((data) => console.log( 'values',data ));
 ```
 
-We capture `keyup` events. We also use a `debounce()` operator that essentially says; I will emit values once you stopped typing for x miliseconds. This solution is just a first step on the way however as it is reporting the exact keys being typed. A better solution would be to capture the input element's actual content and also to perform an ajax call, so let's look at a more refined solution:
+我们捕获 `keyup` 事件。我们还使用了 `debounce()` 操作符，本质上来说，一旦你停止打字x毫秒后它才会发出值。这个解决方案只是进行中的第一步，因为它只是报告了具体敲击的按键。一个更好的解决方案是捕获输入元素的实际内容，还可以执行 ajax 调用，所以让我们来看一个更精致的解决方案：
 
 ```javascript
 let input = document.getElementById('example');
@@ -56,7 +56,7 @@ let stream$ = input$
     return ev.key })
 .buffer( debounceBreak$ )
 .switchMap((allTypedKeys) => {
-    // do ajax
+    // 执行 ajax
     console.log('Everything that happened during 2 sec', allTypedKeys)
     return Rx.Observable.of('ajax based on ' + input.value);
 });
