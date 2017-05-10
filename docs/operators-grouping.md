@@ -64,19 +64,19 @@ let stream$ = input$
 stream$.subscribe((data) => console.log( 'values',data ));
 ```
 
-Let's call this one `auto complete on steroids`. The reason for the name is that we save every single interaction the user does before finally deciding on the final input that should become an Ajax call. So a result from the above could look like the following:
+这个称之为“增强的 auto complete” 。原因如名字一样，我们保存了用户所做的每一个交互，然后才最终决定应该成为 Ajax 调用的最终输入。所以上面代码的结果应该看起来像下面这样：
 
 ```javascript
-// from switchMap
+// 出自 switchMap
 Everything that happened during 2 sec ["a", "a", "a", "Backspace", "Backspace", "Backspace", "Backspace", "b", "b", "Backspace", "Backspace", "Backspace", "f", "g", "h", "f", "h", "g"]
 
-// in the subscribe(fnValue)
-app-buffer.js:31 values ajax based on fghfgh
+// 出自 subscribe
+values ajax based on fghfgh
 ```
 
-As you can see we could potentially store a whole lot more about a user than just the fact that they made an auto complete search, we can store how they type and that may or may not be interesting..
+如你所见，其实我们可以储存大量用户潜在的信息，而不只是做了 auto complete 搜索，我们可以储存他们是如何打字的，这或许很有趣，亦或是很无聊...
 
-**Double click** In the example above I've showed how it could be intersting to capture groups of keys but another group of UI events of possible interests are mouse clicks, namely for capturing single, double or triple clicks. This is quite inelegant code to write if not in Rxjs but with it, it's a breeze:
+**双击** - 在上面的示例中，我已经展示了按组捕获按键可以很有趣，而另一组可能有趣的 UI 事件就是鼠标点击事件，即单击、双击或三连击。如果不用 RxJS 的话，那写出的代码是极不优雅的，反之则轻而易举，像下面这样：
 
 ```javascript
 let btn = document.getElementById('btn2');
@@ -93,7 +93,7 @@ let btnBuffered$ = btn$
 btnBuffered$.subscribe((data) => console.log( 'values',data ));
 ```
 
-Thanks to the `debounce()` operator we are able to express wait for 300ms before emitting anything. This is quite few lines and it's easy for us to decide what our filter should look like.
+多亏 `debounce()` 操作符，我们可以在发出任何值之前表达等待300毫秒。只是短短几行代码，就让我们很容易的可以决定 filter 应该怎么写。
 
 ## bufferTime
 
