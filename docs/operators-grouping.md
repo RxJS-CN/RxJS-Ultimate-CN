@@ -1,14 +1,14 @@
-# Operators Grouping
+# 分组操作符
 
 ## buffer
 
-The signature of `buffer()` operator is :
+`buffer()` 操作符的函数签名：
 
 ```javascript
 buffer([breakObservable])
 ```
 
-Buffer itself means we wait with emitting any values until the `breakObservable` happens. An example of that is the following:
+`buffer` 本身意味着我们在等待而不会发出任何值，直到 `breakObservable` 发生。示例如下：
 
 ```javascript
 let breakWhen$ = Rx.Observable.timer(1000);
@@ -19,14 +19,14 @@ let stream$ = Rx.Observable.interval(200)
 stream$.subscribe((data) => console.log( 'values',data ));
 ```
 
-In this case the values 0,1,2,3 is emitted all at once.
+在这个案例中会一次性地发出值： `values 0,1,2,3` 。
 
-### Business case
+### 业务场景
 
-**Auto complete** The most obvious case when dealing with the `buffer()` operator is an `auto complete`. But how does `auto complete` work? Let's look at it in steps
+**Auto complete(自动完成/智能提示)** - 使用 `buffer()` 操作符进行处理的最显著的例子就是 `auto complete` 。但 `auto complete` 是如何工作的呢？我们来分步骤看下
 
-  * user enter keys
-  * search is made base on those keystrokes The important thing though is that the search itself is carried out as you are typing, either it's carried out because you typed x number of characters or the more common approach is to let you finish typing and do the search, you could be editing as you type. So let's take our first step into such a solution:
+  * 用户输入关键字
+  * 搜索是基于这些按键的。重要的是，搜索本身是在打字时执行的，要么就执行多次，因为你输入了x个字符，要么采用更普遍的处理方式，就是打字完成后再执行搜索，还可以在输入时进行编辑。那么我们来执行这套解决方案的第一步：
 
 ```javascript
 let input = document.getElementById('example');
