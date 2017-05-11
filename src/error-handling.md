@@ -41,7 +41,7 @@ retry(5)
 This will run the sequence of values 5 more times before finally giving up and hitting the error callback. However in this case, the way the code is written, it will just generate `1,2` five times. So our code isn't really utilizing the operator to its fullest potential. What you probably want is to be able to change something between attempts. Imagine your observable looked like this instead:
 
 ```javascript
-let urlsToHit$ = Rx.Observable.of(url, url2,url3);
+let urlsToHit$ = Rx.Observable.of(url, url2, url3);
 ```
 
 In this its clearly so that an endpoint might have answered badly or not at all on your first attempt and it makes sense to retry them x number of times.
