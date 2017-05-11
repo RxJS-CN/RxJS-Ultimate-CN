@@ -28,7 +28,7 @@ stream$.subscribe(
 )
 ```
 
-The stream effectively dies when the error callback is being hit and this is where the `rety()` operator comes in. By appending it like so:
+这个流很快的就死了，异常回调被调用，这个时候 `retry()` 操作符登场。像下面这样把它附加上即可：
 
 ```javascript
 let stream$ = Rx.Observable.of(1,2,3)
@@ -38,15 +38,15 @@ let stream$ = Rx.Observable.of(1,2,3)
 retry(5)
 ```
 
-This will run the sequence of values 5 more times before finally giving up and hitting the error callback. However in this case, the way the code is written, it will just generate `1,2` five times. So our code isn't really utilizing the operator to its fullest potential. What you probably want is to be able to change something between attempts. Imagine your observable looked like this instead:
+这将运行值序列5次，最后放弃并进入异常回调。然而在这个案例中，由于编写代码的方式，它只会生成5次`1,2`。所以我们的代码并没有真正利用操作符的最大潜力。你可能想要的是能够在每次尝试之间改变一些东西。想象下你的 observable 看起来像这样：
 
 ```javascript
-let urlsToHit$ = Rx.Observable.of(url, url2,url3);
+let urlsToHit$ = Rx.Observable.of(url, url2, url3);
 ```
 
-In this its clearly so that an endpoint might have answered badly or not at all on your first attempt and it makes sense to retry them x number of times.
+在这一点上，它清楚地表明，在你的第一次尝试中，端点可能回应的不好，或者根本就没有回应，所以重试x次是很有用的。
 
-However in the case of ajax calls, and imagining our business case is _shaky connections_ it makes no sense to do the retry immediately so we have to look elsewhere for a better operator, we need to look to `retryWhen()`
+然而在调用 ajax 的情况下，并想象一下我们的业务场景中**网络不稳定**，那么立即重试是没有意义的，所以我们需要再找到一个更好的操作符，那就是 `retryWhen()`
 
 ### retryWhen
 
