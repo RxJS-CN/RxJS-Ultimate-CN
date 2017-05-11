@@ -1,20 +1,20 @@
-# Error handling
+# 异常处理
 
-There are two major approaches how to handle errors in streams. You can retry your stream and how it eventually will work or you can take the error and transform it.
+有两种主要的方法来处理流中的错误。你可以重试流并保证流最终会正常运行，或者处理异常并进行转换。
 
-## Retry - how bout now?
+## 重试 - 现在怎么样？
 
-This approach makes sense when you believe the error is temporary for some reason. Usually _shaky connections_ is a good candidate for this. With a _shaky connection_ the endpoint might be there to answer like for example every 5th time you try. Point is the first time you try it _might_ fail, but retrying x times, with a certain time between attempts, will lead to the endpoint finally answering.
+当你认为错误是由于某些原因是暂时导致的，那么这种方法是适用的。通常**不稳定的网络**是个很好的例子。当**网络不稳定**时端点可能会在你多次尝试后才能回应。要点是你的首次尝试**可能**失败，但重试x次并且在两次尝试之间有一定的时间间隔，最终端点会回应。
 
 ### retry
 
-The `retry()` operator lets us retry the whole stream, value for value x number of times having a signature like this :
+`retry()` 操作符可以让我们重试整个流，只接收一个参数，参数的值是要重试的次数，函数签名如下：
 
 ```javascript
 retry([times])
 ```
 
-The important thing to note with the `retry()` operator is that it delays when the error callback is being called. Given the following code the error callback is being hit straight away:
+重要的是要注意当异常回调被调用的话， `retry()` 操作符会有延迟。下面代码中的异常回调会立即被调用：
 
 ```javascript
 let stream$ = Rx.Observable.of(1,2,3)
