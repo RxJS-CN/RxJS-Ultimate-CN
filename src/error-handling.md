@@ -28,7 +28,7 @@ stream$.subscribe(
 )
 ```
 
-The stream effectively dies when the error callback is being hit and this is where the `rety()` operator comes in. By appending it like so:
+The stream effectively dies when the error callback is being hit and this is where the `retry()` operator comes in. By appending it like so:
 
 ```javascript
 let stream$ = Rx.Observable.of(1,2,3)
