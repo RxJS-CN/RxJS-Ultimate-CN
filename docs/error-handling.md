@@ -143,11 +143,11 @@ delayWithTimes$.subscribe(
 )
 ```
 
-## Transform - nothing to see here folks
+## 转换 - 这个没什么好看的
 
-This approach is when you get an error and you choose to remake it into a valid Observable.
+这个方法是当出现异常时你选择将错误重制成一个有效的 Observable 。
 
-So lets exemplify this by creating an Observable who's mission in life is to fail miserably
+所以我们可以通过创建一个 Observable 来体现这一点，这个 Observable 的使命就是报错
 
 ```javascript
 let error$ = Rx.Observable.throw('crash');
