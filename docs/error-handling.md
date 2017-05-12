@@ -234,13 +234,13 @@ preMergedPatched$.subscribe(
 
 瞧，我们得到了值，我们捕获了异常并将异常作为一个新的 Observable 发出，并且流也完成了。
 
-**GOTCHA** It matters where the `catch()` is placed.
+**陷阱**  `catch()` 所放的位置很重要。
 
-#### Survival of the fittest
+#### 适者生存
 
-There is another scenario that might be of interest. The above scenario assumes you want everything emitted, error messages, values, everything.
+还有另外一种情况可能会很有意思。上面的场景假设你希望发出所有的，异常信息、值、所有的一切。
 
-What if that is not the case, what if you only care about values from streams that behave? Let's say thats your case, there is an operator for that `onErrorResumeNext()`
+如果你关心的不是这些呢，你只关心流的值怎么办？我们来假设一下，有一个叫做 `onErrorResumeNext()` 的操作符
 
 ```javascript
 let secondBadStream$ = Rx.Observable.throw('bam');
@@ -259,4 +259,4 @@ emitSurviving.subscribe(
 )
 ```
 
-The only thing emitted here is 'I will survive' and 'Survival of the fittest, completed'.
+输出的结果是 'I will survive' 和 'Survival of the fittest, completed' 。
