@@ -96,7 +96,7 @@ values$
 })
 .retryWhen((err) => {
     console.log('retrying the entire sequence');
-    return err;
+    return err.delay(200);
 })
 .subscribe((val) => { console.log('value',val) })
 
