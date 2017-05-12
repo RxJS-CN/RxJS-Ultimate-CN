@@ -96,14 +96,14 @@ values$
 })
 .retryWhen((err) => {
     console.log('retrying the entire sequence');
-    return err;
+    return err.delay(200);
 })
 .subscribe((val) => { console.log('value',val) })
 
 // 0 1 '等待200毫秒' retrying the whole sequence 0 1 2 3 4
 ```
 
-This however resembles a lot of what we did with the `retry()` operator, the code above will just retry once. The real benefit is being to change the stream we return inside the `retryWhen()` namely to involve a delay like this:
+然而，这与我们用 `retry()` 运算符所做的很多类似，上面的代码只会重试一次。使用 `retryWhen()` 真正的好处是可以改变操作符中返回的流，也就是这里调用的 `delay()` 操作符，像这样：
 
 ```javascript
 .retryWhen((err) => {
@@ -112,15 +112,15 @@ This however resembles a lot of what we did with the `retry()` operator, the cod
 })
 ```
 
-This ensures there is a 200ms delay before sequence is retried, which in an ajax scenario could be enough for our endpoint to get it's shit together and start responding.
+这会确保在流重试前有200毫秒的延迟，如果是在 ajax 场景下，可以确保端点有足够的时间重整旗鼓，然后开始响应。
 
-**GOTCHA**
+**陷阱**
 
-The `delay()` operator is used within the `retryWhen()` to ensure that the retry happens a while later to in this case give the network a chance to recover.
+在 `retryWhen()` 中使用 `delay()` 操作符来确保重试晚一点发生，在这个案例中可以给网络一个恢复的机会。
 
-#### retryWhen with delay and no of times
+#### retryWhen 和 delay 一起使用没有次数限制
 
-So far `retry()` operator has been used when we wanted to retry the sequence x times and `retryWhen()` has been used when we wanted to delay the time between attempts, but what if we want both. Can we do that? We can. We need to think about us somehow remembering the number of attempts we have made so far. It's very tempting to introduce an external variable and keep that count, but that's not how we do things the functional way, remember side effects are forbidden. So how do we solve it? There is an operator called `scan()` that will allow us to accumulate values for every iteration. So if you use scan inside of the `retryWhen()` we can track our attempts that way:
+到目前为止，当我们想要重试整个流x次时使用的是 `retry()` 操作符，当我们想要在重试之间有一些延迟时间时使用的是 `retryWhen()` 操作符，但是如果我们两者都想要，可以做到吗？可以的。我们需要考虑一下要以某种方式记住到目前为止我们的尝试次数。引入一个外部变量用来保持这个数量是非常诱人的，但那不是函数式做事的方式，记住副作用是被禁止的。那么我们该如何解决呢？有一个叫做 `scan()` 的操作符，它允许我们累积每次迭代的值。所以如果在 `retryWhen()` 中使用 `scan` 的话，我们就可以追踪尝试的次数：
 
 ```javascript
 let ATTEMPT_COUNT = 3;
