@@ -159,24 +159,24 @@ error$.subscribe(
 )
 ```
 
-This code will only execute the error callback and NOT reach the complete callback.
+这段代码只会执行异常回调而不会执行完成回调。
 
-### Patching it
+### 修补它
 
-We can patch this by introducing the `catch()` operator. It is used like this:
+我们可以通过引入 `catch()` 操作符来进行修补。它是这样使用的：
 
 ```javascript
 let errorPatched$ = error$.catch(err => { return Rx.Observable.of('Patched' + err) });
 errorPatched$.subscribe((data) => console.log(data) );
 ```
 
-As you can see patching it with `.catch()` and returning a new Observable _fixes_ the stream. Question is if that is what you want. Sure the stream survives and reaches completion and can emit any values that happened after the point of crash.
+如你所见，使用 `.catch()` 进行修补并返回一个新的 Observable **修复** 流。问题是这是否是你想要的。流确实存活下来最终完成了，它可以发出崩溃之后发生的任何值。
 
-If this is not what you want then maybe the Retry approach above suits you better, you be the judge.
+如果这不是你想要的，那么上面的重试方法可能会更适合你，决定权在你手中。
 
-### What about multiple streams?
+### 多个流呢？
 
-You didn't think it would be that easy did you? Usually when coding Rxjs code you deal with more than one stream and using `catch()` operator approach is great if you know where to place your operator.
+你没想到会这么容易吧？当你编写 RxJS 代码时，通常会处理多个流，如果你知道在哪放置 `catch()` 操作符的话，那么使用 `catch()` 的方法是很棒的。
 
 ```javascript
 let badStream$ = Rx.Observable.throw('crash');
