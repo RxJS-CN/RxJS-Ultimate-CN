@@ -194,13 +194,13 @@ merged$.subscribe(
 )
 ```
 
-Care to guess what happened? 1) crash + values is emitted + complete 2) crash + values is emitted 3) crash only is emitted
+猜猜发生了什么？1）异常和值都发出了，流也完成了 2）异常和值都发出了 3）只发出了异常
 
-Sadly 3) is what happens. Which means we have virtually no handling of the error.
+遗憾的是发生的是 3）。这意味着我们几乎没有处理异常。
 
-**Lets patch it** S we need to patch the error. We do patching with `catch()` operator. Question is where?
+**修复** - 所以我们需要修复异常。我们使用 `catch()` 操作符进行修复。问题在哪呢？
 
-Let's try this?
+来试试这个?
 
 ```javascript
 let mergedPatched$ = Rx.Observable.merge(
