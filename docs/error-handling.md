@@ -215,9 +215,9 @@ mergedPatched$.subscribe(
 )
 ```
 
-In this case we get 'crash' and 'patchedMerged completed'. Ok so we reach complete but it still doesn't give us the values from `goodStream$`. So better approach but still not good enough.
+在这个案例中，得到结果的是 `crash` 和 `patchedMerged completed` 。所以流是完成了的，但我们还是没有得到 `goodStream$` 的值。所以这是一个更好的解决方法，但还不够好。
 
-**Patch it better** So adding the `catch()` operator after the `merge()` ensured the stream completed but it wasn't good enough. Let's try to change the placement of `catch()`, pre merge.
+**更好的修复** - 在 `merge()` 后面添加 `catch()` 操作符可以确保流完成，但是还不够好。我们来尝试下在 `merge` 之前进行 `catch` 操作。
 
 ```javascript
 let preMergedPatched$ = Rx.Observable.merge(
@@ -232,7 +232,7 @@ preMergedPatched$.subscribe(
 )
 ```
 
-And voila, we get values, our error emits its error message as a new nice Observable and we get completion.
+瞧，我们得到了值，我们捕获了异常并将异常作为一个新的 Observable 发出，并且流也完成了。
 
 **GOTCHA** It matters where the `catch()` is placed.
 
