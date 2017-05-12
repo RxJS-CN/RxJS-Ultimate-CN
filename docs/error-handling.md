@@ -77,7 +77,7 @@ values$.subscribe(
 )
 ```
 
-The way it's written it will return `1` until we run out of memory cause the algorithm will always crash on the value `2` and will keep retrying the stream forever, due to our lack of end condition. What we need to do is to somehow say that the error is fixed. If the stream were trying to hit urls instead of emitting numbers a responding endpoint would be the fix but in this case we have to write something like this:
+这样写的话会一直返回 `1`，直到我们用完内存为止，由于缺少结束条件，算法总是会在值`2`上崩溃，并将永远重试流。我们需要做的就是以某种方式告知异常已经修复。如果流尝试点击网址而不是发出数字，响应端点将会被压垮，所以在这种情况下，我们必须写这样的东西：
 
 ```javascript
 let values$ = Rx.Observable.interval(1000).take(5);
@@ -100,7 +100,7 @@ values$
 })
 .subscribe((val) => { console.log('value',val) })
 
-// 0 1 'wait 200ms' retrying the whole sequence 0 1 2 3 4
+// 0 1 '等待200毫秒' retrying the whole sequence 0 1 2 3 4
 ```
 
 This however resembles a lot of what we did with the `retry()` operator, the code above will just retry once. The real benefit is being to change the stream we return inside the `retryWhen()` namely to involve a delay like this:
