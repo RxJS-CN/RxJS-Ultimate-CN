@@ -1,6 +1,6 @@
-# Testing
+# 测试
 
-Testing of async code is generally quite tricky. Async code may finish in ms or even minutes. So you need a way to either mock it away completely like for example you do with jasmine.
+异步代码的测试通常很棘手。异步代码可能毫秒间完成，也能几分钟才完成。所以你需要一种方法来完全模仿它，就像你在 jasmine 中所做的一样。
 
 ```javascript
 spyOn(service,'method').and.callFake(() => {
@@ -12,20 +12,20 @@ spyOn(service,'method').and.callFake(() => {
 })
 ```
 
-or a more shorthand version:
+或简写版本:
 
 ```javascript
 spyOn(service,'method').and.callFake(q.when('some data'))
 ```
 
-Point is you try to avoid the whole timing thing. Rxjs have historically, in `Rxjs 4` provided the approach of using a TestScheduler with its own internal clock, which has enabled you to increment time. This approach have had two flavors :
+要点是你尝试避免时间相关的东西。RxJS 是有历史的，`RxJS 4` 提供了一种方法，这种方法使用 TestScheduler 和它的内部时钟，这使你能够增强对时间的把控。这种方法有两种风格：
 
-**Approach 1**
+**方法 1**
 
 ```javascript
 let testScheduler = new TestScheduler();
 
-// my algorithm
+// 我的演示
 let stream$ = Rx.Observable
 .interval(1000, testScheduler)
 .take(5);
