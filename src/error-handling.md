@@ -198,7 +198,7 @@ Care to guess what happened? 1) crash + values is emitted + complete 2) crash + 
 
 Sadly 3) is what happens. Which means we have virtually no handling of the error.
 
-**Lets patch it** S we need to patch the error. We do patching with `catch()` operator. Question is where?
+**Lets patch it** So we need to patch the error. We do patching with `catch()` operator. Question is where?
 
 Let's try this?
 
