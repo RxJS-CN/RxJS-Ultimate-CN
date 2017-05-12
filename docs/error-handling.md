@@ -50,15 +50,15 @@ let urlsToHit$ = Rx.Observable.of(url, url2, url3);
 
 ### retryWhen
 
-A `retryWhen()` operator gives us the chance to operate on our stream and handle it appropriately
+`retryWhen()` 操作符让我们有机会对流进行操作并恰当地处理。
 
 ```javascript
 retryWhen( stream => {
-   // return it in a better condition, hopefully
+   // 希望能在更好的条件下返回
 })
 ```
 
-Lets' write a piece of naive code for a second
+现在我们来写段简单的代码：
 
 ```javascript
 let values$ = Rx.Observable
