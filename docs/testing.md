@@ -42,7 +42,7 @@ testScheduler.advanceBy(1000);
 assert( result === 1 )
 
 testScheduler.advanceBy(1000);
-... 再次 assert, 等等..
+... 再次断言, 等等..
 ```
 
 这种方法很容易理解。第二种方法使用热的 observable 和 `startSchedule()` 方法，看起来像这样：
@@ -75,7 +75,7 @@ var results = scheduler.startScheduler(
     }
   );
 
-//assert
+// 断言
 collectionAssert.assertEqual(results.messages, [
     onNext(400, 'def,ghi,pqr'),
     onNext(500, 'xyz'),
@@ -83,15 +83,15 @@ collectionAssert.assertEqual(results.messages, [
   ]);
 ```
 
-A little harder to read IMO but you still get the idea, you control time because you have a `TestScheduler` that dictates how fast time should pass.
+IMO 读起来有些费劲，但你仍然可以得到这个想法，你控制着时间，因为有 `TestScheduler` 来规定时间有多快。
 
-This is all Rxjs 4 and it has changed a bit in Rxjs 5. I should say that what I am about to write down is a bit of a general direction and a moving target so this chapter will be updated, but here goes.
+这一切都是在 RxJS 4 进行的，在 RxJS 5 中有一些改变。我应该说，我要写下来的是一个大体的方向和一个前进的目标，所以这一章将会更新。我们开始吧。
 
-In Rxjs 5 something called `Marble Testing` is used. Yes that is related to [Marble Diagram](marble-diagrams) i.e you express your expected input and actual output with graphical symbols.
+在 RxJS 5 中使用的是叫做“弹珠测试(Marble Testing)”的东西。是的，这和[弹珠图](marble-diagrams)是有关系的，弹珠图就是用图形符号表达预期输入和实际输出。
 
-First time I had a look at the [offical docs page](https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md) I was like _What now with a what now?_. But after writing a few tests myself I came to the conclusion this is a pretty elegant approach.
+我第一次看[官方文档的编写弹珠测试页面](https://github.com/ReactiveX/rxjs/blob/master/doc/writing-marble-tests.md)的时候，我完全是懵的，不知道应该怎么做。但是当我自己写了一些测试后，我得出一个结论，这是一种十分优雅的方法。
 
-So I will explain it by showing you code:
+所以我会通过展示代码来进行说明：
 
 ```javascript
 // setup
