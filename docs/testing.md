@@ -94,7 +94,7 @@ IMO 读起来有些费劲，但你仍然可以得到这个想法，你控制着�
 所以我会通过展示代码来进行说明：
 
 ```javascript
-// setup
+// 设置
 const lhsMarble = '-x-y-z';
 const expected = '-x-y-z';
 const expectedMap = {
@@ -111,14 +111,14 @@ const myAlgorithm = ( lhs ) =>
 
 const actual$ = myAlgorithm( lhs$ );
 
-//assert
+// 断言
 testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
 testScheduler.flush();
 ```
 
-Let's break it down part by part
+我们分解来看
 
-**Setup**
+**设置**
 
 ```javascript
 const lhsMarble = '-x-y-z';
