@@ -40,20 +40,20 @@ stream$.subscribe((orders) => {
 // 订单数组
 ```
 
-I've simplied this one a bit in the Rxjs example but imagine instead of
+在 RxJS 示例中我简化了很多东西，但想象下如果替换了
 
 ```javascript
 Rx.Observable.of()
 ```
 
-it does the proper `ajax()` call like in [Operators and Ajax](operators-and-ajax.md)
+执行适当的 `ajax()` 调用，就像在[操作符和 Ajax](operators-and-ajax.md)一章中所做的。
 
-## Semi dependant
+## 半依赖
 
-* We can fetch a users details
-* Then we can fetch Orders and Messages in parallell.
+* 可以获取用户详情
+* 然后并行地获取订单和消息
 
-### Promise approach
+### Promise 方式
 
 ```javascript
 getUser()
@@ -65,7 +65,7 @@ getUser()
    })
 ```
 
-### Rxjs approach
+### Rxjs 方式
 
 ```javascript
 let stream$ = Rx.Observable.of({ id : 1, name : 'User' })
@@ -85,4 +85,4 @@ stream$.subscribe((result) => {
 
 ## GOTCHAS
 
-We are doing `switchMap()` instead of `flatMap()` so we can abandon an ajax call if necessary, this will make more sense in [Auto complete recipe](recipes-auto-complete.md)
+我们用 `switchMap()` 替代了 `flatMap()`，所以如果需要的话我们可以取消 ajax 调用，这在[菜谱 - auto complete](recipes-auto-complete.md) 中更有实际意义。
