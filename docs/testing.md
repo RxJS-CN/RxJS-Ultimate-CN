@@ -132,7 +132,8 @@ const expectedMap = {
 const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
 ```
 
-We essentially create a pattern instruction `-x-y-z` to the method `createHotObservable()` that exist on our TestScheduler. This is a factory method that does some heave lifting for us. Compare this to writing this by yourself, in which case it corresponds to something like:
+我们基本上为 TestScheduler 上存在的方法 `createHotObservable()` 创建了一种模式指令 `-x-y-z`。`createHotObservable()` 是一个工厂方法，为我们做了大量的事情。作为对比，自己实现这个方法的话，在这个案例中相对应的应该像这样：
+
 
 ```javascript
 let stream$ = Rx.Observable.create(observer => {
@@ -142,7 +143,7 @@ let stream$ = Rx.Observable.create(observer => {
 })
 ```
 
-The reason we don't do it ourselves is that we want the `TestScheduler` to do it so time passes according to its internal clock. Note also that we define an expected pattern and an expected map:
+我们不自己做的原因是我们想要 `TestScheduler` 来完成，这样时间就会根据其内部时钟流转。还要注意，我们定义一个预期模式和一个预期映射：
 
 ```javascript
 const expected = '-x-y-z';
