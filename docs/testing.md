@@ -32,7 +32,7 @@ let stream$ = Rx.Observable
 
 
 
-// setting up the test
+// 设置测试
 let result;
 
 stream$.subscribe(data => result = data);
@@ -42,13 +42,13 @@ testScheduler.advanceBy(1000);
 assert( result === 1 )
 
 testScheduler.advanceBy(1000);
-... assert again, etc..
+... 再次 assert, 等等..
 ```
 
-This approach was pretty easy to grok. The second approach was using hot observables and a `startSchedule()` method, looking something like this :
+这种方法很容易理解。第二种方法使用热的 observable 和 `startSchedule()` 方法，看起来像这样：
 
 ```javascript
-// setup the thing that outputs data
+// 设置输出数据
 var input = scheduler.createHotObservable(
     onNext(100, 'abc'),
     onNext(200, 'def'),
@@ -58,7 +58,7 @@ var input = scheduler.createHotObservable(
     onCompleted(500)
   );
 
-// apply operators to it
+// 应用操作符
 var results = scheduler.startScheduler(
     function () {
       return input.buffer(function () {
