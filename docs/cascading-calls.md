@@ -1,18 +1,18 @@
-# Cascading calls
+# 级联调用
 
-As cascading call means that based on what call happening another call should take place and possibly another one based on that.
+级联调用意味着调用A执行后，调用B会基于A执行，调用C又会基于调用B执行，以此类推。
 
-## Dependant calls
+## 依赖调用
 
-A dependant call means the calls needs to happen in order. Call 2 must happen after Call 1 has returned. It might even be possible that Call2 needs be specified using data from Call 1.
+依赖调用意味着调用需要按顺序执行。调用2必须在调用1返回后执行。甚至可能调用2需要使用调用1返回的数据。
 
-Imagine you have the following scenario:
+想象下以下场景：
 
-* A user needs to login first
-* Then we can fetch their user details
-* Then we can fetch their orders
+* 用户需要先登录
+* 然后可以获取用户详情
+* 再然后可以获取用户订单
 
-### Promise approach
+### Promise 方式
 
 ```javascript
 login()
@@ -20,7 +20,7 @@ login()
      .then(getOrdersByUser)
 ```
 
-### Rxjs approach
+### RxJS 方式
 
 ```javascript
 let stream$ = Rx.Observable.of({ message : 'Logged in' })
@@ -37,7 +37,7 @@ stream$.subscribe((orders) => {
   console.log('Orders', orders);
 })
 
-// Array of orders
+// 订单数组
 ```
 
 I've simplied this one a bit in the Rxjs example but imagine instead of
