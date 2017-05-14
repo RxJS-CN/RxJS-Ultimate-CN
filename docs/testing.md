@@ -209,15 +209,15 @@ this.schedule(function () {
 
 看起来没那么血腥吧？
 
-## Symbols
+## 符号
 
-I havn't really explained what we looked at with:
+我还没有真正解释过我们所看到的：
 
 ```javascript
 -a-b-c
 ```
 
-But it actually means something. `-` means a time frame passed. `a` is just a symbol. So it matters how many `-` you write in actual and expected cause they need to match. Let's look at another test so you get the hang of it and to introduce more symbols:
+但它实际上是有含义的。`-` 意味着流逝的时帧。`a` 只是个符号。所以你写了多少个实际的和预期的 `-`  是很重要的，因为它们需要匹配预期。来看下另一个测试，这样你能理解它并在这个过程中引入更多的符号：
 
 ```javascript
 const lhsMarble = '-x-y-z';
@@ -237,12 +237,12 @@ const myAlgorithm = ( lhs ) =>
 
 const actual$ = myAlgorithm( lhs$ );
 
-//assert
+// 断言
 testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
 testScheduler.flush();
 ```
 
-In this case our algorithm consists of a `filter()` operation. Which means 1,2,3 will not be emitted only 2. Looking at the ingoing pattern we have:
+在这个案例中，我们的演示包含了一个 `filter()` 操作。这意味着不会发出1,2,3，只有2会被发出。看下我们的输入模式：
 
 ```javascript
 '-x-y-z'
