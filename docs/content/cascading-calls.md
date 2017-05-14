@@ -65,7 +65,7 @@ getUser()
    })
 ```
 
-### Rxjs 方式
+### RxJS 方式
 
 ```javascript
 let stream$ = Rx.Observable.of({ id : 1, name : 'User' })
@@ -83,6 +83,6 @@ stream$.subscribe((result) => {
 })
 ```
 
-## GOTCHAS
+## 陷阱
 
 我们用 `switchMap()` 替代了 `flatMap()`，所以如果需要的话我们可以取消 ajax 调用，这在[菜谱 - auto complete](recipes-auto-complete.md) 中更有实际意义。
