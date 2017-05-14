@@ -165,16 +165,16 @@ console.log('Behaviour current value',behaviorSubject.getValue());
 behaviorSubject.next(3);
 console.log('Behaviour current value',behaviorSubject.getValue());
 
-// emits 42
-// current value 42
-// emits 1
-// current value 1
-// emits 2
-// current value 2
-// emits 3
-// current value 3
+// 发出 42
+// Behaviour current value 42
+// 发出 1
+// Behaviour current value 1
+// 发出 2
+// Behaviour current value 2
+// 发出 3
+// Behaviour current value 3
 ```
 
-### Business case
+### 业务场景
 
-This is quite similar to `ReplaySubject`. There is a difference though, we can utilize a default / start value that we can show initially if it takes some time before the first values starts to arrive. We can inspect the latest emitted value and of course listen to everything that has been emitted. So think of `ReplaySubject` as more _long term memory_ and `BehaviourSubject` as short term memory with default behaviour.
+这与 `ReplaySubject` 很像。但还是略微不同，我们可以利用默认值/起始值，如果在第一个值开始到达之前需要一段时间，我们可以显示初始值。我们可以检查最新的发出值，当然也可以监听已发出的一切。所以把 `ReplaySubject` 当作是 **长期记忆**而把 `BehaviourSubject` 当作是有默认行为的短期记忆。
