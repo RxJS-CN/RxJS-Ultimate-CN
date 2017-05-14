@@ -11,3 +11,9 @@
 如果你喜欢 RxJS / RxJS 5 的话，请务必在推特上@ BenLesh 或 mattpodwysocki 等人并说句 thank you 或者 good job 。对于他们来说这意义非凡..
 
 Chris Noring
+
+> ## 译者的补充
+
+> 原书还有部分章节还未编写或需补充 此中文书会保持与原书同步 有需要的可以保持关注 [(GitHub)](https://github.com/RxJS-CN/rxjs5-ultimate-cn)
+
+> 电子书: [pdf格式](./ebook/RxJS5基本原理.pdf) | [mobi格式](./ebook/RxJS5基本原理.mobi) | [epub格式](./ebook/RxJS5基本原理.epub)
