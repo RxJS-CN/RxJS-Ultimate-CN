@@ -1,11 +1,11 @@
-# Build your own RxJS
+# 构建属于你自己的 RxJS
 
-To truly understand Rxjs I recommend trying to implement a subset of it yourself just to see what kind of code you produce. For most cases it isn't really necessary to understand on that depth but do try it if you got some time over. Let's look at what a really basic implementation can look like and refactor it slowly into something that looks like the real thing.
+为了真正地理解 RxJS，我推荐你尝试自己实现它的部分子集感受下自己可以产出怎样的代码。大多数情况下，并不是真的有必要了解到这个深度，但如果你有时间的话，请尝试一下。我们先来看看一个非常基础的实现，然后再一步步将其重构，最后使其看上去真的像那么回事。
 
-## Step I
+## 步骤 I
 
-## Step II
+## 步骤 II
 
-## Step III
+## 步骤 III
 
-## Step IV
+## 步骤 IV
