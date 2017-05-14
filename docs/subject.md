@@ -39,15 +39,15 @@ proxySubject.subscribe( (value) => console.log('proxy subscriber', value ) );
 proxySubject.next( 3 );
 ```
 
-So essentially `subject` listens to `source$`
+所以本质上 `subject` 监听了 `source$`
 
-But it can also add its own contribution
+但是它还可以增加自己的贡献
 
 ```javascript
-proxySubject.next( 3 )  // emits 3 and then 0 1 2 ( async )
+proxySubject.next( 3 )  // 发出3，然后是0 1 2 ( 异步的 )
 ```
 
-**GOTCHA** Any `next()` that happens before a subscription is created is lost. There are other Subject types that can cater to this below.
+**陷阱** - 任何在订阅创建之前执行的 `next()` 就会丢失。下面会有其他类型的 Subject 可以解决这个问题。
 
 ### Business case
 
