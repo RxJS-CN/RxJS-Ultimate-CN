@@ -5,7 +5,7 @@
 * [前言](README.md)
 * [异步代码](async-code.md)
 * [为什么要用 RxJS](why-rxjs.md)
-* [安装设置](installation-and-setup)
+* [安装设置](installation-and-setup.md)
 
 ### OBSERVABLES
 
