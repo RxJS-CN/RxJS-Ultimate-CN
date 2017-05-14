@@ -284,12 +284,12 @@ const myAlgorithm = ( lhs$ ) =>
 
 const actual$ = myAlgorithm( Rx.Observable.throw('error') );
 
-//assert
+// 断言
 testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
 testScheduler.flush();
 ```
 
-And here is another symbol `|` representing a stream that completes:
+还有另外一个符号 `|` 表示流的完成：
 
 ```javascript
 const lhsMarble = '-a-b-c-|';
@@ -311,6 +311,6 @@ testScheduler.expectObservable(actual$).toBe(expected, expectedMap);
 testScheduler.flush();
 ```
 
-and there are more symbols than that like `(ab)` essentially saying that these two values are emitted on the same time frame and so on. Now that you hopefully understand the basics of how symbols work I urge you to write your own tests to fully grasp it and learn the other symbols presented at the official docs page that I mentioned in the beginning of this chapter.
+还有更多的符号，像 `(ab)` 本质上说这两个值在同一个时帧上发出，等等。现在，你希望了解符号的工作原理和基础知识，我强烈建议你编写自己的测试来直到完全掌握它，并学习本章开头提到的官方文档页面上提供的其他符号。
 
-Happy testing
+快乐测试
