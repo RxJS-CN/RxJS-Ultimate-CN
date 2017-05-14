@@ -1,15 +1,15 @@
-# Subject
+# Subject (主体)
 
-A Subject is a double nature. It has both the behaviour from an [Observer](observer.md) and an [Observable](observable-anatomy.md). Thus the following is possible:
+Subject 有着双重特性，它同时拥有 [Observer](observer.md) 和 [Observable](observable-anatomy.md) 的行为。因此，以下是可能的：
 
-Emitting values
+发出值
 
 ```javascript
 subject.next( 1 )
 subject.next( 2 )
 ```
 
-Subscribing to values
+订阅值
 
 ```javascript
 const subscription = subject.subscribe( (value) => console.log(value) )
