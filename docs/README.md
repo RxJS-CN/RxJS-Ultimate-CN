@@ -14,6 +14,6 @@ Chris Noring
 
 > ### 译者的补充
 
-> [原书](https://chrisnoring.gitbooks.io/rxjs-5-ultimate/content/)还有部分章节还未编写或需补充 此[中文书]((https://github.com/RxJS-CN/rxjs5-ultimate-cn))会保持与原书同步 有需要的可以保持关注
+> [原书](https://chrisnoring.gitbooks.io/rxjs-5-ultimate/content/)还有部分章节还未编写或需要补充 此[中文书]((https://github.com/RxJS-CN/rxjs5-ultimate-cn)会保持与原书同步 有需要的可以保持关注
 
 > 电子书: [pdf格式](./ebook/RxJS5基本原理.pdf) | [mobi格式](./ebook/RxJS5基本原理.mobi) | [epub格式](./ebook/RxJS5基本原理.epub)
