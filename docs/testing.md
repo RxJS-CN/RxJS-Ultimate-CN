@@ -248,27 +248,27 @@ testScheduler.flush();
 '-x-y-z'
 ```
 
-And expected pattern
+和预期模式
 
 ```javascript
 `---y-`
 ```
 
-And this is where you clearly see that no of `-` matters. Every symbol you write be it `-` or `x` etc happens at a certain time, so in this case when `x` and `z` wont occur due to the `filter()` method it means we just replace them with `-` in the resulting output so
+在这你可以清楚的认识到 `-` 是不重要的。每个你写的符号 `-` 或 `x` 等都发生在某个时间点，所以在这个案例中，由于 `filter()` 方法 `x` 和 `z` 不会发生，这意味着我们只需在结果输出中用 `-` 来替换它们
 
 ```javascript
 -x-y
 ```
 
-becomes
+变成
 
 ```javascript
 ---y
 ```
 
-because `x` doesn't happen.
+因为 `x` 不会发生。
 
-There are of course other symbols that are of interest that lets us define things like an error. An error is denoted as a `#` and below follows an example of such a test:
+当然还有其他操作符，它们也有很意思，可以让我们定义一些东西，比如异常。异常用 `#` 来表示，下面就是一个包含异常测试的示例：
 
 ```javascript
 const lhsMarble = '-#';
@@ -276,9 +276,9 @@ const expected = '#';
 const expectedMap = {
 };
 
-//const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
+const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
 
-const myAlgorithm = ( lhs ) =>
+const myAlgorithm = ( lhs$ ) =>
     Rx.Observable
     .from( lhs );
 
