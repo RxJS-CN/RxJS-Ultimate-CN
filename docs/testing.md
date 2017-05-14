@@ -134,7 +134,6 @@ const lhs$ = testScheduler.createHotObservable(lhsMarble, { x: 1, y: 2, z :3 });
 
 我们基本上为 TestScheduler 上存在的方法 `createHotObservable()` 创建了一种模式指令 `-x-y-z`。`createHotObservable()` 是一个工厂方法，为我们做了大量的事情。作为对比，自己实现这个方法的话，在这个案例中相对应的应该像这样：
 
-
 ```javascript
 let stream$ = Rx.Observable.create(observer => {
    observer.next(1);
@@ -155,26 +154,26 @@ const expectedMap = {
 }
 ```
 
-Thats what we need for the setup, but to make the test run we need to `flush` it so that `TestScheduler` internally can trigger the HotObservable and run an assert. Peeking at `createHotObservable()` method we find that it parses the marble patterns we give it and pushes it to list:
+那是我们需要的设置，但是要想测试运行起来还需要 `flush`，这样 `TestScheduler` 内部才可以触发 HotObservable 并运行断言。看下 `createHotObservable()` 方法的源码，我们发现它解析了我们给定的弹珠模式并添加到列表之中：
 
 ```javascript
-// excerpt from createHotObservable
+// 摘自 createHotObservable
  var messages = TestScheduler.parseMarbles(marbles, values, error);
 var subject = new HotObservable_1.HotObservable(messages, this);
 this.hotObservables.push(subject);
 return subject;
 ```
 
-Next step is assertion which happens in two steps 1) expectObservable() 2) flush()
+接下来是两个步骤的断言 1) expectObservable() 2) flush()
 
-The expect call pretty much sets up a subscription to out HotObservable
+预期的调用差不多就是设置了 HotObservable 的订阅
 
 ```javascript
-// excerpt from expectObservable()
+// 摘自 expectObservable()
 this.schedule(function () {
     subscription = observable.subscribe(function (x) {
         var value = x;
-        // Support Observable-of-Observables
+        // 支持高阶 Observable 
         if (x instanceof Observable_1.Observable) {
             value = _this.materializeInnerObservable(value, _this.frame);
         }
