@@ -186,17 +186,17 @@ this.schedule(function () {
 }, 0);
 ```
 
-by defining an internal `schedule()` method and invoking it. The second part of the assert is the assertion itself:
+通过定义一个内部的 `schedule()` 方法并调用它。断言的第二部分是断言本身：
 
 ```javascript
-// excerpt from flush()
+// 摘自 flush()
  while (readyFlushTests.length > 0) {
     var test = readyFlushTests.shift();
     this.assertDeepEqual(test.actual, test.expected);
 }
 ```
 
-It ends up comparing two lists to each other, the `actual` and `expect` list. It does a deep compare and verifies two things, that the data happened on the correct time frame and that the value on that `frame` is correct. So both lists consist of objects that looks like this:
+最后将两个列表，`actual` 和 `expect` 进行比较。它执行的是深层次的比较并验证两件事，即数据发生在正确的时帧上和时帧上的值是正确的。所以这两个列表都包含如下所示的对象：
 
 ```javascript
 {
@@ -205,9 +205,9 @@ It ends up comparing two lists to each other, the `actual` and `expect` list. It
 }
 ```
 
-Both these properties must be equal for the assert to be true.
+这些属性都必须相等，那么断言才为真。
 
-Doesn't seem that bloody right?
+看起来没那么血腥吧？
 
 ## Symbols
 
