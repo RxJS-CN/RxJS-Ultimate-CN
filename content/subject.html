@@ -1,0 +1,777 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Subject · RxJS 5 基本原理</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="schedulers.html" />
+    
+    
+    <link rel="prev" href="recipes-infinte-scroll.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/RxJS-CN/rxjs5-ultimate-cn">
+            
+                    
+                    RxJS 5 基本原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">起步</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="async-code.html">
+            
+                <a href="async-code.html">
+            
+                    
+                    异步代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="why-rxjs.html">
+            
+                <a href="why-rxjs.html">
+            
+                    
+                    为什么要用 RxJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="installation-and-setup.html">
+            
+                <a href="installation-and-setup.html">
+            
+                    
+                    安装设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">OBSERVABLES</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="observable-anatomy.html">
+            
+                <a href="observable-anatomy.html">
+            
+                    
+                    Observable 剖析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="observer.html">
+            
+                <a href="observer.html">
+            
+                    
+                    Observer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="producer.html">
+            
+                <a href="producer.html">
+            
+                    
+                    Producer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="observable.html">
+            
+                <a href="observable.html">
+            
+                    
+                    Observable vs Promise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="observable-wrapping.html">
+            
+                <a href="observable-wrapping.html">
+            
+                    
+                    Observable 包装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="hot-n-cold-observables.html">
+            
+                <a href="hot-n-cold-observables.html">
+            
+                    
+                    热&冷的 Observables
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作符</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="operators.html">
+            
+                <a href="operators.html">
+            
+                    
+                    操作符初窥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="marble-diagrams.html">
+            
+                <a href="marble-diagrams.html">
+            
+                    
+                    弹珠图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="operators-and-ajax.html">
+            
+                <a href="operators-and-ajax.html">
+            
+                    
+                    操作符和 Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="operators-observable-in-an-observable.html">
+            
+                <a href="operators-observable-in-an-observable.html">
+            
+                    
+                    高阶 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="operators-construction.html">
+            
+                <a href="operators-construction.html">
+            
+                    
+                    创建操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="operators-conversion.html">
+            
+                <a href="operators-conversion.html">
+            
+                    
+                    转换操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="operators-combination.html">
+            
+                <a href="operators-combination.html">
+            
+                    
+                    组合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="operators-mathematical.html">
+            
+                <a href="operators-mathematical.html">
+            
+                    
+                    数学操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="operators-time.html">
+            
+                <a href="operators-time.html">
+            
+                    
+                    时间操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="operators-grouping.html">
+            
+                <a href="operators-grouping.html">
+            
+                    
+                    分组操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="error-handling.html">
+            
+                <a href="error-handling.html">
+            
+                    
+                    异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">烹饪宝典</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="cascading-calls.html">
+            
+                <a href="cascading-calls.html">
+            
+                    
+                    级联调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="recipes-auto-complete.html">
+            
+                <a href="recipes-auto-complete.html">
+            
+                    
+                    菜谱 - auto complete
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="recipes-infinte-scroll.html">
+            
+                <a href="recipes-infinte-scroll.html">
+            
+                    
+                    菜谱 - infinte scroll
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">高级篇</li>
+        
+        
+    
+        <li class="chapter active" data-level="6.1" data-path="subject.html">
+            
+                <a href="subject.html">
+            
+                    
+                    Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="schedulers.html">
+            
+                <a href="schedulers.html">
+            
+                    
+                    Schedulers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">附录</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../appendices/appendix-i-ngrx.html">
+            
+                <a href="../appendices/appendix-i-ngrx.html">
+            
+                    
+                    附录 I - ngrx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../appendices/appendix-ii-build-your-own-rxjs.html">
+            
+                <a href="../appendices/appendix-ii-build-your-own-rxjs.html">
+            
+                    
+                    附录 II - 构建自己的 RxJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Subject</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="subject-&#x4E3B;&#x4F53;">Subject (&#x4E3B;&#x4F53;)</h1>
+<p>Subject &#x6709;&#x7740;&#x53CC;&#x91CD;&#x7279;&#x6027;&#xFF0C;&#x5B83;&#x540C;&#x65F6;&#x62E5;&#x6709; <a href="observer.html">Observer</a> &#x548C; <a href="observable-anatomy.html">Observable</a> &#x7684;&#x884C;&#x4E3A;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x4EE5;&#x4E0B;&#x662F;&#x53EF;&#x80FD;&#x7684;&#xFF1A;</p>
+<p>&#x53D1;&#x51FA;&#x503C;</p>
+<pre><code class="lang-javascript">subject.next( <span class="hljs-number">1</span> )
+subject.next( <span class="hljs-number">2</span> )
+</code></pre>
+<p>&#x8BA2;&#x9605;&#x503C;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">const</span> subscription = subject.subscribe( (value) =&gt; <span class="hljs-built_in">console</span>.log(value) )
+</code></pre>
+<p>&#x603B;&#x7ED3;&#x4EE5;&#x4E0B;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4EE5;&#x4E0B;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<pre><code class="lang-javascript">next([value])
+error([error message])
+complete()
+subscribe()
+unsubscribe()
+</code></pre>
+<h2 id="&#x4F5C;&#x4E3A;&#x4EE3;&#x7406;">&#x4F5C;&#x4E3A;&#x4EE3;&#x7406;</h2>
+<p><code>Subject</code> &#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;&#x4EE3;&#x7406;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x4ECE;&#x53E6;&#x4E00;&#x4E2A;&#x6D41;&#x63A5;&#x6536;&#x503C;&#xFF0C;&#x800C; <code>Subject</code> &#x7684;&#x8BA2;&#x9605;&#x8005;&#x53EF;&#x4EE5;&#x76D1;&#x542C;&#x53E6;&#x5916;&#x7684;&#x8FD9;&#x4E2A;&#x6D41;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> source$ = Rx.Observable.interval(<span class="hljs-number">500</span>).take(<span class="hljs-number">3</span>);
+<span class="hljs-keyword">const</span> proxySubject = <span class="hljs-keyword">new</span> Rx.Subject();
+<span class="hljs-keyword">let</span> subscriber = source$.subscribe( proxySubject );
+
+proxySubject.subscribe( (value) =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;proxy subscriber&apos;</span>, value ) );
+
+proxySubject.next( <span class="hljs-number">3</span> );
+</code></pre>
+<p>&#x6240;&#x4EE5;&#x672C;&#x8D28;&#x4E0A; <code>subject</code> &#x76D1;&#x542C;&#x4E86; <code>source$</code></p>
+<p>&#x4F46;&#x662F;&#x5B83;&#x8FD8;&#x53EF;&#x4EE5;&#x589E;&#x52A0;&#x81EA;&#x5DF1;&#x7684;&#x8D21;&#x732E;</p>
+<pre><code class="lang-javascript">proxySubject.next( <span class="hljs-number">3</span> )  <span class="hljs-comment">// &#x53D1;&#x51FA;3&#xFF0C;&#x7136;&#x540E;&#x662F;0 1 2 ( &#x5F02;&#x6B65;&#x7684; )</span>
+</code></pre>
+<p><strong>&#x9677;&#x9631;</strong> - &#x4EFB;&#x4F55;&#x5728;&#x8BA2;&#x9605;&#x521B;&#x5EFA;&#x4E4B;&#x524D;&#x6267;&#x884C;&#x7684; <code>next()</code> &#x5C31;&#x4F1A;&#x4E22;&#x5931;&#x3002;&#x4E0B;&#x9762;&#x4F1A;&#x6709;&#x5176;&#x4ED6;&#x7C7B;&#x578B;&#x7684; Subject &#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="&#x4E1A;&#x52A1;&#x573A;&#x666F;">&#x4E1A;&#x52A1;&#x573A;&#x666F;</h3>
+<p>&#x90A3;&#x4E48;&#x8FD9;&#x6709;&#x4EC0;&#x4E48;&#x6709;&#x8DA3;&#x7684;&#x5462;&#xFF1F;&#x5F53;&#x6570;&#x636E;&#x5230;&#x8FBE;&#x65F6;&#xFF0C;&#x5B83;&#x53EF;&#x4EE5;&#x76D1;&#x542C;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x6E90;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x80FD;&#x591F;&#x53D1;&#x51FA;&#x81EA;&#x5DF1;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x5E76;&#x4E14;&#x90FD;&#x80FD;&#x5230;&#x8FBE;&#x540C;&#x4E00;&#x4E2A;&#x8BA2;&#x9605;&#x8005;&#x3002;&#x4EE5;&#x603B;&#x7EBF;&#x65B9;&#x5F0F;&#x5728;&#x7EC4;&#x4EF6;&#x4E4B;&#x95F4;&#x8FDB;&#x884C;&#x901A;&#x4FE1;&#x7684;&#x80FD;&#x529B;&#x662F;&#x6211;&#x80FD;&#x60F3;&#x5230;&#x7684;&#x6700;&#x663E;&#x800C;&#x6613;&#x89C1;&#x7684;&#x7528;&#x4F8B;&#x3002;&#x7EC4;&#x4EF6;1&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>next()</code> &#x6765;&#x653E;&#x7F6E;&#x5B83;&#x7684;&#x503C;&#xFF0C;&#x7EC4;&#x4EF6;2&#x53EF;&#x4EE5;&#x8BA2;&#x9605;&#xFF0C;&#x53CD;&#x4E4B;&#x4EA6;&#x7136;&#xFF0C;&#x7EC4;&#x4EF6;2&#x53EF;&#x4EE5;&#x53D1;&#x51FA;&#x503C;&#xFF0C;&#x7EC4;&#x4EF6;1&#x53EF;&#x4EE5;&#x8BA2;&#x9605;&#x3002;</p>
+<pre><code class="lang-javascript">sharedService.getDispatcher = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+   <span class="hljs-keyword">return</span> subject;
+}
+
+sharedService.dispatch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">value</span>)</span>{
+  subject.next(value)
+}
+</code></pre>
+<h2 id="replaysubject">ReplaySubject</h2>
+<p>&#x539F;&#x578B;:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">new</span> Rx.ReplaySubject([bufferSize], [windowSize], [scheduler])
+</code></pre>
+<p>&#x793A;&#x4F8B;:</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> replaySubject = <span class="hljs-keyword">new</span> Rx.ReplaySubject( <span class="hljs-number">2</span> );
+
+replaySubject.next( <span class="hljs-number">0</span> );
+replaySubject.next( <span class="hljs-number">1</span> );
+replaySubject.next( <span class="hljs-number">2</span> );
+
+<span class="hljs-comment">//  1, 2</span>
+<span class="hljs-keyword">let</span> replaySubscription = replaySubject.subscribe((value) =&gt; {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;replay subscription&apos;</span>, value);
+});
+</code></pre>
+<p>&#x54C7;&#xFF0C;&#x8FD9;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#xFF0C;&#x7B2C;&#x4E00;&#x4E2A;&#x6570;&#x5B57;&#x600E;&#x4E48;&#x4E86;&#xFF1F;&#x56E0;&#x4E3A; <code>.next()</code> &#x662F;&#x5728;&#x8BA2;&#x9605;&#x521B;&#x5EFA;&#x4E4B;&#x524D;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x6309;&#x5E38;&#x7406;&#x6765;&#x8BF4;&#x5E94;&#x8BE5;&#x4F1A;&#x4E22;&#x5931;&#x624D;&#x5BF9;&#x3002;&#x4F46;&#x5728;&#x8FD9;&#x91CC;&#x4F7F;&#x7528;&#x7684;&#x662F; <code>ReplaySubject</code>&#xFF0C;&#x6211;&#x4EEC;&#x6709;&#x673A;&#x4F1A;&#x628A;&#x5DF2;&#x7ECF;&#x53D1;&#x51FA;&#x7684;&#x503C;&#x4FDD;&#x5B58;&#x5728;&#x7F13;&#x5B58;&#x4E4B;&#x4E2D;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x6848;&#x4F8B;&#x4E2D;&#xFF0C;<code>ReplaySubject</code> &#x521B;&#x5EFA;&#x540E;&#xFF0C;&#x7F13;&#x5B58;&#x5DF2;&#x88AB;&#x51B3;&#x5B9A;&#x4E3A;&#x4FDD;&#x5B58;&#x4E24;&#x4E2A;&#x503C;&#x3002;</p>
+<p>&#x6211;&#x4EEC;&#x6765;&#x89E3;&#x91CA;&#x4E0B;&#x5B83;&#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-javascript">replaySubject.next( <span class="hljs-number">3</span> )
+<span class="hljs-keyword">let</span> secondSubscriber( (value) =&gt; <span class="hljs-built_in">console</span>.log(value) ) <span class="hljs-comment">// 2,3</span>
+</code></pre>
+<p><strong>&#x9677;&#x9631;</strong> - &#x5F53; <code>.next()</code> &#x64CD;&#x4F5C;&#x53D1;&#x751F;&#x65F6;&#xFF0C;&#x7F13;&#x5B58;&#x7684;&#x5927;&#x5C0F;&#x4EE5;&#x53CA;&#x521B;&#x5EFA;&#x8BA2;&#x9605;&#x7684;&#x65F6;&#x95F4;&#x90FD;&#x5F88;&#x91CD;&#x8981;&#x3002;</p>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x5DF2;&#x7ECF;&#x6F14;&#x793A;&#x4E86;&#x5982;&#x4F55;&#x5728;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x4F7F;&#x7528; <code>bufferSize</code> &#x53C2;&#x6570;&#x6765;&#x4F7F;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x7136;&#x800C;&#x8FD8;&#x6709;&#x4E00;&#x4E2A; <code>windowSize</code> &#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x6307;&#x5B9A;&#x503C;&#x5E94;&#x8BE5;&#x5728;&#x7F13;&#x5B58;&#x4E2D;&#x4FDD;&#x5B58;&#x591A;&#x4E45;&#x3002;&#x628A;&#x5B83;&#x8BBE;&#x7F6E;&#x4E3A; <code>null</code> &#x7684;&#x8BDD;&#x5C06;&#x6C38;&#x4E45;&#x4FDD;&#x5B58;&#x5728;&#x7F13;&#x5B58;&#x4E2D;&#x3002;</p>
+<h3 id="&#x4E1A;&#x52A1;&#x573A;&#x666F;">&#x4E1A;&#x52A1;&#x573A;&#x666F;</h3>
+<p><code>ReplaySubject</code> &#x7684;&#x4E1A;&#x52A1;&#x573A;&#x666F;&#x5F88;&#x5BB9;&#x6613;&#x5C31;&#x60F3;&#x5230;&#x3002;&#x4F60;&#x83B7;&#x53D6;&#x4E00;&#x4E9B;&#x6570;&#x636E;&#x5E76;&#x60F3;&#x8BA9;&#x5E94;&#x7528;&#x8BB0;&#x4F4F;&#x6700;&#x65B0;&#x83B7;&#x53D6;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x540C;&#x65F6;&#x83B7;&#x53D6;&#x7684;&#x5185;&#x5BB9;&#x53EF;&#x80FD;&#x53EA;&#x5728;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x5185;&#x662F;&#x6709;&#x6548;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x4FDD;&#x7559;&#x8DB3;&#x591F;&#x7684;&#x65F6;&#x95F4;&#x540E;&#x4F1A;&#x6E05;&#x9664;&#x7F13;&#x5B58;&#x3002;</p>
+<h2 id="asyncsubject">AsyncSubject</h2>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> asyncSubject = <span class="hljs-keyword">new</span> Rx.AsyncSubject();
+asyncSubject.subscribe(
+    (value) =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;async subject&apos;</span>, value),
+    (error) =&gt; <span class="hljs-built_in">console</span>.error(<span class="hljs-string">&apos;async error&apos;</span>, error),
+    () =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;async completed&apos;</span>)
+);
+
+asyncSubject.next( <span class="hljs-number">1</span> );
+asyncSubject.next( <span class="hljs-number">2</span> );
+</code></pre>
+<p>&#x770B;&#x8FD9;&#x4E2A;&#x793A;&#x4F8B;&#xFF0C;&#x6211;&#x4EEC;&#x671F;&#x671B;&#x53D1;&#x51FA;&#x7684;&#x503C;&#x662F;1&#xFF0C;2&#xFF0C;&#x6CA1;&#x9519;&#x5427;&#xFF1F;&#x9519;&#xFF01;&#x4E0D;&#x4F1A;&#x53D1;&#x51FA;&#x4EFB;&#x4F55;&#x503C;&#x9664;&#x975E;&#x6267;&#x884C;&#x4E86; <code>complete()</code></p>
+<pre><code class="lang-javascript">asyncSubject.next( <span class="hljs-number">3</span> )
+asyncSubject.complete()
+
+<span class="hljs-comment">// &#x53D1;&#x51FA; 3</span>
+</code></pre>
+<p><code>complete()</code> &#x9700;&#x8981;&#x6267;&#x884C;&#xFF0C;&#x800C;&#x4E0D;&#x5728;&#x4E4E;&#x5B83;&#x4E4B;&#x524D;&#x7684;&#x64CD;&#x4F5C;&#x662F;&#x6210;&#x529F;&#x8FD8;&#x662F;&#x5931;&#x8D25;</p>
+<pre><code class="lang-javascript">asyncSubject( <span class="hljs-number">3</span> )
+asyncSubject.error(<span class="hljs-string">&apos;err&apos;</span>)
+asyncSubject.complete()
+
+<span class="hljs-comment">// &apos;err&apos; &#x4F5C;&#x4E3A;&#x6700;&#x540E;&#x7684;&#x64CD;&#x4F5C;&#x4F1A;&#x88AB;&#x53D1;&#x51FA;</span>
+</code></pre>
+<h3 id="&#x4E1A;&#x52A1;&#x573A;&#x666F;">&#x4E1A;&#x52A1;&#x573A;&#x666F;</h3>
+<p>&#x5F53;&#x4F60;&#x5173;&#x5FC3;&#x6D41;&#x7ED3;&#x675F;&#x524D;&#x7684;&#x6700;&#x540E;&#x72B6;&#x6001;&#x662F;&#x503C;&#x8FD8;&#x662F;&#x5F02;&#x5E38;&#x65F6;&#x9002;&#x5408;&#x4F7F;&#x7528; <code>AsyncSubject</code>&#xFF0C;&#x6CE8;&#x610F;&#x4E0D;&#x662F;&#x901A;&#x5E38;&#x6240;&#x8BF4;&#x7684;&#x6700;&#x540E;&#x53D1;&#x51FA;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x800C;&#x662F;<strong>&#x5173;&#x95ED;&#x6D41;&#x524D;</strong>&#x7684;&#x6700;&#x540E;&#x72B6;&#x6001;&#x3002;&#x8FD9;&#x91CC;&#x7684;&#x72B6;&#x6001;&#x6211;&#x6307;&#x7684;&#x662F;&#x503C;&#x6216;&#x5F02;&#x5E38;&#x3002;</p>
+<h2 id="behavioursubject">BehaviourSubject</h2>
+<p>&#x8FD9;&#x4E2A; Subject &#x53D1;&#x51FA;&#x6700;&#x521D;&#x7684;&#x503C;&#xFF0C;&#x901A;&#x5E38;&#x6240;&#x53D1;&#x51FA;&#x7684;&#x503C;&#x548C;&#x4F60;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x6700;&#x540E;&#x53D1;&#x51FA;&#x7684;&#x503C;&#x3002;</p>
+<p>&#x65B9;&#x6CD5;:</p>
+<pre><code>next()
+complete()
+constructor([start value])
+getValue()
+</code></pre><pre><code class="lang-javascript"><span class="hljs-keyword">let</span> behaviorSubject = <span class="hljs-keyword">new</span> Rx.BehaviorSubject(<span class="hljs-number">42</span>);
+
+behaviorSubject.subscribe((value) =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;behaviour subject&apos;</span>,value) );
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Behaviour current value&apos;</span>,behaviorSubject.getValue());
+behaviorSubject.next(<span class="hljs-number">1</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Behaviour current value&apos;</span>,behaviorSubject.getValue());
+behaviorSubject.next(<span class="hljs-number">2</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Behaviour current value&apos;</span>,behaviorSubject.getValue());
+behaviorSubject.next(<span class="hljs-number">3</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Behaviour current value&apos;</span>,behaviorSubject.getValue());
+
+<span class="hljs-comment">// &#x53D1;&#x51FA; 42</span>
+<span class="hljs-comment">// Behaviour current value 42</span>
+<span class="hljs-comment">// &#x53D1;&#x51FA; 1</span>
+<span class="hljs-comment">// Behaviour current value 1</span>
+<span class="hljs-comment">// &#x53D1;&#x51FA; 2</span>
+<span class="hljs-comment">// Behaviour current value 2</span>
+<span class="hljs-comment">// &#x53D1;&#x51FA; 3</span>
+<span class="hljs-comment">// Behaviour current value 3</span>
+</code></pre>
+<h3 id="&#x4E1A;&#x52A1;&#x573A;&#x666F;">&#x4E1A;&#x52A1;&#x573A;&#x666F;</h3>
+<p>&#x8FD9;&#x4E0E; <code>ReplaySubject</code> &#x5F88;&#x50CF;&#x3002;&#x4F46;&#x8FD8;&#x662F;&#x7565;&#x5FAE;&#x4E0D;&#x540C;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5229;&#x7528;&#x9ED8;&#x8BA4;&#x503C;/&#x8D77;&#x59CB;&#x503C;&#xFF0C;&#x5982;&#x679C;&#x5728;&#x7B2C;&#x4E00;&#x4E2A;&#x503C;&#x5F00;&#x59CB;&#x5230;&#x8FBE;&#x4E4B;&#x524D;&#x9700;&#x8981;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x521D;&#x59CB;&#x503C;&#x3002;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;&#x6700;&#x65B0;&#x7684;&#x53D1;&#x51FA;&#x503C;&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x76D1;&#x542C;&#x5DF2;&#x53D1;&#x51FA;&#x7684;&#x4E00;&#x5207;&#x3002;&#x6240;&#x4EE5;&#x628A; <code>ReplaySubject</code> &#x5F53;&#x4F5C;&#x662F; <strong>&#x957F;&#x671F;&#x8BB0;&#x5FC6;</strong>&#x800C;&#x628A; <code>BehaviourSubject</code> &#x5F53;&#x4F5C;&#x662F;&#x6709;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x7684;&#x77ED;&#x671F;&#x8BB0;&#x5FC6;&#x3002;</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="recipes-infinte-scroll.html" class="navigation navigation-prev " aria-label="Previous page: 菜谱 - infinte scroll">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="schedulers.html" class="navigation navigation-next " aria-label="Next page: Schedulers">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Subject","level":"6.1","depth":1,"next":{"title":"Schedulers","level":"6.2","depth":1,"path":"content/schedulers.md","ref":"./content/schedulers.md","articles":[]},"previous":{"title":"菜谱 - infinte scroll","level":"5.4","depth":1,"path":"content/recipes-infinte-scroll.md","ref":"./content/recipes-infinte-scroll.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","edit-link"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/RxJS-CN/rxjs5-ultimate-cn"},"edit-link":{"label":"完善文档","base":"https://github.com/RxJS-CN/rxjs5-ultimate-cn/tree/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"RxJS 5 基本原理","gitbook":"3.2.2"},"file":{"path":"content/subject.md","mtime":"2017-05-14T09:30:55.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-14T11:55:09.720Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

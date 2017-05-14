@@ -1,0 +1,679 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>转换操作符 · RxJS 5 基本原理</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="operators-combination.html" />
+    
+    
+    <link rel="prev" href="operators-construction.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/RxJS-CN/rxjs5-ultimate-cn">
+            
+                    
+                    RxJS 5 基本原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">起步</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="async-code.html">
+            
+                <a href="async-code.html">
+            
+                    
+                    异步代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="why-rxjs.html">
+            
+                <a href="why-rxjs.html">
+            
+                    
+                    为什么要用 RxJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="installation-and-setup.html">
+            
+                <a href="installation-and-setup.html">
+            
+                    
+                    安装设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">OBSERVABLES</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="observable-anatomy.html">
+            
+                <a href="observable-anatomy.html">
+            
+                    
+                    Observable 剖析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="observer.html">
+            
+                <a href="observer.html">
+            
+                    
+                    Observer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="producer.html">
+            
+                <a href="producer.html">
+            
+                    
+                    Producer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="observable.html">
+            
+                <a href="observable.html">
+            
+                    
+                    Observable vs Promise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="observable-wrapping.html">
+            
+                <a href="observable-wrapping.html">
+            
+                    
+                    Observable 包装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="hot-n-cold-observables.html">
+            
+                <a href="hot-n-cold-observables.html">
+            
+                    
+                    热&冷的 Observables
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作符</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="operators.html">
+            
+                <a href="operators.html">
+            
+                    
+                    操作符初窥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="marble-diagrams.html">
+            
+                <a href="marble-diagrams.html">
+            
+                    
+                    弹珠图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="operators-and-ajax.html">
+            
+                <a href="operators-and-ajax.html">
+            
+                    
+                    操作符和 Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="operators-observable-in-an-observable.html">
+            
+                <a href="operators-observable-in-an-observable.html">
+            
+                    
+                    高阶 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="operators-construction.html">
+            
+                <a href="operators-construction.html">
+            
+                    
+                    创建操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.6" data-path="operators-conversion.html">
+            
+                <a href="operators-conversion.html">
+            
+                    
+                    转换操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="operators-combination.html">
+            
+                <a href="operators-combination.html">
+            
+                    
+                    组合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="operators-mathematical.html">
+            
+                <a href="operators-mathematical.html">
+            
+                    
+                    数学操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="operators-time.html">
+            
+                <a href="operators-time.html">
+            
+                    
+                    时间操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.10" data-path="operators-grouping.html">
+            
+                <a href="operators-grouping.html">
+            
+                    
+                    分组操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="error-handling.html">
+            
+                <a href="error-handling.html">
+            
+                    
+                    异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">烹饪宝典</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="cascading-calls.html">
+            
+                <a href="cascading-calls.html">
+            
+                    
+                    级联调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="recipes-auto-complete.html">
+            
+                <a href="recipes-auto-complete.html">
+            
+                    
+                    菜谱 - auto complete
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="recipes-infinte-scroll.html">
+            
+                <a href="recipes-infinte-scroll.html">
+            
+                    
+                    菜谱 - infinte scroll
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">高级篇</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="subject.html">
+            
+                <a href="subject.html">
+            
+                    
+                    Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="schedulers.html">
+            
+                <a href="schedulers.html">
+            
+                    
+                    Schedulers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">附录</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../appendices/appendix-i-ngrx.html">
+            
+                <a href="../appendices/appendix-i-ngrx.html">
+            
+                    
+                    附录 I - ngrx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../appendices/appendix-ii-build-your-own-rxjs.html">
+            
+                <a href="../appendices/appendix-ii-build-your-own-rxjs.html">
+            
+                    
+                    附录 II - 构建自己的 RxJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >转换操作符</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x8F6C;&#x6362;&#x64CD;&#x4F5C;&#x7B26;">&#x8F6C;&#x6362;&#x64CD;&#x4F5C;&#x7B26;</h1>
+<p>&#x8FD9;&#x4E2A;&#x7C7B;&#x522B;&#x7684;&#x5168;&#x90E8;&#x662F;&#x5C55;&#x793A;&#x4EE5;&#x67D0;&#x4E9B;&#x4E1C;&#x897F;&#x4E3A;&#x57FA;&#x7840;&#x6765;&#x521B;&#x5EFA; Observables &#x662F;&#x591A;&#x4E48;&#x7684;&#x5BB9;&#x6613;&#xFF0C;&#x56E0;&#x6B64;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x548C;&#x64CD;&#x4F5C;&#x7B26;&#x914D;&#x5408;&#x7684;&#x5F88;&#x597D;&#xFF0C;&#x800C;&#x4E0D;&#x5728;&#x4E4E;&#x662F;&#x600E;&#x6837;&#x7684;&#x6784;&#x9020;&#xFF0C;&#x4ECE;&#x800C;&#x5B9E;&#x73B0;&#x4E30;&#x5BCC;&#x7684;&#x7EC4;&#x5408;&#x3002;</p>
+<h2 id="from">from</h2>
+<p>&#x5728; RxJS 4&#x4E2D;&#xFF0C;&#x5B58;&#x5728;&#x4E00;&#x4E9B;&#x7C7B;&#x4F3C;&#x540D;&#x79F0;&#x7684;&#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x4F8B;&#x5982; <code>fromArray()</code>&#x3001;<code>from()</code>&#x3001;<code>fromPromise()</code> &#x7B49;&#x7B49;&#x3002;&#x6240;&#x6709;&#x8FD9;&#x4E9B; <code>fromXXX</code> &#x7684;&#x64CD;&#x4F5C;&#x7B26;&#x73B0;&#x5728;&#x5168;&#x7531; <code>from()</code> &#x63A5;&#x7BA1;&#x4E86;&#x3002;&#x6765;&#x770B;&#x4E00;&#x4E9B;&#x793A;&#x4F8B;&#xFF1A;</p>
+<p><strong>&#x8001;&#x7684; fromArray</strong></p>
+<pre><code class="lang-javascript">Rx.Observable.from([<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>])
+</code></pre>
+<p><strong>&#x8001;&#x7684; fromPromise</strong></p>
+<pre><code class="lang-javascript">Rx.Observable.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(resolve, reject) =&gt; {
+  <span class="hljs-comment">// &#x5F02;&#x6B65;&#x64CD;&#x4F5C;</span>
+  resolve( data )
+})
+</code></pre>
+<h2 id="of">of</h2>
+<p><code>of</code> &#x64CD;&#x4F5C;&#x7B26;&#x63A5;&#x6536;x&#x4E2A;&#x53C2;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x4F60;&#x53EF;&#x4EE5;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x4EE5;&#x4EFB;&#x610F;&#x4E2A;&#x53C2;&#x6570;&#x6765;&#x8C03;&#x7528;&#x5B83;&#xFF1A;</p>
+<pre><code class="lang-javascript">Rx.Observable.of(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);
+Rx.Observable.of(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>);
+</code></pre>
+<h2 id="to">to</h2>
+<p>&#x8FD8;&#x5B58;&#x5728;&#x4E00;&#x7EC4;&#x64CD;&#x4F5C;&#x7B26;&#x5141;&#x8BB8;&#x4F60;&#x53CD;&#x5176;&#x9053;&#x800C;&#x884C;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x79BB;&#x5F00;&#x7F8E;&#x5999;&#x7684; observables &#x4E16;&#x754C;&#x5E76;&#x56DE;&#x5230;&#x66F4;&#x539F;&#x59CB;&#x7684;&#x72B6;&#x6001;&#xFF0C;&#x50CF;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> promise = Rx.Observable.of(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>).toPromise();
+promise.then(data =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Promise&apos;</span>, data));
+</code></pre>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="operators-construction.html" class="navigation navigation-prev " aria-label="Previous page: 创建操作符">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="operators-combination.html" class="navigation navigation-next " aria-label="Next page: 组合操作符">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"转换操作符","level":"4.6","depth":1,"next":{"title":"组合操作符","level":"4.7","depth":1,"path":"content/operators-combination.md","ref":"./content/operators-combination.md","articles":[]},"previous":{"title":"创建操作符","level":"4.5","depth":1,"path":"content/operators-construction.md","ref":"./content/operators-construction.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","edit-link"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/RxJS-CN/rxjs5-ultimate-cn"},"edit-link":{"label":"完善文档","base":"https://github.com/RxJS-CN/rxjs5-ultimate-cn/tree/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"RxJS 5 基本原理","gitbook":"3.2.2"},"file":{"path":"content/operators-conversion.md","mtime":"2017-05-03T12:18:44.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-14T11:55:09.720Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

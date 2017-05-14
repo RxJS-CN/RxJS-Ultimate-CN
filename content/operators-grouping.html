@@ -1,0 +1,757 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>分组操作符 · RxJS 5 基本原理</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="error-handling.html" />
+    
+    
+    <link rel="prev" href="operators-time.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" >
+            
+                <a target="_blank" href="https://github.com/RxJS-CN/rxjs5-ultimate-cn">
+            
+                    
+                    RxJS 5 基本原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">起步</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="async-code.html">
+            
+                <a href="async-code.html">
+            
+                    
+                    异步代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="why-rxjs.html">
+            
+                <a href="why-rxjs.html">
+            
+                    
+                    为什么要用 RxJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="installation-and-setup.html">
+            
+                <a href="installation-and-setup.html">
+            
+                    
+                    安装设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">OBSERVABLES</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="observable-anatomy.html">
+            
+                <a href="observable-anatomy.html">
+            
+                    
+                    Observable 剖析
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="observer.html">
+            
+                <a href="observer.html">
+            
+                    
+                    Observer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="producer.html">
+            
+                <a href="producer.html">
+            
+                    
+                    Producer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.4" data-path="observable.html">
+            
+                <a href="observable.html">
+            
+                    
+                    Observable vs Promise
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.5" data-path="observable-wrapping.html">
+            
+                <a href="observable-wrapping.html">
+            
+                    
+                    Observable 包装
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.6" data-path="hot-n-cold-observables.html">
+            
+                <a href="hot-n-cold-observables.html">
+            
+                    
+                    热&冷的 Observables
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">操作符</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="operators.html">
+            
+                <a href="operators.html">
+            
+                    
+                    操作符初窥
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="marble-diagrams.html">
+            
+                <a href="marble-diagrams.html">
+            
+                    
+                    弹珠图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="operators-and-ajax.html">
+            
+                <a href="operators-and-ajax.html">
+            
+                    
+                    操作符和 Ajax
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="operators-observable-in-an-observable.html">
+            
+                <a href="operators-observable-in-an-observable.html">
+            
+                    
+                    高阶 Observable
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="operators-construction.html">
+            
+                <a href="operators-construction.html">
+            
+                    
+                    创建操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.6" data-path="operators-conversion.html">
+            
+                <a href="operators-conversion.html">
+            
+                    
+                    转换操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.7" data-path="operators-combination.html">
+            
+                <a href="operators-combination.html">
+            
+                    
+                    组合操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.8" data-path="operators-mathematical.html">
+            
+                <a href="operators-mathematical.html">
+            
+                    
+                    数学操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.9" data-path="operators-time.html">
+            
+                <a href="operators-time.html">
+            
+                    
+                    时间操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.10" data-path="operators-grouping.html">
+            
+                <a href="operators-grouping.html">
+            
+                    
+                    分组操作符
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.11" data-path="error-handling.html">
+            
+                <a href="error-handling.html">
+            
+                    
+                    异常处理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">烹饪宝典</li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="testing.html">
+            
+                <a href="testing.html">
+            
+                    
+                    测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="cascading-calls.html">
+            
+                <a href="cascading-calls.html">
+            
+                    
+                    级联调用
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="recipes-auto-complete.html">
+            
+                <a href="recipes-auto-complete.html">
+            
+                    
+                    菜谱 - auto complete
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="recipes-infinte-scroll.html">
+            
+                <a href="recipes-infinte-scroll.html">
+            
+                    
+                    菜谱 - infinte scroll
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">高级篇</li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="subject.html">
+            
+                <a href="subject.html">
+            
+                    
+                    Subject
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="schedulers.html">
+            
+                <a href="schedulers.html">
+            
+                    
+                    Schedulers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">附录</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../appendices/appendix-i-ngrx.html">
+            
+                <a href="../appendices/appendix-i-ngrx.html">
+            
+                    
+                    附录 I - ngrx
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="../appendices/appendix-ii-build-your-own-rxjs.html">
+            
+                <a href="../appendices/appendix-ii-build-your-own-rxjs.html">
+            
+                    
+                    附录 II - 构建自己的 RxJS
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >分组操作符</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x5206;&#x7EC4;&#x64CD;&#x4F5C;&#x7B26;">&#x5206;&#x7EC4;&#x64CD;&#x4F5C;&#x7B26;</h1>
+<h2 id="buffer">buffer</h2>
+<p><code>buffer()</code> &#x64CD;&#x4F5C;&#x7B26;&#x7684;&#x51FD;&#x6570;&#x7B7E;&#x540D;&#xFF1A;</p>
+<pre><code class="lang-javascript">buffer([breakObservable])
+</code></pre>
+<p><code>buffer</code> &#x672C;&#x8EAB;&#x610F;&#x5473;&#x7740;&#x6211;&#x4EEC;&#x5728;&#x7B49;&#x5F85;&#x800C;&#x4E0D;&#x4F1A;&#x53D1;&#x51FA;&#x4EFB;&#x4F55;&#x503C;&#xFF0C;&#x76F4;&#x5230; <code>breakObservable</code> &#x53D1;&#x751F;&#x3002;&#x793A;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> breakWhen$ = Rx.Observable.timer(<span class="hljs-number">1000</span>);
+
+<span class="hljs-keyword">let</span> stream$ = Rx.Observable.interval(<span class="hljs-number">200</span>)
+.buffer( breakWhen$ );
+
+stream$.subscribe((data) =&gt; <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;values&apos;</span>,data ));
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x6848;&#x4F8B;&#x4E2D;&#x4F1A;&#x4E00;&#x6B21;&#x6027;&#x5730;&#x53D1;&#x51FA;&#x503C;&#xFF1A; <code>values 0,1,2,3</code> &#x3002;</p>
+<h3 id="&#x4E1A;&#x52A1;&#x573A;&#x666F;">&#x4E1A;&#x52A1;&#x573A;&#x666F;</h3>
+<p><strong>Auto complete(&#x81EA;&#x52A8;&#x5B8C;&#x6210;/&#x667A;&#x80FD;&#x63D0;&#x793A;)</strong> - &#x4F7F;&#x7528; <code>buffer()</code> &#x64CD;&#x4F5C;&#x7B26;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x7684;&#x6700;&#x663E;&#x8457;&#x7684;&#x4F8B;&#x5B50;&#x5C31;&#x662F; <code>auto complete</code> &#x3002;&#x4F46; <code>auto complete</code> &#x662F;&#x5982;&#x4F55;&#x5DE5;&#x4F5C;&#x7684;&#x5462;&#xFF1F;&#x6211;&#x4EEC;&#x6765;&#x5206;&#x6B65;&#x9AA4;&#x770B;&#x4E0B;</p>
+<ul>
+<li>&#x7528;&#x6237;&#x8F93;&#x5165;&#x5173;&#x952E;&#x5B57;</li>
+<li>&#x641C;&#x7D22;&#x662F;&#x57FA;&#x4E8E;&#x8FD9;&#x4E9B;&#x6309;&#x952E;&#x7684;&#x3002;&#x91CD;&#x8981;&#x7684;&#x662F;&#xFF0C;&#x641C;&#x7D22;&#x672C;&#x8EAB;&#x662F;&#x5728;&#x6253;&#x5B57;&#x65F6;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x8981;&#x4E48;&#x5C31;&#x6267;&#x884C;&#x591A;&#x6B21;&#xFF0C;&#x56E0;&#x4E3A;&#x4F60;&#x8F93;&#x5165;&#x4E86;x&#x4E2A;&#x5B57;&#x7B26;&#xFF0C;&#x8981;&#x4E48;&#x91C7;&#x7528;&#x66F4;&#x666E;&#x904D;&#x7684;&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF0C;&#x5C31;&#x662F;&#x6253;&#x5B57;&#x5B8C;&#x6210;&#x540E;&#x518D;&#x6267;&#x884C;&#x641C;&#x7D22;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5728;&#x8F93;&#x5165;&#x65F6;&#x8FDB;&#x884C;&#x7F16;&#x8F91;&#x3002;&#x90A3;&#x4E48;&#x6211;&#x4EEC;&#x6765;&#x6267;&#x884C;&#x8FD9;&#x5957;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#xFF1A;</li>
+</ul>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> input = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;example&apos;</span>);
+<span class="hljs-keyword">let</span> input$  = Rx.Observable.fromEvent( input, <span class="hljs-string">&apos;keyup&apos;</span> )
+
+<span class="hljs-keyword">let</span> breakWhen$ = Rx.Observable.timer(<span class="hljs-number">1000</span>);
+<span class="hljs-keyword">let</span> debounceBreak$ = input$.debounceTime( <span class="hljs-number">2000</span> );
+
+<span class="hljs-keyword">let</span> stream$ = input$
+.map( ev =&gt; ev.key )
+.buffer( debounceBreak$ );
+
+stream$.subscribe((data) =&gt; <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;values&apos;</span>,data ));
+</code></pre>
+<p>&#x6211;&#x4EEC;&#x6355;&#x83B7; <code>keyup</code> &#x4E8B;&#x4EF6;&#x3002;&#x6211;&#x4EEC;&#x8FD8;&#x4F7F;&#x7528;&#x4E86; <code>debounce()</code> &#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x672C;&#x8D28;&#x4E0A;&#x6765;&#x8BF4;&#xFF0C;&#x4E00;&#x65E6;&#x4F60;&#x505C;&#x6B62;&#x6253;&#x5B57;x&#x6BEB;&#x79D2;&#x540E;&#x5B83;&#x624D;&#x4F1A;&#x53D1;&#x51FA;&#x503C;&#x3002;&#x8FD9;&#x4E2A;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x53EA;&#x662F;&#x8FDB;&#x884C;&#x4E2D;&#x7684;&#x7B2C;&#x4E00;&#x6B65;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x53EA;&#x662F;&#x62A5;&#x544A;&#x4E86;&#x5177;&#x4F53;&#x6572;&#x51FB;&#x7684;&#x6309;&#x952E;&#x3002;&#x4E00;&#x4E2A;&#x66F4;&#x597D;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x6355;&#x83B7;&#x8F93;&#x5165;&#x5143;&#x7D20;&#x7684;&#x5B9E;&#x9645;&#x5185;&#x5BB9;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x6267;&#x884C; ajax &#x8C03;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x8BA9;&#x6211;&#x4EEC;&#x6765;&#x770B;&#x4E00;&#x4E2A;&#x66F4;&#x7CBE;&#x81F4;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> input = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;example&apos;</span>);
+<span class="hljs-keyword">let</span> input$  = Rx.Observable.fromEvent( input, <span class="hljs-string">&apos;keyup&apos;</span> )
+
+<span class="hljs-keyword">let</span> breakWhen$ = Rx.Observable.timer(<span class="hljs-number">1000</span>);
+<span class="hljs-keyword">let</span> debounceBreak$ = input$.debounceTime( <span class="hljs-number">2000</span> );
+
+<span class="hljs-keyword">let</span> stream$ = input$
+.map( ev =&gt; {
+    <span class="hljs-keyword">return</span> ev.key })
+.buffer( debounceBreak$ )
+.switchMap((allTypedKeys) =&gt; {
+    <span class="hljs-comment">// &#x6267;&#x884C; ajax</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;Everything that happened during 2 sec&apos;</span>, allTypedKeys)
+    <span class="hljs-keyword">return</span> Rx.Observable.of(<span class="hljs-string">&apos;ajax based on &apos;</span> + input.value);
+});
+
+stream$.subscribe((data) =&gt; <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;values&apos;</span>,data ));
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x79F0;&#x4E4B;&#x4E3A;&#x201C;&#x589E;&#x5F3A;&#x7684; auto complete&#x201D; &#x3002;&#x539F;&#x56E0;&#x5982;&#x540D;&#x5B57;&#x4E00;&#x6837;&#xFF0C;&#x6211;&#x4EEC;&#x4FDD;&#x5B58;&#x4E86;&#x7528;&#x6237;&#x6240;&#x505A;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;&#x4EA4;&#x4E92;&#xFF0C;&#x7136;&#x540E;&#x624D;&#x6700;&#x7EC8;&#x51B3;&#x5B9A;&#x5E94;&#x8BE5;&#x6210;&#x4E3A; Ajax &#x8C03;&#x7528;&#x7684;&#x6700;&#x7EC8;&#x8F93;&#x5165;&#x3002;&#x6240;&#x4EE5;&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x7684;&#x7ED3;&#x679C;&#x5E94;&#x8BE5;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-comment">// &#x51FA;&#x81EA; switchMap</span>
+Everything that happened during <span class="hljs-number">2</span> sec [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;Backspace&quot;</span>, <span class="hljs-string">&quot;f&quot;</span>, <span class="hljs-string">&quot;g&quot;</span>, <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-string">&quot;f&quot;</span>, <span class="hljs-string">&quot;h&quot;</span>, <span class="hljs-string">&quot;g&quot;</span>]
+
+<span class="hljs-comment">// &#x51FA;&#x81EA; subscribe</span>
+values ajax based on fghfgh
+</code></pre>
+<p>&#x5982;&#x4F60;&#x6240;&#x89C1;&#xFF0C;&#x5176;&#x5B9E;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x50A8;&#x5B58;&#x5927;&#x91CF;&#x7528;&#x6237;&#x6F5C;&#x5728;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x4E0D;&#x53EA;&#x662F;&#x505A;&#x4E86; auto complete &#x641C;&#x7D22;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x50A8;&#x5B58;&#x4ED6;&#x4EEC;&#x662F;&#x5982;&#x4F55;&#x6253;&#x5B57;&#x7684;&#xFF0C;&#x8FD9;&#x6216;&#x8BB8;&#x5F88;&#x6709;&#x8DA3;&#xFF0C;&#x4EA6;&#x6216;&#x662F;&#x5F88;&#x65E0;&#x804A;...</p>
+<p><strong>&#x53CC;&#x51FB;</strong> - &#x5728;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x5DF2;&#x7ECF;&#x5C55;&#x793A;&#x4E86;&#x6309;&#x7EC4;&#x6355;&#x83B7;&#x6309;&#x952E;&#x53EF;&#x4EE5;&#x5F88;&#x6709;&#x8DA3;&#xFF0C;&#x800C;&#x53E6;&#x4E00;&#x7EC4;&#x53EF;&#x80FD;&#x6709;&#x8DA3;&#x7684; UI &#x4E8B;&#x4EF6;&#x5C31;&#x662F;&#x9F20;&#x6807;&#x70B9;&#x51FB;&#x4E8B;&#x4EF6;&#xFF0C;&#x5373;&#x5355;&#x51FB;&#x3001;&#x53CC;&#x51FB;&#x6216;&#x4E09;&#x8FDE;&#x51FB;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x7528; RxJS &#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x5199;&#x51FA;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x6781;&#x4E0D;&#x4F18;&#x96C5;&#x7684;&#xFF0C;&#x53CD;&#x4E4B;&#x5219;&#x8F7B;&#x800C;&#x6613;&#x4E3E;&#xFF0C;&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> btn = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;btn2&apos;</span>);
+<span class="hljs-keyword">let</span> btn$  = Rx.Observable.fromEvent( btn, <span class="hljs-string">&apos;click&apos;</span> )
+
+<span class="hljs-keyword">let</span> debounceMouseBreak$ = btn$.debounceTime( <span class="hljs-number">300</span> );
+
+<span class="hljs-keyword">let</span> btnBuffered$ = btn$
+.buffer( debounceMouseBreak$ )
+.map( array =&gt; array.length )
+.filter( count =&gt; count &gt;= <span class="hljs-number">2</span> )
+;
+
+btnBuffered$.subscribe((data) =&gt; <span class="hljs-built_in">console</span>.log( <span class="hljs-string">&apos;values&apos;</span>,data ));
+</code></pre>
+<p>&#x591A;&#x4E8F; <code>debounce()</code> &#x64CD;&#x4F5C;&#x7B26;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x53D1;&#x51FA;&#x4EFB;&#x4F55;&#x503C;&#x4E4B;&#x524D;&#x8868;&#x8FBE;&#x7B49;&#x5F85;300&#x6BEB;&#x79D2;&#x3002;&#x53EA;&#x662F;&#x77ED;&#x77ED;&#x51E0;&#x884C;&#x4EE3;&#x7801;&#xFF0C;&#x5C31;&#x8BA9;&#x6211;&#x4EEC;&#x5F88;&#x5BB9;&#x6613;&#x7684;&#x53EF;&#x4EE5;&#x51B3;&#x5B9A; filter &#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x5199;&#x3002;</p>
+<h2 id="buffertime">bufferTime</h2>
+<p><code>bufferTime()</code> &#x7684;&#x51FD;&#x6570;&#x7B7E;&#x540D;&#xFF1A;</p>
+<pre><code class="lang-javascript">bufferTime([ms])
+</code></pre>
+<p>&#x4F5C;&#x7528;&#x662F;&#x8BB0;&#x5F55;&#x5728;&#x8BE5;&#x65F6;&#x95F4;&#x6BB5;&#x5185;&#x53D1;&#x751F;&#x7684;&#x6240;&#x6709;&#x4E8B;&#x60C5;&#x5E76;&#x8F93;&#x51FA;&#x6240;&#x6709;&#x7684;&#x503C;&#x3002;&#x4E0B;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x662F;&#x4EE5;1&#x79D2;&#x4E3A;&#x65F6;&#x95F4;&#x7247;&#x6BB5;&#x8BB0;&#x5F55;&#x8F93;&#x5165;&#x7684;&#x6240;&#x6709;&#x6D3B;&#x52A8;&#x4E8B;&#x4EF6;&#x3002;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> input = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;example&apos;</span>);
+<span class="hljs-keyword">let</span> input$  = Rx.Observable.fromEvent( input, <span class="hljs-string">&apos;input&apos;</span> )
+.bufferTime(<span class="hljs-number">1000</span>);
+
+input$.subscribe((data) =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;all inputs in 1 sec&apos;</span>, data));
+</code></pre>
+<p>&#x5728;&#x8FD9;&#x4E2A;&#x6848;&#x4F8B;&#x4E2D;&#x4F60;&#x5F97;&#x5230;&#x7684;&#x8F93;&#x51FA;&#x4F1A;&#x662F;&#x8FD9;&#x6837;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-javascript">all inputs <span class="hljs-keyword">in</span> <span class="hljs-number">1</span> sec [ Event, Event... ]
+</code></pre>
+<p>&#x5F97;&#x5230;&#x7684;&#x6570;&#x636E;&#x4F3C;&#x4E4E;&#x6CA1;&#x4EC0;&#x4E48;&#x7528;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x4EEC;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x4F7F;&#x7528; <code>map()</code> &#x6765;&#x4F7F;&#x6570;&#x636E;&#x53D8;&#x5F97;&#x6E05;&#x6670;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E8E;&#x770B;&#x5230;&#x7528;&#x6237;&#x5B9E;&#x9645;&#x7684;&#x6309;&#x952E;&#xFF0C;&#x50CF;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-javascript"><span class="hljs-keyword">let</span> input = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;example&apos;</span>);
+<span class="hljs-keyword">let</span> input$  = Rx.Observable.fromEvent( input, <span class="hljs-string">&apos;keyup&apos;</span> )
+.map( ev =&gt; ev.key)
+.bufferTime(<span class="hljs-number">1000</span>);
+
+input$.subscribe((data) =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&apos;all inputs in 1 sec&apos;</span>, data));
+</code></pre>
+<p>&#x8FD8;&#x8981;&#x6CE8;&#x610F;&#x4E00;&#x70B9;&#xFF0C;&#x6211;&#x628A;&#x4E8B;&#x4EF6;&#x6539;&#x6210;&#x4E86; <code>keyup</code> &#x3002;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x89C1;1&#x79D2;&#x5185;&#x53D1;&#x751F;&#x7684;&#x6240;&#x6709; <code>keyup</code> &#x4E8B;&#x4EF6;&#x3002;</p>
+<h3 id="&#x4E1A;&#x52A1;&#x573A;&#x666F;">&#x4E1A;&#x52A1;&#x573A;&#x666F;</h3>
+<p>&#x5982;&#x679C;&#x4F60;&#x60F3;&#x8981;&#x8BB0;&#x5F55;&#x8BE5;&#x7F51;&#x7AD9;&#x4E0A;&#x7684;&#x5176;&#x5B83;&#x7528;&#x6237;&#x6B63;&#x5728;&#x505A;&#x4EC0;&#x4E48;&#xFF0C;&#x5E76;&#x5E0C;&#x671B;&#x91CD;&#x64AD;&#x4ED6;&#x4EEC;&#x66FE;&#x7ECF;&#x505A;&#x8FC7;&#x7684;&#x6240;&#x6709;&#x4EA4;&#x4E92;&#xFF0C;&#x6216;&#x8005;&#x5F53;&#x4ED6;&#x4EEC;&#x5F00;&#x59CB;&#x8F93;&#x5165;&#xFF0C;&#x4F60;&#x5E0C;&#x671B;&#x901A;&#x8FC7; socket &#x53D1;&#x9001;&#x6B64;&#x4FE1;&#x606F;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x4F1A;&#x975E;&#x5E38;&#x6709;&#x7528;&#x3002;&#x6700;&#x540E;&#x4E00;&#x4E2A;&#x662F;&#x5F53;&#x4E0B;&#x7684;&#x6807;&#x51C6;&#x529F;&#x80FD;&#xFF0C;&#x4F60;&#x770B;&#x89C1;&#x4E00;&#x4E2A;&#x4EBA;&#x5728;&#x53E6;&#x4E00;&#x4E2A;&#x7EC8;&#x7AEF;&#x4E0A;&#x6253;&#x5B57;&#x3002;&#x6240;&#x4EE5;&#x786E;&#x5B9E;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x4E1A;&#x52A1;&#x6848;&#x4F8B;&#x3002;</p>
+<h2 id="groupby">groupBy</h2>
+<p>TODO</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="operators-time.html" class="navigation navigation-prev " aria-label="Previous page: 时间操作符">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="error-handling.html" class="navigation navigation-next " aria-label="Next page: 异常处理">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"分组操作符","level":"4.10","depth":1,"next":{"title":"异常处理","level":"4.11","depth":1,"path":"content/error-handling.md","ref":"./content/error-handling.md","articles":[]},"previous":{"title":"时间操作符","level":"4.9","depth":1,"path":"content/operators-time.md","ref":"./content/operators-time.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","edit-link"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/RxJS-CN/rxjs5-ultimate-cn"},"edit-link":{"label":"完善文档","base":"https://github.com/RxJS-CN/rxjs5-ultimate-cn/tree/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"RxJS 5 基本原理","gitbook":"3.2.2"},"file":{"path":"content/operators-grouping.md","mtime":"2017-05-12T11:46:46.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-14T11:55:09.720Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-edit-link/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
