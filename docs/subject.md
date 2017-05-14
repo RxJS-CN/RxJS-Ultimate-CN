@@ -86,9 +86,9 @@ let replaySubscription = replaySubject.subscribe((value) => {
 });
 ```
 
-Wow, what happened here, what happened to the first number? So a `.next()` that happens before the subscription is created, is normally lost. But in the case of a `ReplaySubject` we have a chance to save emitted values in the cache. Upon creation the cache has been decided to save two values.
+哇，这发生了什么，第一个数字怎么了？因为 `.next()` 是在订阅创建之前执行的，按常理来说应该会丢失才对。但在这里使用的是 `ReplaySubject`，我们有机会把已经发出的值保存在缓存之中。在这个案例中，`ReplaySubject` 创建后，缓存已被决定为保存两个值。
 
-Let's illustrate how this works:
+我们来解释下它是如何工作的：
 
 ```javascript
 replaySubject.next( 3 )
