@@ -142,9 +142,9 @@ asyncSubject.complete()
 
 ## BehaviourSubject
 
-This Subject emits, the initial value, the values emitted generally and you can check what it emitted last.
+这个 Subject 发出最初的值，通常所发出的值和你可以检查最后发出的值。
 
-methods:
+方法:
 
 ```
 next()
