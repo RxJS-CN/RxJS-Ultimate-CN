@@ -101,7 +101,7 @@ let secondSubscriber( (value) => console.log(value) ) // 2,3
 
 ### 业务场景
 
-`replaySubject` 的业务场景很容易就想到。你获取一些数据并想让应用记住最新获取的数据，同时获取的内容可能只在一段时间内是有效的，并且在保留足够的时间后会清除缓存。
+`ReplaySubject` 的业务场景很容易就想到。你获取一些数据并想让应用记住最新获取的数据，同时获取的内容可能只在一段时间内是有效的，并且在保留足够的时间后会清除缓存。
 
 ## AsyncSubject
 
@@ -133,12 +133,12 @@ asyncSubject( 3 )
 asyncSubject.error('err')
 asyncSubject.complete()
 
-// will emit 'err' as the last action
+// 'err' 作为最后的操作会被发出
 ```
 
-### Business case
+### 业务场景
 
-When you care about preserving the last state just before the stream ends, be it a value or an error. So NOT last emitted state generally but last _before closing time_. With state I mean value or error.
+当你关心流结束前的最后状态是值还是异常时适合使用 `AsyncSubject`，注意不是通常所说的最后发出的状态，而是**关闭流前**的最后状态。这里的状态我指的是值或异常。
 
 ## BehaviourSubject
 
