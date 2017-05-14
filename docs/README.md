@@ -4,7 +4,7 @@
 
 可以在推特上@我提问，评论或以兹鼓励，我的推特账号是 chris_noring，我在那等着你们。
 
-阅读本书不必遵循特定的顺序，但如果你是 RxJS 新手的话建议先看一些基础篇章，比如 [Observable](observable-anatomy.md)、[Observer](observer.md) 和 [Producer](producer.md)
+阅读本书不必遵循特定的顺序，但如果你是 RxJS 新手的话建议先看一些基础篇章，比如 [Observable](./content/observable-anatomy.md)、[Observer](./content/observer.md) 和 [Producer](./content/producer.md)
 
 本书仍在编写的过程中，所以章节有可能添加和修改，但随着时间的流逝这种改动会越来越少，另外说句，本书的编写工作是从2017年2月21日开始的..
 
