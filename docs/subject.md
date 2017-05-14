@@ -95,13 +95,13 @@ replaySubject.next( 3 )
 let secondSubscriber( (value) => console.log(value) ) // 2,3
 ```
 
-**GOTCHA** It matters both when the `.next()` operation happens, the size of the cache as well as when your subscription is created.
+**陷阱** - 当 `.next()` 操作发生时，缓存的大小以及创建订阅的时间都很重要。
 
-In the example above it was demonstrated how to use the constructor using `bufferSize` argument in the constructor. However there also exist a `windowSize` argument where you can specify how long the values should remain in the cache. Set it to `null` and it remains in the cache indefinite.
+在上面的示例中，已经演示了如何在构造函数中使用 `bufferSize` 参数来使用构造函数。然而还有一个 `windowSize` 参数可以用来指定值应该在缓存中保存多久。把它设置为 `null` 的话将永久保存在缓存中。
 
-### Business case
+### 业务场景
 
-It's quite easy to imagine the business case here. You fetch some data and want the app to remember what was fetched latest, and what you fetched might only be relevant for a certain time and when enough time has passed you clear the cache.
+`replaySubject` 的业务场景很容易就想到。你获取一些数据并想让应用记住最新获取的数据，同时获取的内容可能只在一段时间内是有效的，并且在保留足够的时间后会清除缓存。
 
 ## AsyncSubject
 
