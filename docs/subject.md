@@ -15,7 +15,7 @@ subject.next( 2 )
 const subscription = subject.subscribe( (value) => console.log(value) )
 ```
 
-To sum it up the following operations exist on it:
+总结以下，它可以进行以下操作：
 
 ```javascript
 next([value])
@@ -25,9 +25,9 @@ subscribe()
 unsubscribe()
 ```
 
-## Acting as a proxy
+## 作为代理
 
-A `Subject` can act as a proxy, i.e receive values from another stream that the subscriber of the `Subject` can listen to.
+`Subject` 可以作为代理，也就是从另一个流接收值，而 `Subject` 的订阅者可以监听另外的这个流。
 
 ```javascript
 let source$ = Rx.Observable.interval(500).take(3);
