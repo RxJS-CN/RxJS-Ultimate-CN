@@ -117,16 +117,16 @@ asyncSubject.next( 1 );
 asyncSubject.next( 2 );
 ```
 
-Looking at this we expect 1,2 to be emitted right? WRONG. Nothing will be emitted unless `complete()` happen
+看这个示例，我们期望发出的值是1，2，没错吧？错！不会发出任何值除非执行了 `complete()`
 
 ```javascript
 asyncSubject.next( 3 )
 asyncSubject.complete()
 
-// emit 3
+// 发出 3
 ```
 
-`complete()` needs to happen regardless of the finishing operation before it succeeds or fails so
+`complete()` 需要执行，而不在乎它之前的操作是成功还是失败
 
 ```javascript
 asyncSubject( 3 )
