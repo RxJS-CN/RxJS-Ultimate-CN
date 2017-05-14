@@ -49,9 +49,9 @@ proxySubject.next( 3 )  // 发出3，然后是0 1 2 ( 异步的 )
 
 **陷阱** - 任何在订阅创建之前执行的 `next()` 就会丢失。下面会有其他类型的 Subject 可以解决这个问题。
 
-### Business case
+### 业务场景
 
-So what's interesting about this? It can listen to some source when that data arrives as well as it has the ability to emit its own data and all arrives to the same subscriber. Ability to communicate between components in a bus like manner is the most obvious use case I can think of. Component 1 can place its value through `next()` and Component 2 can subscribe and conversely Component 2 can emit values in turn that Component 1 can subscribe to.
+那么这有什么有趣的呢？当数据到达时，它可以监听一些数据源，同时还能够发出自己的数据，并且都能到达同一个订阅者。以总线方式在组件之间进行通信的能力是我能想到的最显而易见的用例。组件1可以通过 `next()` 来放置它的值，组件2可以订阅，反之亦然，组件2可以发出值，组件1可以订阅。
 
 ```javascript
 sharedService.getDispatcher = function(){
@@ -65,13 +65,13 @@ sharedService.dispatch = function(value){
 
 ## ReplaySubject
 
-prototype:
+原型:
 
 ```javascript
 new Rx.ReplaySubject([bufferSize], [windowSize], [scheduler])
 ```
 
-example:
+示例:
 
 ```javascript
 let replaySubject = new Rx.ReplaySubject( 2 );
