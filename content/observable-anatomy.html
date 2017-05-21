@@ -388,7 +388,7 @@
                 <a href="error-handling.html">
             
                     
-                    异常处理
+                    错误处理
             
                 </a>
             
@@ -582,7 +582,7 @@ stream$.subscribe((data) =&gt; {
 <span class="hljs-comment">// 1</span>
 </code></pre>
 <p>&#x5F53;&#x6267;&#x884C; <code>observer.next(&lt;value&gt;)</code> &#x65F6;&#xFF0C; <code>fnValue</code> &#x5C31;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;</p>
-<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570; <strong>fnError</strong> &#x662F;&#x5F02;&#x5E38;&#x56DE;&#x8C03;&#xFF0C;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6765;&#x8C03;&#x7528;&#xFF0C;&#x4F8B;&#x5982; <code>observer.error(&lt;message&gt;)</code></p>
+<p>&#x7B2C;&#x4E8C;&#x4E2A;&#x56DE;&#x8C03;&#x51FD;&#x6570; <strong>fnError</strong> &#x662F;&#x9519;&#x8BEF;&#x56DE;&#x8C03;&#xFF0C;&#x901A;&#x8FC7;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#x6765;&#x8C03;&#x7528;&#xFF0C;&#x4F8B;&#x5982; <code>observer.error(&lt;message&gt;)</code></p>
 <pre><code class="lang-javascript"><span class="hljs-keyword">let</span> stream$ = Rx.Observable.create((observer) =&gt; {
    observer.error(<span class="hljs-string">&apos;error message&apos;</span>);
 })
@@ -667,7 +667,7 @@ setTimeout(() =&gt; {
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Observable 剖析","level":"3.1","depth":1,"next":{"title":"Observer","level":"3.2","depth":1,"path":"content/observer.md","ref":"./content/observer.md","articles":[]},"previous":{"title":"安装设置","level":"2.4","depth":1,"path":"content/installation-and-setup.md","ref":"./content/installation-and-setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","edit-link"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/RxJS-CN/rxjs5-ultimate-cn"},"edit-link":{"label":"完善文档","base":"https://github.com/RxJS-CN/rxjs5-ultimate-cn/tree/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"RxJS 5 基本原理","gitbook":"3.2.2"},"file":{"path":"content/observable-anatomy.md","mtime":"2017-04-28T13:28:17.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-14T12:33:48.498Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Observable 剖析","level":"3.1","depth":1,"next":{"title":"Observer","level":"3.2","depth":1,"path":"content/observer.md","ref":"./content/observer.md","articles":[]},"previous":{"title":"安装设置","level":"2.4","depth":1,"path":"content/installation-and-setup.md","ref":"./content/installation-and-setup.md","articles":[]},"dir":"ltr"},"config":{"plugins":["github","edit-link"],"root":"docs","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"github":{"url":"https://github.com/RxJS-CN/rxjs5-ultimate-cn"},"edit-link":{"label":"完善文档","base":"https://github.com/RxJS-CN/rxjs5-ultimate-cn/tree/master/docs"},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"RxJS 5 基本原理","gitbook":"3.2.2"},"file":{"path":"content/observable-anatomy.md","mtime":"2017-05-21T11:11:42.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-05-21T11:15:14.914Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
