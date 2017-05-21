@@ -34,7 +34,7 @@
 * [数学操作符](./content/operators-mathematical.md)
 * [时间操作符](./content/operators-time.md)
 * [分组操作符](./content/operators-grouping.md)
-* [异常处理](./content/error-handling.md)
+* [错误处理](./content/error-handling.md)
 
 ### 烹饪宝典
 

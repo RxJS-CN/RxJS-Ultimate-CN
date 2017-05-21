@@ -22,7 +22,7 @@ stream$.subscribe((data) => {
 
 当执行 `observer.next(<value>)` 时， `fnValue` 就会被调用。
 
-第二个回调函数 **fnError** 是异常回调，通过下面的代码来调用，例如 `observer.error(<message>)`
+第二个回调函数 **fnError** 是错误回调，通过下面的代码来调用，例如 `observer.error(<message>)`
 
 ```javascript
 let stream$ = Rx.Observable.create((observer) => {
