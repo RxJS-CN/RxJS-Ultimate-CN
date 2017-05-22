@@ -35,7 +35,7 @@ let stream$ = Rx.Observable.of(1,2,3)
 .map(value => {
    if(value > 2) { throw 'error' }
 })
-retry(5)
+.retry(5)
 ```
 
 This will run the sequence of values 5 more times before finally giving up and hitting the error callback. However in this case, the way the code is written, it will just generate `1,2` five times. So our code isn't really utilizing the operator to its fullest potential. What you probably want is to be able to change something between attempts. Imagine your observable looked like this instead:
