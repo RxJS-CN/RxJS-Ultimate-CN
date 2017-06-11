@@ -2,7 +2,7 @@
   "title": "RxJS 5 基本原理",
   "gitbook": "3.2.2",
   "root": "docs",
-  "plugins": ["github", "edit-link"],
+  "plugins": ["github", "edit-link", "copy-code-button", "github-buttons"],
   "pluginsConfig": {
     "github": {
       "url": "https://github.com/RxJS-CN/rxjs5-ultimate-cn"
@@ -10,6 +10,14 @@
     "edit-link": {
       "base": "https://github.com/RxJS-CN/rxjs5-ultimate-cn/tree/master/docs",
       "label": "完善文档"
+    },
+    "github-buttons": {
+      "repo": "RxJS-CN/rxjs5-ultimate-cn",
+      "types": [
+        "star",
+        "fork"
+      ],
+      "size": "small"
     }
   }
 }
