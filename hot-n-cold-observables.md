@@ -44,7 +44,7 @@ setTimeout(() => {
 
 In the example above it isn't really hot, as a matter of fact both subscribers of the values will each receive `0,1,2,3,4`. As this is the live streaming of a football game it doesn't really act like we want it to, so how to fix it?
 
-Two components are needed to make something go from cold to hot. `publish()` and `connect()`. 
+Two components are needed to make something go from cold to hot. `publish()` and `connect()`.
 
 ```
 let publisher$ = Rx.Observable
@@ -73,10 +73,9 @@ publisher$.connect();
 
 In this case we see that the output for the first stream that starts to subscribe straight away is `0,1,2,3,4` whereas the second stream is emitting `3,4`. It's clear it matters when the subscription happens.
 
-
 ## Warm observables
 
-There is another type of observables that acts a lot like a hot observable but is in a way *lazy*. What I mean with this is that they are essentially not emitting any values until a subscriber arrives. Let's compare a hot and a warm observable
+There is another type of observables that acts a lot like a hot observable but is in a way _lazy_. What I mean with this is that they are essentially not emitting any values until a subscriber arrives. Let's compare a hot and a warm observable
 
 **hot observable**
 
@@ -91,26 +90,39 @@ stream$.connect();
 setTimeout(() => {
   stream$.subscribe(data => console.log(data))
 }, 2000);
-
 ```
+
 Here we can see that the hot observable will loose the first value being emitted as the subscribe arrives late to the party.
 
 Let's contrast this to our warm observable
 
 **warm observable**
+
 ```
 let obs = Rx.Observable.interval(1000).take(3).publish().refCount();
 
 setTimeout(() => {
     obs.subscribe(data => console.log('sub1', data));
-},1000)
+},1100)
 
 setTimeout(() => {
     obs.subscribe(data => console.log('sub2', data));
-},2000)
+},2100)
 ```
 
 The `refCount()` operator ensures this observable becomes warm, i.e no values are emitted until `sub1` subscribes. `sub2` on the other hand arrives late to the party, i.e that subscription receives the value its currently on and not the values from the beginning.
+
+So an output from this is
+
+```
+sub1 : 0
+sub1 : 1
+sub2 : 1
+sub1 : 2
+sub2 : 2
+```
+
+This shows the following, first subscriber starts from 0. Had it been hot it would have started at a higher number, i/e it would have been late to the party. When the second subscriber arrives it doesn't get 0 but rather 1 as the first number showing it has indeed become hot.
 
 ## Naturally hot observables
 
@@ -142,10 +154,11 @@ stream$.subscribe(
 
 If you set a breakpoint on `observer.next(1)` you will notice that it's being hit twice, once for every subscriber. This is the behaviour we expect from a cold observable. Sharing operator is a different way of turning something into  a hot observable, in fact it not only turns something hot under the right conditions but it falls back to being a cold observable under certain conditions. So what are these conditions ?
 
-1) **Created as hot Observable** : An Observable has not completed when a new subscription comes and subscribers > 0
+1\) **Created as hot Observable** : An Observable has not completed when a new subscription comes and subscribers &gt; 0
 
-2)   **Created as Cold Observable** Number of subscribers becomes 0 before a new subscription takes place. I.e a scenario where one or more subscriptions exist for a time but is being unsubscribed before a new one has a chance to happen
+2\)   **Created as Cold Observable** Number of subscribers becomes 0 before a new subscription takes place. I.e a scenario where one or more subscriptions exist for a time but is being unsubscribed before a new one has a chance to happen
 
-3) **Created as Cold Observable** when an Observable completed before a new subscription
+3\) **Created as Cold Observable** when an Observable completed before a new subscription
 
-Bottom line here is an *active* Observable producing values still and have at least one preexisting subscriber. We can see that the Observable in case 1) is dormant before a second subscriber happens and it suddenly becomes hot on the second subscriber and thereby starts sharing the data where it is. 
+Bottom line here is an _active_ Observable producing values still and have at least one preexisting subscriber. We can see that the Observable in case 1\) is dormant before a second subscriber happens and it suddenly becomes hot on the second subscriber and thereby starts sharing the data where it is.
+
