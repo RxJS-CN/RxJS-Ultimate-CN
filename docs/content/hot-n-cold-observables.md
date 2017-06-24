@@ -103,14 +103,26 @@ let obs = Rx.Observable.interval(1000).take(3).publish().refCount();
 
 setTimeout(() => {
     obs.subscribe(data => console.log('sub1', data));
-},1000)
+},1100)
 
 setTimeout(() => {
     obs.subscribe(data => console.log('sub2', data));
-},2000)
+},2100)
 ```
 
 `refCount()` 操作符确保 observable 变成暖的，也就是不会发出值直到 `sub1` 订阅了流。另一方面 `sub2` 是后加入的，也就是说订阅接收的是当前的值，而无法接收订阅之前的值。
+
+所以这个输出是：
+
+```javascript
+sub1 : 0
+sub1 : 1
+sub2 : 1
+sub1 : 2
+sub2 : 2
+```
+
+如上面显示的，第一个订阅者是从0开始。如果它是热的话，它会从一个更大的数字开始，因为它是后加入的。当第二个订阅者达到时，它得到的第一个数字不是0而是1，这也说明了它确实变热了。
 
 ## 天生的热 observables
 
