@@ -103,14 +103,26 @@ let obs = Rx.Observable.interval(1000).take(3).publish().refCount();
 
 setTimeout(() => {
     obs.subscribe(data => console.log('sub1', data));
-},1000)
+},1100)
 
 setTimeout(() => {
     obs.subscribe(data => console.log('sub2', data));
-},2000)
+},2100)
 ```
 
 The `refCount()` operator ensures this observable becomes warm, i.e no values are emitted until `sub1` subscribes. `sub2` on the other hand arrives late to the party, i.e that subscription receives the value its currently on and not the values from the beginning.
+
+So an output from this is
+
+```javascript
+sub1 : 0
+sub1 : 1
+sub2 : 1
+sub1 : 2
+sub2 : 2
+```
+
+This shows the following, first subscriber starts from 0. Had it been hot it would have started at a higher number, i/e it would have been late to the party. When the second subscriber arrives it doesn't get 0 but rather 1 as the first number showing it has indeed become hot.
 
 ## Naturally hot observables
 
