@@ -8,9 +8,9 @@ Found on github link [https://github.com/kwintenp/rx-devtools](https://github.co
 
 Very nice tool for visualising what your code does and what values will be emitted.
 
- Here is a code on how to run it inside of an Angular project:
+Here is a code on how to run it inside of an Angular project:
 
-```
+```js
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
@@ -32,6 +32,4 @@ export class AppComponent {
 ## RxFiddle
 
 Just go to the page [http://rxfiddle.net/\#type=editor](http://rxfiddle.net/#type=editor) and start writing your RxJS expressions. It will show you a visual of what a run looks like. It doesn't get any simpler.
-
-
 
