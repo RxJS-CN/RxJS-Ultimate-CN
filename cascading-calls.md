@@ -1,20 +1,25 @@
-#Cascading calls 
-As cascading call means that based on what call happening another call should take place and possibly another one based on that.
+# Cascading calls
+
+A cascading call means that based on what call is happening another call should take place and possibly another one based on that.
 
 ## Dependant calls
+
 A dependant call means the calls needs to happen in order. Call 2 must happen after Call 1 has returned. It might even be possible that Call2 needs be specified using data from Call 1.
 
 Imagine you have the following scenario:
-- A user needs to login first
-- Then we can fetch their user details
-- Then we can fetch their orders
+
+* A user needs to login first
+* Then we can fetch their user details
+* Then we can fetch their orders
 
 ### Promise approach
+
 ```
 login()
      .then(getUserDetails)
      .then(getOrdersByUser)
 ```
+
 ### Rxjs approach
 
 ```
@@ -33,17 +38,20 @@ stream$.subscribe((orders) => {
 })
 
 // Array of orders
-```      
+```
 
-I've simplied this one a bit in the Rxjs example but imagine instead of 
+I've simplied this one a bit in the Rxjs example but imagine instead of
 
 ```
 Rx.Observable.of()
 ```
+
 it does the proper `ajax()` call like in [Operators and Ajax](/operators-and-ajax.md)
+
 ## Semi dependant
-- We can fetch a users details
-- Then we can fetch Orders and Messages in parallell.
+
+* We can fetch a users details
+* Then we can fetch Orders and Messages in parallell.
 
 ### Promise approach
 
@@ -73,13 +81,9 @@ stream$.subscribe((result) => {
   console.log('Messages', result[1]);
 
 })
-
 ```
 
 ## GOTCHAS
 
 We are doing `switchMap()` instead of `flatMap()` so we can abandon an ajax call if necessary, this will make more sense in [Auto complete recipe](/recipes.md)
-
-
-
 
