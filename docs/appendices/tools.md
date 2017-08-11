@@ -1,14 +1,14 @@
-# Tools
+# 工具
 
-The idea with this section is to list nice tools that helps you when writing RxJS code
+本章节的主题是罗列一些不错的公爵，可以帮助你来编写 RxJS 代码。
 
-## RxJS DevTools
+## RxJS 开发者工具
 
-Found on github link [https://github.com/kwintenp/rx-devtools](https://github.com/kwintenp/rx-devtools) The README lists how to install the the npm/ yarn module and also the chrome plugin.
+可以通过 GitHub 链接 [https://github.com/kwintenp/rx-devtools](https://github.com/kwintenp/rx-devtools) 找到它。README 列出了如何通过 npm/yarn 模块和 Chrome 插件来安装。
 
-Very nice tool for visualising what your code does and what values will be emitted.
+非常不错的可视化工具，可以很直观的看出代码做了那些事以及发出了什么值。
 
-Here is a code on how to run it inside of an Angular project:
+下面是如何在 Angular 项目中运行的代码:
 
 ```javascript
 import { Observable } from 'rxjs/Observable';
@@ -31,4 +31,4 @@ export class AppComponent {
 
 ## RxFiddle
 
-Just go to the page [http://rxfiddle.net/#type=editor](http://rxfiddle.net/#type=editor) and start writing your RxJS expressions. It will show you a visual of what a run looks like. It doesn't get any simpler.
+只需进入页面 [http://rxfiddle.net/#type=editor](http://rxfiddle.net/#type=editor) 并开始编写 RxJS 表达式即可。它会显示一个运行的视觉效果。没有比这更简单的了。
