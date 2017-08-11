@@ -50,5 +50,6 @@
 
 ### 附录
 
+* [工具](appendices/tools.md)
 * [附录 I - ngrx](appendices/appendix-i-ngrx.md)
 * [附录 II - 构建自己的 RxJS](appendices/appendix-ii-build-your-own-rxjs.md)
