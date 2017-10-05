@@ -79,7 +79,7 @@ app-buffer.js:31 values ajax based on fghfgh
 As you can see we could potentially store a whole lot more about a user than just the fact that they made an auto complete search, we can store how they type and that may or may not be interesting..
 
 **Double click**  
-In the example above I've showed how it could be intersting to capture groups of keys but another group of UI events of possible interests are mouse clicks, namely for capturing single, double or triple clicks. This is quite inelegant code to write if not in Rxjs but with it, it's a breeze:
+In the example above I've showed how it could be interesting to capture groups of keys but another group of UI events of possible interests are mouse clicks, namely for capturing single, double or triple clicks. This is quite inelegant code to write if not in Rxjs but with it, it's a breeze:
 
 ```js
 let btn = document.getElementById('btn2');
