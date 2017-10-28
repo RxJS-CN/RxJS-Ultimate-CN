@@ -10,4 +10,5 @@
 
 ## 更新记录
 
+  * 2017-10-28 内容更新 - [【烹饪宝典 | 菜谱 - auto complete】](https://rxjs-cn.github.io/rxjs5-ultimate-cn/content/recipes-auto-complete.html) | [【烹饪宝典 | 菜谱 - infinte scroll】](https://rxjs-cn.github.io/rxjs5-ultimate-cn/content/recipes-infinte-scroll.html)
   * 2017-08-11 添加章节 - [【附录 | 工具】](https://rxjs-cn.github.io/rxjs5-ultimate-cn/appendices/tools.html)
