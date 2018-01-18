@@ -9,7 +9,7 @@ TH Rxjs lib can be consumed in many different ways, namely `ES6`, `CommonJS` and
 ### Install
 ```
 
-npm install Rxjs
+npm install rxjs
 
 ```
 
@@ -46,7 +46,7 @@ Same install as with ES6
 ### Install
 ```
 
-npm install Rxjs
+npm install rxjs
 
 ```
 
