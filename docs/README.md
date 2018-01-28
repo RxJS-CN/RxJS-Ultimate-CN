@@ -10,6 +10,8 @@
 
 如果你喜欢 RxJS / RxJS 5 的话，请务必在推特上@ BenLesh 或 mattpodwysocki 等人并说句 thank you 或者 good job 。对于他们来说这意义非凡..
 
+我将本书同步至 GitHub 仓库中。如果你想参与贡献或帮忙纠错，请前往 https://github.com/softchris/Rxjs5-Ultimate 提 PR 。
+
 Chris Noring
 
 > ### 译者的补充

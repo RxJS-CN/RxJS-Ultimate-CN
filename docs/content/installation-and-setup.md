@@ -9,7 +9,7 @@ RxJS 库可以以多种不同的方式来使用，即 `ES6`、`CommonJS` 和 `ES
 ### 安装
 
 ```shell
-npm install Rxjs
+npm install rxjs
 ```
 
 ### 设置
@@ -43,7 +43,7 @@ stream$.subscribe((val) => {
 ### 安装
 
 ```shell
-npm install Rxjs
+npm install rxjs
 ```
 
 ### 设置
