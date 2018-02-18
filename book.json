@@ -12,12 +12,19 @@
       "label": "完善文档"
     },
     "github-buttons": {
-      "repo": "RxJS-CN/rxjs5-ultimate-cn",
-      "types": [
-        "star",
-        "fork"
-      ],
-      "size": "small"
+      "buttons": [{
+        "user" : "RxJS-CN",
+        "repo" : "rxjs5-ultimate-cn",
+        "type" : "fork",
+        "size" : "small",
+        "count": true
+      }, {
+        "user" : "RxJS-CN",
+        "repo" : "rxjs5-ultimate-cn",
+        "type" : "star",
+        "size" : "small",
+        "count": true
+      }]
     }
   }
 }
