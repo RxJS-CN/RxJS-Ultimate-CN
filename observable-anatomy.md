@@ -30,8 +30,9 @@ let stream$ = Rx.Observable.create((observer) => {
 })
 
 stream$.subscribe(
-   (data) => console.log('Data', data)),
+   (data) => console.log('Data', data),
    (error) => console.log('Error', error)
+)
 ```
 
 Lastly we have the **fnComplete** and it should be invoked when a stream is done and has no more values to emit. It is triggered by a call to `observer.complete()` like so:
