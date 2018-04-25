@@ -70,9 +70,9 @@ of(1,2,3).pipe(
 ) // etc
 ```
 
-As you can see we go about it a little differently when we grab the ``of operator. It looks pretty much the same when we drill down to get the `map` operator. `` 
+As you can see we go about it a little differently when we grab the `of` operator. It looks pretty much the same when we drill down to get the `map` operator. 
 
-Notice also we just  to get the operator we want to import for our app.
+Notice that we will most likely find the operator we need from `rxjs/operators` and that we no longer use an `Observable` object
 
 ## CDN or ES5
 
