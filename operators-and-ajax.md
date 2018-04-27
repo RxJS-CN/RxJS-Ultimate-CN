@@ -6,33 +6,36 @@ There is an `ajax` operator on the Rx object.
 index.html
 ```
 <html>
-    <body>
-        <div id="result">
-
-        </div>
-        <script src="https://unpkg.com/@reactivex/rxjs@5.0.1/dist/global/Rx.js"></script>
+  <body>
+    <div id="result">
+    </div>
+    <script src="https://unpkg.com/@reactivex/rxjs@5.0.1/dist/global/Rx.js"></script>
         <script src="app.js"></script>
-    </body>
+  </body>
 </html>
 ```
 
 app.js
 ```
-let person$ = Rx.Observable
-  .ajax({
+import { ajax } from 'rxjs/ajax';
+import { map } from 'rxjs/operators';
+
+let person$ = .ajax({
       url : 'http://swapi.co/api/people/1',
       crossDomain: true, 
       createXHR: function () {
         return new XMLHttpRequest();
      }
     })
-  .map(e => e.response);
+  .pipe(
+    map(e => e.response)
+  );
 
 const subscription = person$
   .subscribe(res => {
-      let element = document.getElementById('result');
-      element.innerHTML = res.name
-      console.log(res)
+    let element = document.getElementById('result');
+    element.innerHTML = res.name
+    console.log(res)
   });
   
   ```
