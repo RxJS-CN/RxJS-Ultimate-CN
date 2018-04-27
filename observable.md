@@ -2,7 +2,9 @@
 Let's dive right in. We have created something called an Observable. An async construct, much like a promise that we can listen to once the data arrives.
 
 ```
-let stream$ = Rx.Observable.from([1,2,3])
+import { from } from 'rxjs';
+
+let stream$ = from([1,2,3])
 
 stream$.subscribe( (value) => {
    console.log('Value',value);
