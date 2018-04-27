@@ -135,14 +135,19 @@ So `debounceTime()` is an operator that tells you: I will not emit the data all 
 Debounce is a known concept especially when you type keys on a keyboard. It's a way of saying we don't care about every keyup but once you stop typing for a while we should care. That, is how you would normally start an auto complete. Say your user hasn't typed for x miliseconds that probably means we should be doing an ajax call and retrieve a result.
 
 ```
+import { fromEvent } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
+
 const input = document.getElementById('input');
 
-const example = Rx.Observable
-  .fromEvent(input, 'keyup')
-  .map(i => i.currentTarget.value);
+const example = fromEvent(input, 'keyup').pipe(
+  map(i => i.currentTarget.value)
+);
 
 //wait 0.5s, between keyups, throw away all other values
-const debouncedInput = example.debounceTime(500);
+const debouncedInput = example.pipe(
+  debounceTime(500)
+);
 
 const subscribe = debouncedInput.subscribe(val => {
   console.log(`Debounced Input: ${val}`);
@@ -157,11 +162,18 @@ TODO
 This operator has the ability to record x number of emitted values before it outputs its values, this one comes with one or two input parameters.
 
 ```
-.buffer( whenToReleaseValuesStartObservable )
+import { buffer } from 'rxjs/operators';
+
+
+
+buffer( whenToReleaseValuesStartObservable )
 
 or
 
-.buffer( whenToReleaseValuesStartObservable, whenToReleaseValuesEndObservable )
+buffer( 
+  whenToReleaseValuesStartObservable, 
+  whenToReleaseValuesEndObservable 
+)
 
 ```
 
@@ -169,10 +181,16 @@ So what does this mean?
 It means given we have for example a click of streams we can cut it into nice little pieces where every piece is equally long. Using the first version with one parameter we can give it a time argument, let's say 500 ms. So something emits values for 500ms then the values are emitted and another Observable is started, and the old one is abandoned. It's much like using a stopwatch and record for 500 ms at a time. Example :
 
 ```
-let scissor$ = Rx.Observable.interval(500)
+import { interval } from 'rxjs';
+import { take, buffer } from 'rxjs/operators';
 
-let emitter$ = Rx.Observable.interval(100).take(10) // output 10 values in total
-.buffer( scissor$ )
+let scissor$ = interval(500);
+
+let emitter$ = interval(100).pipe(
+  take(10),
+  .buffer( scissor$ )
+) // output 10 values in total
+
 
 // [0,1,2,3,4] 500ms [5,6,7,8,9]
 ```
