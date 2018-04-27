@@ -5,7 +5,9 @@ Wrapping something in an observable means we take something that is NOT an Obser
 
 ## Wrapping an ajax call 
 ```
-let stream = Rx.Observable.create((observer) => {
+import { Observable } from 'rxjs';
+
+let stream = Observable.create((observer) => {
    let request = new XMLHttpRequest();
 
    request.open( ‘GET’, ‘url’ );
