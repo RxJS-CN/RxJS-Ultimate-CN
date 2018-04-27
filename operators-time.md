@@ -10,13 +10,17 @@ This is not an easy topic. There are many areas of application here, either you 
 This operator is used to construct an Observable and essentially what it does is to pump values at regular interval, signature:
 
 ```
-Rx.Observable.interval([ms])
+import { interval } from 'rxjs';
+
+interval([ms])
 ```
 
 Example usage:
 
 ```
-Rx.Observable.interval(100)
+import { interval } from 'rxjs';
+
+interval(100)
 
 // generates forever
 ```
@@ -24,7 +28,9 @@ Rx.Observable.interval(100)
 Because this one will generate values forever you tend to want to combine it with the `take()` operator that limits the amount of values to generate before calling it quits so that would look like :
 
 ```
-Rx.Observable.interval(1000).take(3)
+import { interval } from 'rxjs';
+
+interval(1000).take(3)
 
 // generates 1,2,3
 ```  
@@ -33,13 +39,17 @@ Rx.Observable.interval(1000).take(3)
 Timer is an interesting one as it can act in several ways depending on how you call it. It's signature is
 
 ```
-Rx.Observable.timer([initial delay],[thereafter])
+import { timer } from 'rxjs';
+
+timer([initial delay],[thereafter])
 ```
 However only the initial args is mandatory so depending on the number of args used these are the different types that exist because of it.
 
 **one-off**
 ```
-let stream$ = Rx.Observable.timer(1000);
+import { timer } from 'rxjs';
+
+let stream$ = timer(1000);
 
 stream$.subscribe(data => console.log(data));
 
@@ -50,7 +60,12 @@ This becomes a one-ff as we don't define when the next value should happen.
 
 **with 2nd arg specified**
 ```
-let moreThanOne$ = Rx.Observable.timer(2000, 500).take(3);
+import { timer } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+let moreThanOne$ = timer(2000, 500).pipe(
+  take(3)
+);
 
 moreThanOne$.subscribe(data => console.log('timer with args', data));
 
@@ -63,14 +78,20 @@ So this one is more flexible and keeps emitting values according to 2nd argument
 `delay()` is an operator that delays every value being emitted
 Quite simply it works like this :
 ```
-var start = new Date();
-let stream$ = Rx.Observable.interval(500).take(3);
+import { interval } from 'rxjs';
+import { take, delay } from 'rxjs/operators';
 
-stream$
-.delay(300)
+var start = new Date();
+let stream$ = interval(500).pipe(
+  take(3)
+);
+
+stream$.pipe(
+  delay(300)
+)
 .subscribe((x) => {
-    console.log('val',x);
-    console.log( new Date() - start );
+  console.log('val',x);
+  console.log( new Date() - start );
 })
 
 //0 800ms, 1 1300ms,2 1800ms
