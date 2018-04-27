@@ -210,12 +210,13 @@ So whats the business case for this one?
 
 ```
 
-$('#btn').bind('click', function(){
-  if(!start) { start = timer.start(); }
+$('#btn').bind('click', () => {
+  if(!start) { 
+    start = timer.start(); 
+  }
   timePassedSinceLastClickInMs = now - start;
-  if(timePassedSinceLastClickInMs < 250) {
-     console.log('double click');
-       
+  if (timePassedSinceLastClickInMs < 250) {
+    console.log('double click'); 
   } else {
      console.log('single click')
   }
@@ -242,24 +243,28 @@ So let's say I do, then what?
 You want the stream to group itself nicely so it tells us about this, i.e it needs to emit these clicks as a group. `filter()` as an operator lets us do just that. If we define let's say 300ms is a long enough time to collect events on, we can slice up our time from 0 to forever in chunks of 300 ms with the following code:  
 
 ```
-let clicks$ = Rx.Observable.fromEvent(document.getElementById('btn'), 'click');
+import { fromEvent, interval } from 'rxjs';
+import { buffer } from 'rxjs/operators';
 
-let scissor$ = Rx.Observable.interval(300);
+let clicks$ = fromEvent(document.getElementById('btn'), 'click');
 
-clicks$.buffer( scissor$ )
-      //.filter( (clicks) => clicks.length >=2 )
-      .subscribe((value) => {
-          if(value.length === 1) {
-            console.log('single click')
-          }
-          else if(value.length === 2) {
-            console.log('double click')
-          }
-          else if(value.length === 3) {
-            console.log('triple click')
-          }
-          
-      });
+let scissor$ = interval(300);
+
+clicks$.pipe(
+  buffer( scissor$ )
+    //.filter( (clicks) => clicks.length >=2 )
+    .subscribe((value) => {
+      if(value.length === 1) {
+        console.log('single click')
+      }
+      else if(value.length === 2) {
+        console.log('double click')
+      }
+      else if(value.length === 3) {
+        console.log('triple click')
+      }
+    })
+);
 ```
 
 Read the code in the following way, the buffer stream, `clicks$` will emit its values every 300ms, 300 ms is decided by `scissor$` stream. So the `scissor$` stream is the scissor, if you will, that cuts up our click stream and voila we have an elegant `double click` approach. As you can see the above code captures all types of clicks but by uncommenting the `filter()` operation we get only `double clicks` and `triple clicks`. 
