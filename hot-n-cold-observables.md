@@ -59,7 +59,7 @@ import { take, publish } from 'rxjs/operators';
 
 let publisher$ = 
 interval(1000).pipe(
-  take(5)
+  take(5),
   publish()
 );
 
@@ -96,7 +96,7 @@ import { take, publish } from 'rxjs/operators';
 
 let stream$ = 
 interval(1000).pipe(
-  take(4)
+  take(4),
   publish()
 );
 
@@ -114,14 +114,21 @@ Let's contrast this to our warm observable
 **warm observable**
 
 ```
-let obs = Rx.Observable.interval(1000).take(3).publish().refCount();
+import { interval } from 'rxjs';
+import { take, publish, refCount } from 'rxjs/operators';
+
+let obs = interval(1000).pipe(
+  take(3),
+  publish(),
+  refCount()
+);
 
 setTimeout(() => {
-    obs.subscribe(data => console.log('sub1', data));
+  obs.subscribe(data => console.log('sub1', data));
 },1100)
 
 setTimeout(() => {
-    obs.subscribe(data => console.log('sub2', data));
+  obs.subscribe(data => console.log('sub2', data));
 },2100)
 ```
 
@@ -148,7 +155,9 @@ Generally something is considered hot if the values are emitted straight away wi
 Sharing means using a useful operator called `share()`. Imagine you have the following normal cold observable case :
 
 ```
-let stream$ = Rx.Observable.create((observer) => {
+import { Observable } from 'rxjs';
+
+let stream$ = Observable.create((observer) => {
     observer.next( 1 );
     observer.next( 2 );
     observer.next( 3 );
