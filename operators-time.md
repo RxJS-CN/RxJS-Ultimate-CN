@@ -111,13 +111,15 @@ What I mean by that is that events are only fired at specific points
 So the ability to ignore events for x miliseconds is pretty useful. Imagine a save button being repeatedly pushed. Wouldn't it be nice to only act after x miliseconds and ignore the other pushes ?
 
 ```
+import { fromEvent } from 'rxjs';
+import { sampleTime } from 'rxjs/operators';
+
 const btn = document.getElementById('btnIgnore');
 var start = new Date();
 
-const input$ = Rx.Observable
-  .fromEvent(btn, 'click')
-
-  .sampleTime(2000);
+const input$ = fromEvent(btn, 'click').pipe(
+  sampleTime(2000)
+);
 
 input$.subscribe(val => {
   console.log(val, new Date() - start);
