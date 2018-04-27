@@ -4,7 +4,9 @@ There are hot and cold observables. Let's talk about what a cold observable is. 
 
 ```
 // cold observable example
-let stream$ = Rx.Observable.of(1,2,3);
+import { of } from 'rxjs';
+
+let stream$ = of(1,2,3);
 //subscriber 1: 1,2,3
 stream.subscribe(
    data => console.log(data),
@@ -23,7 +25,12 @@ stream.subscribe(
 In a hot observable a subscriber receives values when it starts to subscribe, it is however more like a live streaming in football, if you start subscribing 5 minutes in the game, you will have missed the first 5 minutes of action and you start receiving data from that moment on:
 
 ```
-let liveStreaming$ = Rx.Observable.interval(1000).take(5);
+import { interval } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+let liveStreaming$ = interval(1000).pipe(
+  take(5)
+);
 
 liveStreaming$.subscribe( 
   data => console.log('subscriber from first minute')
@@ -47,10 +54,14 @@ In the example above it isn't really hot, as a matter of fact both subscribers o
 Two components are needed to make something go from cold to hot. `publish()` and `connect()`.
 
 ```
-let publisher$ = Rx.Observable
-.interval(1000)
-.take(5)
-.publish();
+import { interval } from 'rxjs';
+import { take, publish } from 'rxjs/operators';
+
+let publisher$ = 
+interval(1000).pipe(
+  take(5)
+  publish()
+);
 
 
 publisher$.subscribe( 
@@ -80,10 +91,14 @@ There is another type of observables that acts a lot like a hot observable but i
 **hot observable**
 
 ```
-let stream$ = Rx.Observable
-.interval(1000)
-.take(4)
-.publish();
+import { interval } from 'rxjs';
+import { take, publish } from 'rxjs/operators';
+
+let stream$ = 
+interval(1000).pipe(
+  take(4)
+  publish()
+);
 
 stream$.connect();
 
