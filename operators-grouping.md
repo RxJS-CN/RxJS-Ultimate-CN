@@ -11,10 +11,14 @@ buffer([breakObservable])
 Buffer itself means we wait with emitting any values until the `breakObservable` happens. An example of that is the following:
 
 ```js
-let breakWhen$ = Rx.Observable.timer(1000);
+import { timer, interval } from 'rxjs';
+import { buffer } from 'rxjs/operators';
 
-let stream$ = Rx.Observable.interval(200)
-.buffer( breakWhen$ );
+let breakWhen$ = timer(1000);
+
+let stream$ = interval(200).pipe(
+  buffer( breakWhen$ )    
+);
 
 stream$.subscribe((data) => console.log( 'values',data ));
 ```
@@ -31,15 +35,22 @@ The most obvious case when dealing with the `buffer()` operator is an `auto comp
   The important thing though is that the search itself is carried out as you are typing, either it's carried out because you typed x number of characters or the more common approach is to let you finish typing and do the search, you could be editing as you type. So let's take our first step into such a solution:
 
 ```js
+import { fromEvent, timer } from 'rxjs';
+import { debounceTime, map, buffer } from 'rxjs/operators';
+
+
 let input = document.getElementById('example');
-let input$  = Rx.Observable.fromEvent( input, 'keyup' )
+let input$  = fromEvent( input, 'keyup' )
 
-let breakWhen$ = Rx.Observable.timer(1000);
-let debounceBreak$ = input$.debounceTime( 2000 );
+let breakWhen$ = timer(1000);
+let debounceBreak$ = input$.pipe(
+  debounceTime( 2000 )
+);
 
-let stream$ = input$
-.map( ev => ev.key )
-.buffer( debounceBreak$ );
+let stream$ = input$.pipe(
+  map( ev => ev.key )
+  buffer( debounceBreak$ )
+);
 
 stream$.subscribe((data) => console.log( 'values',data ));
 ```
@@ -47,21 +58,26 @@ stream$.subscribe((data) => console.log( 'values',data ));
 We capture `keyup` events. We also use a `debounce()` operator that essentially says; I will emit values once you stopped typing for x miliseconds. This solution is just a first step on the way however as it is reporting the exact keys being typed. A better solution would be to capture the input element's actual content and also to perform an ajax call, so let's look at a more refined solution:
 
 ```js
+import { fromEvent, timer } from 'rxjs';
+import { debounceTime, map, buffer, switchMap } from 'rxjs/operators';
+
 let input = document.getElementById('example');
-let input$  = Rx.Observable.fromEvent( input, 'keyup' )
+let input$  = fromEvent(input, 'keyup');
 
-let breakWhen$ = Rx.Observable.timer(1000);
-let debounceBreak$ = input$.debounceTime( 2000 );
+let breakWhen$ = timer(1000);
+let debounceBreak$ = input$.pipe(
+  debounceTime( 2000 )
+);
 
-let stream$ = input$
-.map( ev => { 
-    return ev.key })
-.buffer( debounceBreak$ )
-.switchMap((allTypedKeys) => {
+let stream$ = input$.pipe(
+  map( ev => ev.key),
+  buffer(debounceBreak$),
+  switchMap((allTypedKeys) => {
     // do ajax
     console.log('Everything that happened during 2 sec', allTypedKeys)
-    return Rx.Observable.of('ajax based on ' + input.value);
-});
+    return of('ajax based on ' + input.value);
+  });
+);
 
 stream$.subscribe((data) => console.log( 'values',data ));
 ```
@@ -82,15 +98,21 @@ As you can see we could potentially store a whole lot more about a user than jus
 In the example above I've showed how it could be interesting to capture groups of keys but another group of UI events of possible interests are mouse clicks, namely for capturing single, double or triple clicks. This is quite inelegant code to write if not in Rxjs but with it, it's a breeze:
 
 ```js
+import { fromEvent } from 'rxjs';
+import { debounceTime, buffer, map, filter } from 'rxjs/operators';
+
 let btn = document.getElementById('btn2');
-let btn$  = Rx.Observable.fromEvent( btn, 'click' )
+let btn$  = fromEvent(btn, 'click')
 
-let debounceMouseBreak$ = btn$.debounceTime( 300 );
+let debounceMouseBreak$ = btn$.pipe(
+  debounceTime(300)
+);
 
-let btnBuffered$ = btn$
-.buffer( debounceMouseBreak$ )
-.map( array => array.length )
-.filter( count => count >= 2 )
+let btnBuffered$ = btn$.pipe(
+  buffer( debounceMouseBreak$),
+  map( array => array.length),
+  filter( count => count >= 2)
+)
 ;
 
 btnBuffered$.subscribe((data) => console.log( 'values',data ));
@@ -109,9 +131,13 @@ bufferTime([ms])
 The idea is to record everything that happens during that time slice and output all the values. Below is an example of recording all activities on an input in 1 second time slices.
 
 ```js
+import { fromEvent } from 'rxjs';
+import { bufferTime } from 'rxjs/operators';
+
 let input = document.getElementById('example');
-let input$  = Rx.Observable.fromEvent( input, 'input' )
-.bufferTime(1000);
+let input$  = fromEvent( input, 'input').pipe(
+  bufferTime(1000)
+);
 
 input$.subscribe((data) => console.log('all inputs in 1 sec', data));
 ```
@@ -125,10 +151,14 @@ all inputs in 1 sec [ Event, Event... ]
 Not so usable maybe so we probably need to make it nice with a `filter()` to see what was actually typed, like so:
 
 ```js
+import { fromEvent } from 'rxjs';
+import { map, bufferTime } from 'rxjs/operators';
+
 let input = document.getElementById('example');
-let input$  = Rx.Observable.fromEvent( input, 'keyup' )
-.map( ev => ev.key)
-.bufferTime(1000);
+let input$  = fromEvent( input, 'keyup').pipe(
+  map( ev => ev.key),
+  bufferTime(1000)
+);
 
 input$.subscribe((data) => console.log('all inputs in 1 sec', data));
 ```
