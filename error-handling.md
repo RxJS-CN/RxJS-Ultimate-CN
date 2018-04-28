@@ -13,10 +13,14 @@ retry([times])
 The important thing to note with the `retry()` operator is that it delays when the error callback is being called. Given the following code the error callback is being hit straight away:
 
 ```
-let stream$ = Rx.Observable.of(1,2,3)
-.map(value => {
-   if(value > 2) { throw 'error' }
-});
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+let stream$ = of(1,2,3).pipe(
+  map(value => {
+    if(value > 2) { throw 'error' }
+  })
+);
 
 stream$.subscribe(
    data => console.log(data),
@@ -26,16 +30,22 @@ stream$.subscribe(
 The stream effectively dies when the error callback is being hit and this is where the `rety()` operator comes in. By appending it like so:
 
 ```
-let stream$ = Rx.Observable.of(1,2,3)
-.map(value => {
+import { of } from 'rxjs';
+
+let stream$ = of(1,2,3).pipe(
+  map(value => {
    if(value > 2) { throw 'error' }
-})
-retry(5)
+  }),
+  retry(5)
+)
+
 ```
 This will run the sequence of values 5 more times before finally giving up and hitting the error callback. However in this case, the way the code is written, it will just generate `1,2` five times. So our code isn't really utilizing the operator to its fullest potential. What you probably want is to be able to change something between attempts. Imagine your observable looked like this instead:
 
 ```
-let urlsToHit$ = Rx.Observable.of(url, url2,url3);
+import { of } from 'rxjs';
+
+let urlsToHit$ = of(url, url2, url3);
 ```
 In this its clearly so that an endpoint might have answered badly or not at all on your first attempt and it makes sense to retry them x number of times.
 
@@ -51,43 +61,57 @@ retryWhen( stream => {
 ```
 
 Lets' write a piece of naive code for a second
+
 ```
-let values$ = Rx.Observable
-.of( 1,2,3,4 )
-.map(val => {
-    if(val === 2) { throw 'err'; }
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+let values$ = of( 1,2,3,4 ).pipe(
+  map(val => {
+    if(val === 2) { 
+      throw 'err'; 
+    }
     else return val;
-})
-.retryWhen( stream => {
+  }),
+  retryWhen( stream => {
     return stream;
-} );
+  })
+);
 
 values$.subscribe(
-    data => console.log('Retry when - data',data),
-    err => console.error('Retry when - Err',err)
+  data => console.log('Retry when - data',data),
+  err => console.error('Retry when - Err',err)
 )
 ```
 The way it's written it will return `1` until we run out of memory cause the algorithm will always crash on the value `2` and will keep retrying the stream forever, due to our lack of end condition. What we need to do is to somehow say that the error is fixed. If the stream were trying to hit urls instead of emitting numbers a responding endpoint would be the fix but in this case we have to write something like this:
 
 ```
-let values$ = Rx.Observable.interval(1000).take(5);
+import { interval } from 'rxjs';
+import { take, map } from 'rxjs/operators';
+
+let values$ = interval(1000).pipe(
+  take(5)
+)
+
 let errorFixed = false;
 
-values$
-.map((val) => {
-   if(errorFixed) { return val; }
+values$.pipe(
+  map((val) => {
+   if(errorFixed) { 
+     return val; 
+   }
    else if( val > 0 && val % 2 === 0) {
-      errorFixed = true;
-      throw { error : 'error' };
-
+     errorFixed = true;
+     throw { error : 'error' };
    } else {
       return val;
    }
-})
-.retryWhen((err) => {
-    console.log('retrying the entire sequence');
-    return err;
-})
+ }),
+ retryWhen((err) => {
+   console.log('retrying the entire sequence');
+   return err;
+ })
+)
 .subscribe((val) => { console.log('value',val) })
 
 // 0 1 'wait 200ms' retrying the whole sequence 0 1 2 3 4
@@ -113,27 +137,33 @@ So far `retry()` operator has been used when we wanted to retry the sequence x t
 We need to think about us somehow remembering the number of attempts we have made so far. It's very tempting to introduce an external variable and keep that count, but that's not how we do things the functional way, remember side effects are forbidden. So how do we solve it?  There is an operator called `scan()` that will allow us to accumulate values for every iteration. So if you use scan inside of the `retryWhen()` we can track our attempts that way:
 
 ```
+import { of } from 'rxjs';
+import { map, retryWhen } from 'rxjs/operators';
+
 let ATTEMPT_COUNT = 3;
 let DELAY = 1000;
-let delayWithTimes$ = Rx.Observable.of(1,2,3)
-.map( val => {
-  if(val === 2) throw 'err'
-  else return val;
-})
-.retryWhen(e => e.scan((errorCount, err) => {
+let delayWithTimes$ = of(1,2,3).pipe(
+  map( val => {
+    if(val === 2) {
+      throw 'err'
+    }
+    else {
+      return val;
+    }
+  }),
+  retryWhen(e => e.scan((errorCount, err) => {
     if (errorCount >= ATTEMPT_COUNT) {
-        throw err;
+      throw err;
     }
     return errorCount + 1;
-}, 0).delay(DELAY));
+  }, 0).delay(DELAY));
+);
 
 delayWithTimes$.subscribe(
-    val => console.log('delay and times - val',val),
-    err => console.error('delay and times - err',err)
+  val => console.log('delay and times - val',val),
+  err => console.error('delay and times - err',err)
 )
 ```
-
-
 
 ## Transform - nothing to see here folks
 This approach is when you get an error and you choose to remake it into a valid Observable.
@@ -141,7 +171,9 @@ This approach is when you get an error and you choose to remake it into a valid 
 So lets exemplify this by creating an Observable who's mission in life is to fail miserably
 
 ```
-let error$ = Rx.Observable.throw('crash');
+import { throwError } from 'rxjs/operators';
+
+let error$ = Rx.Observable.throwError('crash');
 
 error$.subscribe( 
   data => console.log( data ),
@@ -150,10 +182,16 @@ error$.subscribe(
 )
 ```
 This code will only execute the error callback and NOT reach the complete callback. 
+
 ### Patching it
 We can patch this by introducing the `catch()` operator. It is used like this:
 ```
-let errorPatched$ = error$.catch(err => { return Rx.Observable.of('Patched' + err) });
+import { of } from 'rxjs';
+
+let errorPatched$ = error$.catch(
+  err => { return of('Patched' + err) }
+);
+  
 errorPatched$.subscribe((data) => console.log(data) );
 ```
 As you can see `patching it` with `.catch()` and returning a new Observable *fixes* the stream. Question is if that is what you want. Sure the stream survives and reaches completion and can emit any values that happened after the point of crash. 
@@ -164,20 +202,24 @@ If this is not what you want then maybe the Retry approach above suits you bette
 You didn't think it would be that easy did you? Usually when coding Rxjs code you deal with more than one stream and using `catch()` operator approach is great if you know where to place your operator.
 
 ```
-let badStream$ = Rx.Observable.throw('crash');
-let goodStream$ = Rx.Observable.of(1,2,3,);
+import { of, merge } from 'rxjs';
+import { throwError } from 'rxjs/operators';
 
-let merged$ = Rx.Observable.merge(
+let badStream$ = throwError('crash');
+let goodStream$ = of(1,2,3,);
+
+let merged$ = merge(
   badStream$,
   goodStream$
 );
 
 merged$.subscribe(
-   data => console.log(data),
-   err => console.error(err),
-   () => console.log('merge completed') 
+  data => console.log(data),
+  err => console.error(err),
+  () => console.log('merge completed') 
 )
 ```
+
 Care to guess what happened?
 1) crash + values is emitted + complete
 2) crash + values is emitted
@@ -191,15 +233,17 @@ S we need to patch the error. We do patching with `catch()` operator. Question i
 Let's try this?
 
 ```
-let mergedPatched$ = Rx.Observable.merge(
-    badStream$,
-    goodStream$
-).catch(err => Rx.Observable.of(err));
+import { merge, of } from 'rxjs';
+
+let mergedPatched$ = merge(
+  badStream$,
+  goodStream$
+).catch(err => of(err));
 
 mergedPatched$.subscribe(
-    data => console.log(data),
-    err => console.error(err),
-    () => console.log('patchedMerged completed')
+  data => console.log(data),
+  err => console.error(err),
+  () => console.log('patchedMerged completed')
 )
 
 ```
@@ -210,15 +254,17 @@ So better approach but still not good enough.
 So adding the `catch()` operator after the `merge()` ensured the stream completed but it wasn't good enough. Let's try to change the placement of `catch()`, pre merge.
 
 ```
-let preMergedPatched$ = Rx.Observable.merge(
-    badStream$.catch(err => Rx.Observable.of(err)),
-    goodStream$
-).catch(err => Rx.Observable.of(err));
+import { merge, of } from 'rxjs';
+
+let preMergedPatched$ = merge(
+  badStream$.catch(err => of(err)),
+  goodStream$
+).catch(err => of(err));
 
 preMergedPatched$.subscribe(
-    data => console.log(data),
-    err => console.error(err),
-    () => console.log('pre patched merge completed')
+  data => console.log(data),
+  err => console.error(err),
+  () => console.log('pre patched merge completed')
 )
 ```
 
@@ -233,19 +279,22 @@ There is another scenario that might be of interest. The above scenario assumes 
 What if that is not the case, what if you only care about values from streams that behave? Let's say thats your case, there is an operator for that `onErrorResumeNext()`
 
 ```
-let secondBadStream$ = Rx.Observable.throw('bam');
-let gloriaGaynorStream$ = Rx.Observable.of('I will survive');
+import { throwError, of } from 'rxjs';
+import { onErrorResumeNext } from 'rxjs/operators';
 
-let emitSurviving = Rx.Observable.onErrorResumeNext(
-    badStream$,
-    secondBadStream$,
-    gloriaGaynorStream$
+let secondBadStream$ = throwError('bam');
+let gloriaGaynorStream$ = of('I will survive');
+
+let emitSurviving = onErrorResumeNext(
+  badStream$,
+  secondBadStream$,
+  gloriaGaynorStream$
 );
 
 emitSurviving.subscribe(
-    data => console.log(data),
-    err => console.error(err),
-    () => console.log('Survival of the fittest, completed')
+  data => console.log(data),
+  err => console.error(err),
+  () => console.log('Survival of the fittest, completed')
 ) 
 ```
 The only thing emitted here is 'I will survive' and 'Survival of the fittest, completed'.
