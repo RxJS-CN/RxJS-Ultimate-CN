@@ -2,7 +2,9 @@
 
 Note the following code example creating an `Observable`
 ```
-let stream$ = Rx.Observables.create((observer) => {
+import { Observable } from 'rxjs';
+
+let stream$ = Observable.create((observer) => {
   observer.next(4);
 })
 ```
