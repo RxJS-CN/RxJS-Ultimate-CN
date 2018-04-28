@@ -8,6 +8,10 @@ The different articles can be read in any order but it is recommended when you a
 
 This is a work in progress so chapters are likely to be added and changed, less and less so as time passes, but the work was started on this on the 21 feb 2017..
 
+**Updated on 28th April to RxJS 6.**
+
+
+
 If you like using Rxjs /Rxjs 5 be sure to tweet @BenLesh or @mattpodwysocki etc and say thank you, or good job. It means a lot..
 
 I have now synced this book with a GitHub repo. If you wish to contribute or correct something, please raise a PR at [https://github.com/softchris/Rxjs5-Ultimate](https://github.com/softchris/Rxjs5-Ultimate)
