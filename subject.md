@@ -30,8 +30,14 @@ unsubscribe()
 A `Subject` can act as a proxy, i.e receive values from another stream that the subscriber of the `Subject` can listen to.
 
 ```
-let source$ = Rx.Observable.interval(500).take(3);
-const proxySubject = new Rx.Subject();
+import { interval, Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+let source$ = interval(500).pipe(
+  take(3)
+ );
+ 
+const proxySubject = new Subject();
 let subscriber = source$.subscribe( proxySubject );
 
 proxySubject.subscribe( (value) => console.log('proxy subscriber', value ) );
@@ -55,11 +61,11 @@ Any `next()` that happens before a subscription is created is lost. There are ot
 So what's interesting about this?  It can listen to some source when that data arrives as well as it has the ability to emit its own data and all arrives to the same subscriber. Ability to communicate between components in a bus like manner is the most obvious use case I can think of. Component 1 can place its value through `next()` and Component 2 can subscribe and conversely Component 2 can emit values in turn that Component 1 can subscribe to.
 
 ```
-sharedService.getDispatcher = function(){
+sharedService.getDispatcher = () => {
    return subject;
 }
 
-sharedService.dispatch = function(value){
+sharedService.dispatch = (value) => {
   subject.next(value)
 }
 ```
@@ -69,13 +75,17 @@ sharedService.dispatch = function(value){
 prototype:
 
 ```
-new Rx.ReplaySubject([bufferSize], [windowSize], [scheduler])
+import { ReplaySubject } from 'rxjs';
+
+new ReplaySubject([bufferSize], [windowSize], [scheduler])
 ```
 
 example:
 
 ```
-let replaySubject = new Rx.ReplaySubject( 2 );
+import { ReplaySubject } from 'rxjs';
+
+let replaySubject = new ReplaySubject( 2 );
 
 replaySubject.next( 0 );
 replaySubject.next( 1 );
@@ -109,7 +119,9 @@ It's quite easy to imagine the business case here. You fetch some data and want 
 ## AsyncSubject
 
 ```
-let asyncSubject = new Rx.AsyncSubject();
+import { AsyncSubject } from 'rxjs';
+
+let asyncSubject = new AsyncSubject();
 asyncSubject.subscribe(
     (value) => console.log('async subject', value),
     (error) => console.error('async error', error),
@@ -162,7 +174,9 @@ getValue()
 ```
 
 ```
-let behaviorSubject = new Rx.BehaviorSubject(42);
+import { BehaviorSubject } from 'rxjs';
+
+let behaviorSubject = new BehaviorSubject(42);
 
 behaviorSubject.subscribe((value) => console.log('behaviour subject',value) );
 console.log('Behaviour current value',behaviorSubject.getValue());

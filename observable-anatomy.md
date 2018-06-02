@@ -9,7 +9,9 @@ stream.subscribe(fnValue, fnError, fnComplete)
 The first one is being demonstrated below **fnValue**
 
 ```
-let stream$ = Rx.Observable.create((observer) => {
+import { Observable } from 'rxjs';
+
+let stream$ = Observable.create((observer) => {
   observer.next(1)
 });
 
@@ -30,8 +32,8 @@ let stream$ = Rx.Observable.create((observer) => {
 })
 
 stream$.subscribe(
-   (data) => console.log('Data', data)),
-   (error) => console.log('Error', error)
+   (data) => console.log('Data', data),
+   (error) => console.log('Error', error))
 ```
 
 Lastly we have the **fnComplete** and it should be invoked when a stream is done and has no more values to emit. It is triggered by a call to `observer.complete()` like so:
@@ -48,7 +50,7 @@ let stream$ = Rx.Observable.create((observer) => {
 So far we have been creating an irresponsible Observable, irresponsible in the sense that it doesn't clean up after itself. So let's look at how to do that:
 
 ```
-let stream$ = new Rx.Observable.create((observer) => {
+let stream$ = Observable.create((observer) => {
   let i = 0;
   let id = setInterval(() => {
     observer.next(i++);

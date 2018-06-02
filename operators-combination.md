@@ -5,17 +5,26 @@ There are many operators out there that allows you to combine the values from 2 
 
 The signature on this one is:
 ```
-Rx.Observable.combineLatest([ source_1, ...  source_n])
+import { combineLatest } from 'rxjs';
+
+combineLatest([ source_1, ...  source_n])
 ```
 
 ```
-let source1 = Rx.Observable.interval(100)
-.map( val => "source1 " + val ).take(5);
+import { interval } from 'rxjs';
+import { map, take } from 'rxjs/operators';
 
-let source2 = Rx.Observable.interval(50)
-.map( val => "source2 " + val ).take(2);
+let source1 = interval(100).pipe(
+  map( val => "source1 " + val ),
+  take(5)
+);
 
-let stream$ = Rx.Observable.combineLatest(
+let source2 = interval(50).pipe(
+  map( val => "source2 " + val),
+  take(2)
+);
+
+let stream$ = combineLatest(
     source1,
     source2
 );
@@ -36,20 +45,26 @@ The business case is when you are interested in the very latest from each source
 The signature is :
 
 ```
-Rx.Observable([ source_1,... sournce_n ])
+Observable([ source_1,... sournce_n ])
 ```
 
 Looking at the following data, it's easy to think that it should care when data is emitted:
 
 ```
-let source1 = Rx.Observable.interval(100)
-.map( val => "source1 " + val ).take(5);
+import { interval, concat } from 'rxjs';
 
-let source2 = Rx.Observable.interval(50)
-.map( val => "source2 " + val ).take(2);
+let source1 = interval(100).pipe(
+  map( val => "source1 " + val ),
+  take(5)
+);
+
+let source2 = interval(50).pipe(
+  map( val => "source2 " + val ),
+  take(2)
+);
 
 
-let stream$ = Rx.Observable.concat(
+let stream$ = concat(
     source1, 
     source2
 );
@@ -66,13 +81,15 @@ So if you have a case where a source somehow should be prioritized then this is 
 ## merge
 This operator enables you two merge several streams into one.
 ```
-let merged$ = Rx.Observable.merge(
-    Rx.Observable.of(1).delay(500),
-    Rx.Observable.of(3,2,5)
-)
+import { merge } from 'rxjs';
+
+let merged$ = merge(
+  Rx.Observable.of(1).delay(500),
+  Rx.Observable.of(3,2,5)
+);
 
 let observer = {
-    next : data => console.log(data)
+  next : data => console.log(data)
 }
 
 merged$.subscribe(observer);
@@ -82,10 +99,12 @@ Point with is operator is to combine several streams and as you can see above an
 ## zip
 
 ```
-let stream$ = Rx.Observable.zip(
-    Promise.resolve(1),
-    Rx.Observable.of(2,3,4),
-    Rx.Observable.of(7)
+import { zip, of } from 'rxjs';
+
+let stream$ = zip(
+  Promise.resolve(1),
+  of(2,3,4),
+  of(7)
 );
 
 
@@ -95,10 +114,12 @@ Gives us `1,2,7`
 
 Let's look at another example
 ```
-let stream$ = Rx.Observable.zip(
-    Rx.Observable.of(1,5),
-    Rx.Observable.of(2,3,4),
-    Rx.Observable.of(7,9)
+import { zip, of } from 'rxjs';
+
+let stream$ = zip(
+  of(1,5),
+  of(2,3,4),
+  of(7,9)
 );
 
 stream$.subscribe(observer);

@@ -7,12 +7,16 @@ In Rxjs4 there existed a bunch of operators with resembling names such as `fromA
 
 **old fromArray**
 ```
-Rx.Observable.from([2,3,4,5])
+import { from } from 'rxjs';
+
+from([2,3,4,5])
 ```
 
 **old fromPromise **
 ```
-Rx.Observable.from(new Promise(resolve, reject) => {
+import { from } from 'rxjs';
+
+from(new Promise(resolve, reject) => {
   // do async work
   resolve( data )
 })
@@ -22,15 +26,20 @@ Rx.Observable.from(new Promise(resolve, reject) => {
 The `of` operator takes x number of arguments so you can call it with one arguments as well as 10 arguments like so:
 
 ```
-Rx.Observable.of(1,2);
-Rx.Observable.of(1,2,3,4);
+import { of } from 'rxjs';
+
+
+of(1,2);
+of(1,2,3,4);
 ```
 
 ##to
 There also exist a bunch of operators that allows you go the other way, i.e leave the wonderful world of observables and go back to a more primitive state like :
 
 ```
-let promise = Rx.Observable.of(1,2).toPromise();
+import { of } from 'rxjs';
+
+let promise = of(1,2).toPromise();
 promise.then(data => console.log('Promise', data));
 ```
 
