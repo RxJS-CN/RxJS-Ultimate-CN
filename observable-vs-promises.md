@@ -21,7 +21,7 @@ let promise = new Promise((resolve, reject) => {
 })
 
 promise.then((value) => {
-  console.log('Value',data)
+  console.log('Value',value)
 })
 ```
 

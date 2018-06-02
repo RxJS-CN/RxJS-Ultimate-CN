@@ -16,22 +16,26 @@ Imagine you have the following scenario:
 
 ```
 login()
-     .then(getUserDetails)
-     .then(getOrdersByUser)
+  .then(getUserDetails)
+  .then(getOrdersByUser)
 ```
 
 ### Rxjs approach
 
 ```
-let stream$ = Rx.Observable.of({ message : 'Logged in' })
-      .switchMap( result => {
-         return Rx.Observable.of({ id: 1, name : 'user' })
-      })
-      .switchMap((user) => {
-        return Rx.Observable.from(
-           [ { id: 114, userId : 1 },
-             { id: 117, userId : 1 }  ])
-      })
+import { of, from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+
+let stream$ = of({ message : 'Logged in' }).pipe(
+  switchMap( result => {
+    return of({ id: 1, name : 'user' })
+  }),
+  switchMap((user) => {
+    return from(
+     [{ id: 114, userId : 1 },
+      { id: 117, userId : 1 }  ])
+    })
+);
 
 stream$.subscribe((orders) => {
   console.log('Orders', orders);
@@ -43,7 +47,7 @@ stream$.subscribe((orders) => {
 I've simplied this one a bit in the Rxjs example but imagine instead of
 
 ```
-Rx.Observable.of()
+of()
 ```
 
 it does the proper `ajax()` call like in [Operators and Ajax](/operators-and-ajax.md)
@@ -57,29 +61,33 @@ it does the proper `ajax()` call like in [Operators and Ajax](/operators-and-aja
 
 ```
 getUser()
-   .then((user) => {
-      return Promise.all(
-        getOrders(),
-        getMessages()
-      )
+  .then((user) => {
+    return Promise.all(
+      getOrders(),
+      getMessages()
+    )
    })
 ```
 
 ### Rxjs approach
 
 ```
-let stream$ = Rx.Observable.of({ id : 1, name : 'User' })
-stream.switchMap((user) => {
-  return Rx.Observable.forkJoin(
-     Rx.Observable.from([{ id : 114, user: 1}, { id : 115, user: 1}],
-     Rx.Observable.from([{ id : 200, user: 1}, { id : 201, user: 1}])
-  )
-})
+import { of } from 'rxjs';
+import { switchMap, forkJoin } from 'rxjs/operators';
+
+let stream$ = of({ id : 1, name : 'User' })
+stream.pipe(
+  switchMap((user) => {
+    return forkJoin(
+      from([{ id : 114, user: 1}, { id : 115, user: 1}],
+      from([{ id : 200, user: 1}, { id : 201, user: 1}])
+    )
+  })
+);
 
 stream$.subscribe((result) => {
   console.log('Orders', result[0]);
   console.log('Messages', result[1]);
-
 })
 ```
 

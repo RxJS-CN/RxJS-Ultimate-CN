@@ -5,27 +5,29 @@ Wrapping something in an observable means we take something that is NOT an Obser
 
 ## Wrapping an ajax call 
 ```
-let stream = Rx.Observable.create((observer) => {
-   let request = new XMLHttpRequest();
+import { Observable } from 'rxjs';
 
-   request.open( ‘GET’, ‘url’ );
-   request.onload =() =>{
-      if(request.status === 200) {
-         observer.next( request.response );
-         observer.complete();
-     } else {
-          observer.error('error happened');
-     }
-   }
-   
-   request.onerror = () => {  
-       observer.error('error happened')                                                                                } 
-   request.send();
-})
+let stream = Observable.create(observer => {
+  let request = new XMLHttpRequest();
 
-stream.subscribe(
-   (data) => console.log( data )  
-)
+  request.open('GET', 'url');
+  request.onload = () => {
+    if (request.status === 200) {
+      observer.next(request.response);
+      observer.complete();
+    } else {
+      observer.error('error happened');
+    }
+  };
+
+  request.onerror = () => {
+    observer.error('error happened');
+  };
+  request.send();
+});
+
+stream.subscribe(data => console.log(data));
+
 ```
 
 Three things we need to do here `emit data`, `handle errors` and `close the stream`
@@ -34,20 +36,19 @@ Three things we need to do here `emit data`, `handle errors` and `close the stre
 ```
 if(request.status === 200) {
   observer.next( request.response )  // emit data
-
 }
 ```
 ### Handle potential errors
 
 ```
 else {
-       observer.error('error happened');
-  }
+  observer.error('error happened');
+}
 ```
 and
 ```
 request.onerror = () => {
-   observer.error('error happened') 
+  observer.error('error happened') 
 } 
 ```
 
@@ -64,35 +65,34 @@ if(request.status === 200) {
 ```
 console.clear();
 
-
 const { Observable } = Rx;
 
 const speechRecognition$ = new Observable(observer => {
-   const speech = new webkitSpeechRecognition();
+  const speech = new webkitSpeechRecognition();
 
-   speech.onresult = (event) => {
-     observer.next(event);
-     observer.complete();
-   };
-
-   speech.start();
-  
-   return () => {
-     speech.stop();
-   }
-});
-
-const say = (text) => new Observable(observer => {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.onend = (e) => {
-    observer.next(e);
+  speech.onresult = event => {
+    observer.next(event);
     observer.complete();
   };
-  speechSynthesis.speak(utterance);
+
+  speech.start();
+
+  return () => {
+    speech.stop();
+  };
 });
 
+const say = text =>
+  new Observable(observer => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.onend = e => {
+      observer.next(e);
+      observer.complete();
+    };
+    speechSynthesis.speak(utterance);
+  });
 
-const button = document.querySelector("button");
+const button = document.querySelector('button');
 
 const heyClick$ = Observable.fromEvent(button, 'click');
 
@@ -126,20 +126,19 @@ This activates the microphone in the browser and records us
 
 ```
 const speechRecognition$ = new Observable(observer => {
-   const speech = new webkitSpeechRecognition();
+  const speech = new webkitSpeechRecognition();
 
-   speech.onresult = (event) => {
-     observer.next(event);
-     observer.complete();
-   };
+  speech.onresult = event => {
+    observer.next(event);
+    observer.complete();
+  };
 
-   speech.start();
-  
-   return () => {
-     speech.stop();
-   }
+  speech.start();
+
+  return () => {
+    speech.stop();
+  };
 });
-
 ```
 
 This essentially sets up the speech recognition API. We wait for one response and after that we complete the stream, much like the first example with AJAX.
@@ -147,8 +146,8 @@ This essentially sets up the speech recognition API. We wait for one response an
 Note also that a function is defined for cleanup
 ```
 return () => {
-   speech.stop();
- }
+  speech.stop();
+}
 ```
 so that we can call `speechRecognition.unsubscribe()` to clean up resources
 

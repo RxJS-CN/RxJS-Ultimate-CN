@@ -5,13 +5,18 @@ Quite often you come to a point where you start with one type of Observable and 
 ## Example
 
 ```
-let stream$ = Rx.Observable
-.of(1,2,3)
-.flatMap((val) => {
-  return Rx.Observable
-            .of(val)
-            .ajax({ url : url + }) )
-            .map((e) => e.response ) 
+import { of } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { flatMap, map } from 'rxjs/operators';
+
+let stream$ = of(1,2,3)
+.pipe(
+  flatMap((val) => {
+    return of(val).pipe(
+        ajax({ url : url + })).pipe(
+          map((e) => e.response)
+        )
+    ); 
 }
 
 stream.subscribe((val) => console.log(val))
@@ -30,14 +35,21 @@ So here we have a case of starting with values 1,2,3 and wanting those to lead u
 The reason for us NOT doing it like this with a `.map()` operator
 
 ```
-let stream$ = Rx.Observable
-.of(1,2,3)
-.map((val) => {
-  return Rx.Observable
-            .of(val)
-            .ajax({ url : url + }) )
-            .map((e) => e.response ) 
-}
+import { of } from 'rxjs';
+import { ajax } from 'rxjs/ajax';
+import { map } from 'rxjs/operators';
+
+let stream$ = of(1,2,3).pipe(
+  map((val) => {
+    return of(val)
+      .pipe(
+        ajax({ url : url + }) )
+        .pipe(
+          map((e) => e.response ) 
+        )
+      )
+  }
+);
 
 ```
 
