@@ -22,7 +22,7 @@ of(1,2,3)
 
 ### GOTCHA
 
-This statement `import Rx from 'rxjs/Rx'` utilizes the entire library. It is great for testing out various features but once hitting production this is _a bad idea_ as Rxjs is quite a heave library. In a more realistic scenario you would want to use the alternate approach below that only imports the operators that you actually use :
+This statement `import Rx from 'rxjs/Rx'` utilizes the entire library. It is great for testing out various features but once hitting production this is *a bad idea* as Rxjs is quite a heavy library. In a more realistic scenario you would want to use the alternate approach below that only imports the operators that you actually use :
 
 ```
 import { of } from 'rxjs';
