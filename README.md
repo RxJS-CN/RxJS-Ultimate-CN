@@ -11,7 +11,7 @@ This is a work in progress so chapters are likely to be added and changed, less 
 ## Updated to RxJS 6
 This book was updated to RxJS on 28th April 2018.
 
-A lot of things changed when going from RxJS 5 to RxJS 6. Most of the changes was about moving to pipeable operators, A way for the tree shaking process to work better but also do introduce some order. For more detail on the exact nature of the changes [https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md](https://github.com/ReactiveX/rxjs/blob/master/MIGRATION.md) 
+A lot of things changed when going from RxJS 5 to RxJS 6. Most of the changes was about moving to pipeable operators, A way for the tree shaking process to work better but also do introduce some order. For more detail on the exact nature of the changes [https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/v6/migration.md](https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/v6/migration.md) 
 
 ## Give credit where credit is due
 
