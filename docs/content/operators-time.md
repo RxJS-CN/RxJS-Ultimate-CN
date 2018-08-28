@@ -156,10 +156,10 @@ TODO
 ```javascript
 let scissor$ = Rx.Observable.interval(500)
 
-let emitter$ = Rx.Observable.interval(100).take(10) // 总共会输出10个值
+let emitter$ = Rx.Observable.interval(100).take(10) // 总共会输出9个值
 .buffer( scissor$ )
 
-// 500毫秒后输出: [0,1,2,3,4]  1秒后输出: [5,6,7,8,9]
+// 500毫秒后输出: [0,1,2,3]  1秒后输出: [4,5,6,7,8]
 ```
 
 弹珠图
